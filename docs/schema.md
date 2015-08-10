@@ -1,38 +1,42 @@
 # Schema Information
 
-## blogs
+## groups
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
+body        | string    |
+avatar      | image     |
 
-## followings
+## events
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
-
-## posts
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
+owner_id    | integer   | not null, foreign key (references users)
+group_id    | integer   | not null, foreign key (references groups)
 title       | string    | not null
 body        | string    |
+avatar      | image     |
 
-## tags
+## comments/replies
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-label       | string    | not null, unique
+owner_id    | integer   | not null, foreign key (references users)
+body        | string    | not null
+
+## tags (prefered groups for a specific user)
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+group_type  | string    | not null, unique
 
 ## taggings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
+user_id     | integer   | not null, foreign key (references posts)
 tag_id      | integer   | not null, foreign key (references tags)
 
 ## users
@@ -42,4 +46,3 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
-

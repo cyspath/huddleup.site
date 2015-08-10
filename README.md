@@ -1,24 +1,26 @@
-# Flux-capacitr
+# Pet's Day off
 
 [Heroku link][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: https://mycapstoneprojectapp.herokuapp.com
 
 ## Minimum Viable Product
-Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
+PetsDayOff is inspired by Meetup.com built on Rails and Backbone. Pets can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] Create accounts
-- [x] Create sessions (log in)
-- [x] Create blogs
-- [x] Create blog posts
-- [ ] View blogs and posts
-- [ ] Subscribe to blogs
-- [ ] View a feed of subscribed blogs
-- [ ] Tag blog posts
-- [ ] Search for blogs by title
-- [ ] Search for posts by tag
+- [ ] Create accounts
+- [ ] Create sessions (log in)
+- [ ] Create groups
+- [ ] Create events
+- [ ] View groups and events
+- [ ] Able to attend or leave events
+- [ ] Comment on groups, events, and other pet's profile page
+- [ ] Chat with each other
+- [ ] Able to see other attendees
+- [ ] Browse for group and events
+- [ ] Search for group and events
+
 
 ## Design Docs
 * [View Wireframes][views]
@@ -29,63 +31,44 @@ Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
-I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
-be pushing the app to Heroku and ensuring that everything works before moving on
-to phase 2.
+### Phase 1: User Authentication, basic index page set up (~1 day)
+
+User authentication with Rails will be implemented. By the end of the day pets will be able to log in and directed to the root page. The log-in splash page will be awesome but it has to wait. The root page in short will be very simple at this stage, containing sample groups pre-made by me in the rails console. Today is mainly to ensure I am on the right path with everything working correctly (Heroku to be exact).
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
+### Phase 2: Creating and joining groups and events (~2 days)
 I will add API routes to serve blog and post data as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
 phase, users will be able to create blogs and view both blogs and posts, all
 inside a single Backbone app.
 
+Controllers and API routes will be set-up in this stage, Rails will return json and Backbone will manipulate the json to display the results ( Backbone model, collection, router, view, etc ). By the end of this phase Pets will be able to create groups, join groups, create events, and join events. Group page will show its events, and event page will show its users.
+
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: Bogging down the details in event show page (~2 days)
+
+The interface will be perfected abit, users will be able to create events and add photos (in the future a slideshow will be inserted in the event showpage). The showpage should also have options to set user status to going, maybe, and not going. This will be reflected on the event's right-hand sidebar which should contain a list of users and their status. Additionally comment functionality should be added for groups, user's showpage, and event's showpage.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 4: User's profile page (~1-2 days)
+
+At this stage Pets profile page will have more fancy stuff such as their groups, upcoming events, avatar, description, as well as a "bail-bar"/"flakebility"/"chance of showing up" gauge that tells other users of this users credibility at attending events. Also a reward badge will be given based on number of events attended. At this point some CSS will be implemented to make the site somewhat presentable so I have an approximate idea on how to arrange features on the page.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 5: Seed the database, more css styling (~1 day)
+Users(pets) will be seeded. More css styling. Splash page will have a video background/animation. Root page after logging in will have a slideshow of popular destinations/events.
 
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
+- [ ] "Up" button to rate users, and a anonymous "Down" button as well.
 - [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
-- [ ] User avatars
-- [ ] Typeahead search bar
-
-[phase-one]: ./docs/phases/phase1.md
-[phase-two]: ./docs/phases/phase2.md
-[phase-three]: ./docs/phases/phase3.md
-[phase-four]: ./docs/phases/phase4.md
-[phase-five]: ./docs/phases/phase5.md
-
+- [ ] custom animation using photoshop and css background-shit technique
+- [ ] trim the borders, make the page theme appearing but not overwhelming
+- [ ] dropdown bars
+- [ ] depressable button upon click
+- [ ] splash page animation: a pet getting off work (for human) and goes online to search for some fun events or destinations to go to
