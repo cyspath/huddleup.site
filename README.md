@@ -39,8 +39,8 @@ User authentication with Rails will be implemented. By the end of the day pets w
 ### Phase 2: Creating and joining groups and events (~2 days)
 I will add API routes to serve blog and post data as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+phase, users will be able to create groups, join groups, and create events, all
+inside a single Backbone controlled staticpage(root).
 
 Controllers and API routes will be set-up in this stage, Rails will return json and Backbone will manipulate the json to display the results ( Backbone model, collection, router, view, etc ). By the end of this phase Pets will be able to create groups, join groups, create events, and join events. Group page will show its events, and event page will show its users.
 
