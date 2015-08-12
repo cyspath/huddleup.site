@@ -1,11 +1,24 @@
 class User < ActiveRecord::Base
+
+  has_many :group_members
+  has_many :groups, through: :group_members
+
+  has_many :event_members
+  has_many :events, through: :event_members
+
+  has_many :comments
+
+  has_many :authored_events, foreign_key: :author_id, class_name: Event
+
+  has_many :authored_groups, foreign_key: :author_id, class_name: Group
+
+  has_many :authored_comments, foreign_key: :author_id, class_name: Comment
+
+
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   attr_reader :password
-
-
-
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(username, password)
