@@ -4,7 +4,8 @@
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
+author_id   | integer   | not null, foreign key (references groups)
+user_id     | integer   | not null, foreign key (references users)
 title       | string    | not null
 body        | string    |
 avatar      | image     |
@@ -13,9 +14,12 @@ avatar      | image     |
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
+author_id   | integer   | not null, foreign key (references groups)
+user_id     | integer   | not null, foreign key (references users)
 group_id    | integer   | not null, foreign key (references groups)
 title       | string    | not null
+location    | string    | not null
+time        | string    | not null
 body        | string    |
 avatar      | image     |
 
@@ -23,7 +27,10 @@ avatar      | image     |
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
+author_id   | integer   | not null, foreign key (references groups)
+user_id     | integer   | not null, foreign key (references users)
+group_id    | integer   | not null, foreign key (references groups)
+event_id    | integer   | not null, foreign key (references groups)
 body        | string    | not null
 
 ## tags (prefered groups for a specific user)

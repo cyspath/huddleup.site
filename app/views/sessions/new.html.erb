@@ -1,19 +1,29 @@
-<h1>Sign In!</h1>
+<div class="credentials-container">
 
-<form action="<%=session_url %>" method="post">
+  <p class="sign-in">
+    <%= link_to "Sign In", new_session_url %>
+  </p>
 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
-
-  <label>Username
-    <input type="text" name="user[username]">
-  </label>
-
-
-  <label>Password
-    <input type="password" name="user[password]">
-  </label>
+  <p class="register">
+    <%= link_to "Register", new_user_url %>
+  </p>
 
 
-  <input type="submit" value="Sign In">
+  <form action="<%=session_url %>" method="post" class="login">
 
-</form>
+    <h1>Welcome Back!</h1>
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+
+    <input type="text" name="user[username]" class="login-input" placeholder="Username" autofocus>
+
+    <input type="password" name="user[password]" class="login-input" placeholder="Password">
+
+    <input type="submit" value="Sign In" class="login-submit">
+
+    <input type="submit" value="Demo Account" class="login-submit demo-account">
+
+  </form>
+
+
+</div>

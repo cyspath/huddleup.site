@@ -1,54 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-a.navbar-brand.overwrite { padding-top: 0px; padding-bottom: 0px; background-color: white; }
-
-li.avatar img{
-  margin-top: 10px;
-  border-radius: 30%;
-}
-
-li.start-group {
-  -moz-transition: all .1s ease-in;
-  -o-transition: all .1s ease-in;
-  -webkit-transition: all .1s ease-in;
-  transition: all .1s ease-in;
-}
-
-li.start-group:hover {
-  background-color: #3b5998;
-  border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
-}
-
-.navbar-default .navbar-nav>li.start-group>a:hover p{
-  color: white;
-}
-.navbar-default .navbar-nav>li.start-group>a {
-  color: #3b5998;
-}
-
-.container-fluid { padding: 3px;}
-p.biggerword { font-size: 22px; padding: 2px; margin: 0px; font-weight: bold; }
-
-p.smallerword { font-size: 3px; padding: 0px;  margin: 0px; color: #c0c0c0; font-weight: normal; }
-
-
-.navbar-nav>li>a.start-group-a { padding: 7px 12px 0px 12px; }
-
-.navbar-default.ow-color {
-  /*background-color: #f8f8f8;*/
-  background-color: white;
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
-
-.navbar-default.ow-color {
-  font-size: 20px;
-}
-.signed-in-as {
-  font-size: 16px;
-}
-/*html {
-  background: #e3e3e3;
-}*/
+@import 'navibar';
+@import 'login/login.scss';
