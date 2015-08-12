@@ -23,23 +23,30 @@ li.avatar img{
 }
 
 li.start-group {
-  -moz-transition: all .2s ease-in;
- -o-transition: all .2s ease-in;
- -webkit-transition: all .2s ease-in;
- transition: all .2s ease-in;
-   }
+  -moz-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
 
 li.start-group:hover {
   background-color: #3b5998;
   border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
 }
 
-.navbar-default .navbar-nav>li.start-group>a:hover {
+.navbar-default .navbar-nav>li.start-group>a:hover p{
   color: white;
 }
 .navbar-default .navbar-nav>li.start-group>a {
-    color: #3b5998;
+  color: #3b5998;
 }
+
+p.biggerword { font-size: 22px; padding: 2px; margin: 0px; font-weight: bold; }
+
+p.smallerword { font-size: 3px; padding: 0px;  margin: 0px; color: #c0c0c0; font-weight: normal; }
+
+
+.navbar-nav>li>a.start-group-a { padding: 7px 12px 0px 12px; }
 
 .navbar-default.ow-color {
   /*background-color: #f8f8f8;*/
@@ -47,9 +54,14 @@ li.start-group:hover {
   position: fixed;
   width: 100%;
   top: 0;
-
 }
 
+.navbar-default.ow-color {
+  font-size: 20px;
+}
+.signed-in-as {
+  font-size: 16px;
+}
 /*html {
   background: #e3e3e3;
 }*/

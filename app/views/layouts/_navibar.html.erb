@@ -17,25 +17,42 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
           <ul class="nav navbar-nav">
 
-            <li class="start-group"><a href="#" class="start-group-a">Start a HuddleUp Group <span class="sr-only">(current)</span></a></li>
+            <li class="start-group"><a href="#" class="start-group-a">
+              <p class="biggerword">
+                Find
+              </p>
+              <p class="smallerword">
+                a HuddleUp Group
+              </p>
+            </a></li>
+
+            <li class="start-group"><a href="#" class="start-group-a">
+              <p class="biggerword">
+                Start
+              </p>
+              <p class="smallerword">
+                a HuddleUp Group
+              </p>
+            </a></li>
 
           </ul>
 
-      <form class="navbar-form navbar-left" role="search">
+      <!-- <form class="navbar-form navbar-left" role="search">
 
 
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
-      </form>
+      </form> -->
 
       <ul class="nav navbar-nav navbar-right">
 
         <% if signed_in? %>
-          <li><p class="navbar-text">Signed in as <%= current_user.username.capitalize %></p></li>
+          <li class="navbar-text signed-in-as">Signed in as <%= current_user.username.capitalize %></li>
           <!-- <li><div class='navi signout'><%= button_to "Sign Out", session_url, method: :delete %></div></li> -->
         <%else%>
           <li><%= link_to "Sign Up", new_user_url %></li>
@@ -47,7 +64,7 @@
             <img alt="avatar" src="<%= image_url("coolcat.jpg")%>" width="30" height="30">
         </li>
 
-        <li><a href="#">Inbox <span class="badge">3</span></a><li>
+        <li><a href="#">Messages <span class="badge">3</span></a><li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Go To  <span class="caret"></span></a>
