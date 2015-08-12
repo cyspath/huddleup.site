@@ -16,7 +16,7 @@
 //= require jquery.serializeJSON
 //= require underscore
 //= require backbone
-//= require bootstrap.min
+//= require bootstrap-sprockets
 //= require capstone_project
 //= require_tree ../templates
 //= require_tree ./models
