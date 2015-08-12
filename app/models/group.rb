@@ -6,5 +6,7 @@ class Group < ActiveRecord::Base
 
   has_many :comments
 
+  has_many :events
+
   validates :name, :author, presence: true
 end
