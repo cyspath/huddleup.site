@@ -5,23 +5,34 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references groups)
-user_id     | integer   | not null, foreign key (references users)
-title       | string    | not null
+name        | string    | not null
 body        | string    |
 avatar      | image     |
+
+## groupMember
+column name | data type | details
+------------|-----------|-----------------------
+user_id     | integer   | not null, foreign key (references users)
+group_id    | integer   | not null, foreign key (references users)
 
 ## events
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references groups)
-user_id     | integer   | not null, foreign key (references users)
 group_id    | integer   | not null, foreign key (references groups)
 title       | string    | not null
 location    | string    | not null
-time        | string    | not null
+date        | string    | not null
 body        | string    |
 avatar      | image     |
+
+## eventMember
+column name | data type | details
+------------|-----------|-----------------------
+user_id     | integer   | not null, foreign key (references users)
+event_id    | integer   | not null, foreign key (references users)
+
 
 ## comments/replies
 column name | data type | details
