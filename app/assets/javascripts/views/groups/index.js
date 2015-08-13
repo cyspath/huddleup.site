@@ -1,20 +1,21 @@
-App.Views.GroupsIndex = Backbone.View.extend({
+App.Views.GroupsIndex = Backbone.CompositeView.extend({
   template: JST['groups/index'],
+  className: 'groups-container group',
 
   initialize: function () {
-    this.listenTo(this.collection, "add sync remove", this.render);
+    this.listenTo(this.collection, "add change remove", this.render);
+    this.listenTo(this.collection, "sync", this.render);
   },
 
   render: function () {
     var content = this.template({ groups: this.collection });
-    this.$el.html(content);
+    this.$el.empty();
+    this.collection.each(function(group){
+      var view = new App.Views.GroupsIndexItem({ model: group });
+      this.$el.append(view.render().$el)
+    }.bind(this))
+
     return this;
   }
-  // events: { "click button.delete": "deleteBoard" },
-  //
-  // deleteBoard: function (e) {
-  //   var $button = $(e.currentTarget);
-  //   var $board = this.collection.get($button.attr("data-id"));
-  //   $board.destroy();
-  // },
+
 })
