@@ -2,10 +2,10 @@ json.extract!(
   comment,
   :id,
   :body,
+  :commentable_id,
+  :commentable_type,
   :author_id,
-  :user_id,
-  :group_id,
-  :event_id
+
 )
 
 

@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :group
 
-  has_many :comments
+  has_many :comments, as: :commentable
 
   validates :title, :author, :group, presence: true
 end

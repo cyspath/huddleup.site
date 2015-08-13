@@ -1,0 +1,33 @@
+button.button {
+  margin: 0 auto;
+  display: block;
+  background-color: #1984c3;
+  color: #fff;
+  font-size: 24px;
+  font-family: Courier, sans-serif;
+  padding: 16px 80px;
+
+  text-transform: uppercase;
+  border-radius: 8px;
+  border-bottom: 5px solid #0f5177;
+}
+
+
+button.button:hover {
+  cursor: hand;
+  cursor: pointer;
+  background-color: #1e9feb;
+
+}
+
+button.button:active{
+  position: relative;
+  background-color: #1e9feb;
+  top: 5px;
+  border-top: 6px solid transparent;
+  border-bottom: 0px solid #0f5177;
+}
+
+button.button:focus {
+  outline: none;
+}

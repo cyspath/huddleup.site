@@ -1,0 +1,11 @@
+<div class="groups-container group">
+
+  <% groups.forEach(function (group) { %>
+
+    <div class="group-block">
+        <a href="#/groups/<%= group.escape('id')%>"><%= group.escape('name')%></a>
+    </div>
+
+  <% }) %>
+
+</div>

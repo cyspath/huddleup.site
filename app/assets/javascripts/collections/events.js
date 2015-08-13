@@ -1,4 +1,4 @@
-App.Collections.Comments = Backbone.Collection.extend({
+App.Collections.Events = Backbone.Collection.extend({
   url: '/api/events',
   model: App.Models.Event,
 

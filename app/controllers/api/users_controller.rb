@@ -5,6 +5,11 @@ class Api::UsersController < ApplicationController
     render 'index'
   end
 
+  # def current
+  #   @current_user = current_user
+  #   render 'current'
+  # end
+
   def show
     @user = User.find(params[:id])
     render 'show'

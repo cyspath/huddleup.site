@@ -9,6 +9,9 @@ json.extract!(
   :group_id,
 )
 
+json.set! :group_name, event.group.name
+json.set! :author_name, event.author.username.capitalize
+
 
 if display_users
   json.users do

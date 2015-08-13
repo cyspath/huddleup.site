@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812232833) do
+ActiveRecord::Schema.define(version: 20150813164937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,14 @@ ActiveRecord::Schema.define(version: 20150812232833) do
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "author_id"
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
+
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
   create_table "event_members", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +34,9 @@ ActiveRecord::Schema.define(version: 20150812232833) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "event_members", ["event_id"], name: "index_event_members_on_event_id", using: :btree
+  add_index "event_members", ["user_id"], name: "index_event_members_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -44,12 +49,18 @@ ActiveRecord::Schema.define(version: 20150812232833) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "events", ["author_id"], name: "index_events_on_author_id", using: :btree
+  add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree
+
   create_table "group_members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
+  add_index "group_members", ["user_id"], name: "index_group_members_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +69,8 @@ ActiveRecord::Schema.define(version: 20150812232833) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "groups", ["author_id"], name: "index_groups_on_author_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

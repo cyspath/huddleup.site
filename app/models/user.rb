@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :event_members
   has_many :events, through: :event_members
 
-  has_many :comments
+  has_many :comments, as: :commentable
 
   has_many :authored_events, foreign_key: :author_id, class_name: Event
 

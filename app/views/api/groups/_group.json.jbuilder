@@ -6,6 +6,8 @@ json.extract!(
   :author_id
 )
 
+json.set! :author_name, group.author.username.capitalize
+
 if display_users
   json.users do
     json.array! group.users do |user|

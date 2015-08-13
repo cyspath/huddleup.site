@@ -1,0 +1,27 @@
+
+
+<h1><%= group.isNew() ? 'Create Group' : 'Edit Group' %>
+  <span>Please fill all the texts in the fields.</span>
+</h1>
+
+<input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+
+<label>
+  <span>Group</span>
+  <input type="text" name='name' value="<%= group.escape('name')%>" placeholder="Something catchy!">
+</label>
+
+<label>
+  <span class="text">Purpose</span>
+  <textarea id="message" name='body' placeholder="What is the purpose of this group?"></textarea>
+</label>
+
+<span>&nbsp;</span>
+
+<button class="button">Submit</button><br><br>
+
+  <a href='#' class="link">
+    <p>
+      Back to Groups Page
+    </p>
+  </a>
