@@ -18,6 +18,7 @@
 //= require backbone
 //= require bootstrap-sprockets
 //= require capstone_project
+//= require_tree ./utils
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

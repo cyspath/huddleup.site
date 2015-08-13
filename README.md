@@ -1,11 +1,11 @@
-# Pet's Day off
+# HuddleUp
 
 [Heroku link][heroku]
 
 [heroku]: https://mycapstoneprojectapp.herokuapp.com
 
 ## Minimum Viable Product
-PetsDayOff is inspired by Meetup.com built on Rails and Backbone. Pets can:
+HuddleUp is inspired by Meetup.com built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
@@ -42,7 +42,7 @@ models and collections that fetch data from those routes. By the end of this
 phase, users will be able to create groups, join groups, and create events, all
 inside a single Backbone controlled staticpage(root).
 
-Controllers and API routes will be set-up in this stage, Rails will return json and Backbone will manipulate the json to display the results ( Backbone model, collection, router, view, etc ). By the end of this phase Pets will be able to create groups, join groups, create events, and join events. Group page will show its events, and event page will show its users.
+Controllers and API routes will be set-up in this stage, Rails will return json and Backbone will manipulate the json to display the results ( Backbone model, collection, router, view, etc ). By the end of this phase users will be able to create groups, join groups, create events, and join events. Group page will show its events, and event page will show its users.
 
 
 ### Phase 3: Bogging down the details in event show page (~2 days)
@@ -52,7 +52,7 @@ The interface will be perfected abit, users will be able to create events and ad
 
 ### Phase 4: User's profile page (~1-2 days)
 
-At this stage Pets profile page will have more fancy stuff such as their groups, upcoming events, avatar, description, as well as a "bail-bar"/"flakebility"/"chance of showing up" gauge that tells other users of this users credibility at attending events. Also a reward badge will be given based on number of events attended. At this point some CSS will be implemented to make the site somewhat presentable so I have an approximate idea on how to arrange features on the page.
+At this stage users profile page will have more fancy stuff such as their groups, upcoming events, avatar, description, as well as a "bail-bar"/"flakebility"/"chance of showing up" gauge that tells other users of this users credibility at attending events. Also a reward badge will be given based on number of events attended. At this point some CSS will be implemented to make the site somewhat presentable so I have an approximate idea on how to arrange features on the page.
 
 
 ### Phase 5: Seed the database, more css styling (~1 day)

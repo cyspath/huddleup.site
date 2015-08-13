@@ -1,13 +1,12 @@
-window.CapstoneProject = {
+window.App = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-    // alert('Hello from Backbone!');
+    new App.Routers.Router({
+      $rootEl: $('#root')
+    });
+    Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  CapstoneProject.initialize();
-});
