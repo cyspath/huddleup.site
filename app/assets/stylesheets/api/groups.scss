@@ -1,29 +1,32 @@
-// Place all the styles related to the api/groups controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// group index
 
 .group:after{
-  content:"";
+  content:" ";
   display: block;
   clear: both;
 }
 
 .group-item {
+  font-family: 'Lucida Grande', Verdana, sans-serif;
   float:left;
-  margin: 30px;
-  width: 200px;
-  height: 75px;
+  margin: 10px 10px 10px 10px;
+  width: 225px;
+  height: 200px;
   background-color: #3b5998;
   border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+
 }
 
-.group-item a {
+.group-item p {
   color: white;
   padding: 7px;
  }
 
 .group-item:hover {
+  text-decoration: none;
   cursor: hand;
   cursor: pointer;
   background-color: #1984c3;
 }
+
+// group show

@@ -1,20 +1,29 @@
 App.Views.GroupsIndex = Backbone.CompositeView.extend({
   template: JST['groups/index'],
-  className: 'groups-container group',
 
   initialize: function () {
-    this.listenTo(this.collection, "add change remove", this.render);
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "add", this.addGroupView);
+
+    this.listenTo(this.collection, "remove", this.removeGroupView);
+
+    // this.listenTo(this.collection, "sync", this.render);
+
+    this.collection.each(this.addGroupView.bind(this));
+  },
+
+  addGroupView: function (group) {
+    var subview = new App.Views.GroupsIndexItem({ model: group });
+    this.addSubview('.groups-container', subview);
+  },
+
+  removeGroupView: function (group) {
+    this.removeModelSubview('.groups-container', group)
   },
 
   render: function () {
-    var content = this.template({ groups: this.collection });
-    this.$el.empty();
-    this.collection.each(function(group){
-      var view = new App.Views.GroupsIndexItem({ model: group });
-      this.$el.append(view.render().$el)
-    }.bind(this))
-
+    var content = this.template();
+    this.$el.html(content);
+    this.attachSubviews();
     return this;
   }
 

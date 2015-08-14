@@ -1,12 +1,5 @@
 <div class="credentials-container">
 
-  <p class="sign-in">
-    <%= link_to "Sign In", new_session_url %>
-  </p>
-
-  <p class="register">
-    <%= link_to "Register", new_user_url %>
-  </p>
 
 
   <form action="<%=session_url %>" method="post" class="login">
@@ -25,5 +18,12 @@
 
   </form>
 
+  <p class="sign-in">
+    <%= link_to "Sign In", new_session_url %>
+  </p>
+
+  <p class="register">
+    <%= link_to "Register", new_user_url %>
+  </p>
 
 </div>

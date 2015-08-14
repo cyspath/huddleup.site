@@ -1,17 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+@import 'root';
 @import 'navibar';
 @import 'login/login.scss';
 @import 'form';
 @import 'button';
 @import 'api/*';
-
-
-
-body {
-  font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
-  color: #404040;
-  background: #f7f7f7;
-}

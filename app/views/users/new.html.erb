@@ -1,17 +1,10 @@
 <div class="credentials-container">
 
-  <p class="sign-in">
-    <%= link_to "Sign In", new_session_url %>
-  </p>
-
-  <p class="register">
-    <%= link_to "Register", new_user_url %>
-  </p>
 
 
   <form action="<%=users_url %>" method="post" class="login">
 
-    <h1>Sign Up Today!</h1>
+    <h1>Sign Up!</h1>
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 
@@ -25,5 +18,12 @@
 
   </form>
 
+  <p class="sign-in">
+    <%= link_to "Sign In", new_session_url %>
+  </p>
+
+  <p class="register">
+    <%= link_to "Register", new_user_url %>
+  </p>
 
 </div>

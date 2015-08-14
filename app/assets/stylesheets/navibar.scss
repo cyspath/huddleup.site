@@ -1,4 +1,14 @@
-a.navbar-brand.overwrite { padding-top: 0px; padding-bottom: 0px; background-color: white; }
+
+nav div.container-fluid {
+  font-family: 'Lucida Grande', Verdana, sans-serif;
+  margin: 0 auto;
+  width: 980px;
+}
+
+a.navbar-brand.overwrite {
+  padding: 0px 15px 0px 26px;
+  background-color: white;
+}
 
 div#root { padding-top: 70px; }
 
@@ -27,6 +37,7 @@ li.start-group:hover {
 }
 
 .container-fluid { padding: 3px;}
+
 p.biggerword { font-size: 22px; padding: 2px; margin: 0px; font-weight: bold; }
 
 p.smallerword { font-size: 3px; padding: 0px;  margin: 0px; color: #c0c0c0; font-weight: normal; }

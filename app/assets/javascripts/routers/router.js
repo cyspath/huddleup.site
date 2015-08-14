@@ -36,10 +36,17 @@ App.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
+  showGroup: function (id) {
+    var group = this.groups.getOrFetch(id);
+    var view = new App.Views.GroupShowView({ model: group});
+    this.swapView(view);
+  },
+
   newGroup: function () {
     var group = new App.Models.Group();
-    var view = new App.Views.GroupForm({ model: group, collection: this.groups });
-    this.swapView(view);
+    var modal = new App.Views.GroupForm({ model: group, collection: this.groups });
+    $('body').prepend(modal.$el);
+    modal.render();
   }
 
 });

@@ -2,30 +2,50 @@ App.Views.GroupForm = Backbone.View.extend({
 
   template: JST['groups/form'],
 
-  events: { 'click button': 'submitForm' },
+  events: {
+    'click button': 'submitForm',
+    'click .faded-background': 'removeViewAndGoBack',
+    'click .link': 'removeViewAndGoBack'
+  },
 
-  tagName: 'form',
+  initialize: function () {
+    $(document).on('keyup', this.handleKey.bind(this));
+  },
 
-  className: 'group-form',
+  handleKey: function (event) {
+    if (event.keyCode === 27) {
+      this.remove();
+      Backbone.history.history.back();
+    }
+  },
+
+  removeViewAndGoBack: function () {
+    this.remove();
+    Backbone.history.history.back();
+  },
 
   submitForm: function (e) {
     e.preventDefault();
-    // this.$('button').blur();
     var attributes = this.$el.serializeJSON();
-    var that = this;
     this.model.set(attributes);
     this.model.save(attributes, {
       success: function () {
-        that.collection.add(that.model, { merge: true });
-        Backbone.history.navigate("", { trigger: true });
-      }
+        this.collection.add(this.model, { merge: true });
+        this.remove();
+        Backbone.history.history.back();
+      }.bind(this)
     });
   },
 
   render: function () {
     var content = this.template({ group: this.model });
     this.$el.html(content);
+    this.onRender();
     return this;
-  }
+  },
+
+  onRender: function () {
+    $('.focus-target').focus()
+  },
 
 })

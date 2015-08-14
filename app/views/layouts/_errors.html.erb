@@ -1,1 +1,10 @@
-<%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+
+<% if flash[:errors] %>
+
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= flash[:errors].join(", ").html_safe if flash[:errors] %>
+</div>
+
+<% end %>
