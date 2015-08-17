@@ -6,11 +6,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.comments(), 'sync', this.render)
 
-    this.listenTo(this.model.events(), 'add sync change remove', this.render)
-
     this.addingThemSubviews()
   },
-
 
   addingThemSubviews: function () {
     this.model.fetch({
@@ -56,7 +53,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     var huddle = new App.Models.Event();
     var modal = new App.Views.HuddleForm({
       model: huddle,
-      collection: this.model.events(),
+      collection: this.model.upcomingEvents(),
       group_id: this.model.id
     });
 

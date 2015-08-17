@@ -13,7 +13,7 @@ App.Views.HuddleForm = Backbone.View.extend({
     this.group_id = options.group_id;
 
     $(document).on('keyup', this.handleKey.bind(this));
-      },
+  },
 
   handleKey: function (event) {
     if (event.keyCode === 27) {

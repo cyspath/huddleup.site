@@ -21,17 +21,26 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
   setAttendingStatus: function (e) {
     e.preventDefault();
-    var attributes = { user_id: App.CURRENT_USER.id, event_id: this.model.id }
-    var eventMember = new App.Models.EventMember();
-    eventMember.set(attributes);
 
-    eventMember.save(attributes, {
-      success: function () {
-        console.log(eventMember.attributes);
+    if (this.model.users().get(App.CURRENT_USER.id)) {
 
+      console.log('user already attending');
 
-      }.bind(this)
-    });
+    } else {
+
+      var attributes = { user_id: App.CURRENT_USER.id, event_id: this.model.id }
+
+      var eventMember = new App.Models.EventMember();
+      eventMember.set(attributes);
+
+      eventMember.save(attributes, {
+        success: function () {
+          console.log(eventMember.attributes);
+
+        }.bind(this)
+      });
+    }
+
   },
 
   // content list of comments
