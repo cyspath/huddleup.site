@@ -5,6 +5,7 @@ json.extract!(
   :bio
   )
 
+json.set! :alias, user.username.capitalize
 
 if display_groups
   json.groups do
@@ -18,11 +19,23 @@ end
 
 
 if display_events
-  json.events do
+  json.upcoming_events do
     json.array! user.events do |event|
-      json.partial! 'api/events/event', event: event, display_users: false,
-      display_comments: false,
-      display_groups: false
+      if event.date && event.date >= Date.today
+        json.partial! 'api/events/event', event: event, display_users: false,
+        display_comments: false,
+        display_groups: false
+      end
+    end
+  end
+
+  json.past_events do
+    json.array! user.events do |event|
+      if event.date && event.date < Date.today
+        json.partial! 'api/events/event', event: event, display_users: false,
+        display_comments: false,
+        display_groups: false
+      end
     end
   end
 end

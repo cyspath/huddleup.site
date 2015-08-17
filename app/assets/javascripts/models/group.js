@@ -2,11 +2,22 @@ App.Models.Group = Backbone.Model.extend({
   urlRoot: '/api/groups',
 
   parse: function(payload) {
-    debugger
+
     if(payload.events) {
       this.events().set(payload.events);
       delete payload.events;
     }
+
+    if(payload.upcoming_events) {
+      this.upcomingEvents().set(payload.upcoming_events);
+      delete payload.upcoming_events;
+    }
+
+    if(payload.past_events) {
+      this.pastEvents().set(payload.past_events);
+      delete payload.past_events;
+    }
+
 
     if(payload.users) {
       this.users().set(payload.users);
@@ -22,10 +33,24 @@ App.Models.Group = Backbone.Model.extend({
   },
 
   events: function () {
-    if(this._events === undefined) {
-      this._events = new App.Collections.Events();
+    if(this._groupEvents === undefined) {
+      this._groupEvents = new App.Collections.Events();
     }
-    return this._events;
+    return this._groupEvents;
+  },
+
+  upcomingEvents: function () {
+    if(this._upcomingEvents === undefined) {
+      this._upcomingEvents = new App.Collections.Events();
+    }
+    return this._upcomingEvents;
+  },
+
+  pastEvents: function () {
+    if(this._pastEvents === undefined) {
+      this._pastEvents = new App.Collections.Events();
+    }
+    return this._pastEvents;
   },
 
   users: function () {
@@ -41,4 +66,5 @@ App.Models.Group = Backbone.Model.extend({
     }
     return this._comments;
   },
+
 })

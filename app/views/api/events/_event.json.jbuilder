@@ -13,6 +13,12 @@ json.set! :group_name, event.group.name
 json.set! :author_name, event.author.username.capitalize
 
 
+if event.date && event.date >= Date.today
+  json.set! :status, "Upcoming"
+else
+  json.set! :status, "Past"
+end
+
 if display_users
   json.users do
     json.array! event.users do |user|

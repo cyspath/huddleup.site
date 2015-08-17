@@ -1,28 +1,24 @@
-App.Views.GroupForm = Backbone.View.extend({
+App.Views.HuddleForm = Backbone.View.extend({
 
-  template: JST['groups/form'],
+  template: JST['events/form'],
 
   events: {
     'submit form': 'submitForm',
-    'click .faded-background': 'removeViewAndGoBack',
-    'click .link': 'removeViewAndGoBack',
-    'click p': 'removeViewAndGoBack'
+    'click .faded-background': 'remove',
+    'click .link': 'remove',
+    'click p': 'remove'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.group_id = options.group_id;
+
     $(document).on('keyup', this.handleKey.bind(this));
   },
 
   handleKey: function (event) {
     if (event.keyCode === 27) {
       this.remove();
-      Backbone.history.history.back();
     }
-  },
-
-  removeViewAndGoBack: function () {
-    this.remove();
-    Backbone.history.history.back();
   },
 
   submitForm: function (e) {
@@ -33,13 +29,12 @@ App.Views.GroupForm = Backbone.View.extend({
       success: function () {
         this.collection.add(this.model, { merge: true });
         this.remove();
-        Backbone.history.history.back();
       }.bind(this)
     });
   },
 
   render: function () {
-    var content = this.template({ group: this.model });
+    var content = this.template({ huddle: this.model, group_id: this.group_id });
     this.$el.html(content);
     this.onRender();
     return this;

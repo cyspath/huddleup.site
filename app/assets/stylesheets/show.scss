@@ -1,0 +1,28 @@
+.group-show-container, .event-show-container, .user-show-container {
+  margin: 0 auto;
+  width: 980px;
+}
+
+.group-show-container>div, .event-show-container>div, .user-show-container>div{
+  border: 1px solid grey;
+  padding: 18px;
+}
+
+
+// {
+//   width: 200;
+//   min-height: 400px;
+//   padding: 18px;
+// }
+//
+// {
+//   width: 500px;
+//   min-height: 400px;
+//   padding: 18px;
+// }
+//
+// {
+//   width: 170;
+//   min-height: 400px;
+//   padding: 18px;
+// }

@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.delete {
+  width: 200px;
+  height: 100px;
+  background-color: #000;
+}
+
+
 body {
   // position: relative;
   font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
@@ -15,7 +22,7 @@ div.alert-danger {
   position: absolute;
 }
 
-.groups-container, .group-show-container {
+.groups-container {
   margin: 0 auto;
   width: 980px;
   // position: absolute;

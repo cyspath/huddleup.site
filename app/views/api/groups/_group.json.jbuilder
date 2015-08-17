@@ -8,6 +8,7 @@ json.extract!(
 
 json.set! :author_name, group.author.username.capitalize
 
+
 if display_users
   json.users do
     json.array! group.users do |user|
@@ -26,7 +27,28 @@ if display_events
       display_groups: false
     end
   end
+
+  json.upcoming_events do
+    json.array! group.events do |event|
+      if event.date && event.date >= Date.today
+        json.partial! 'api/events/event', event: event, display_users: false,
+        display_comments: false,
+        display_groups: false
+      end
+    end
+  end
+
+  json.past_events do
+    json.array! group.events do |event|
+      if event.date && event.date < Date.today
+        json.partial! 'api/events/event', event: event, display_users: false,
+        display_comments: false,
+        display_groups: false
+      end
+    end
+  end
 end
+
 
 if display_comments
   json.comments do

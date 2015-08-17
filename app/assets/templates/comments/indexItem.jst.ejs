@@ -1,0 +1,18 @@
+
+  <p class="comment-index-item">
+    <p class="comment-author-name">
+      <%= comment.escape('author_name')%>:
+    </p>
+
+    <p class="comment-body">
+    <%= comment.escape('body')%>
+    <br>
+    created at: <%= comment.escape('created_at')%>
+
+    <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
+      <button type="button" class="delete" data-id=<%= comment.id %>>x</button>
+    <% } %>
+
+    </p>
+
+  </p>

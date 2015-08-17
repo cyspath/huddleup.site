@@ -1,0 +1,56 @@
+<div class="event-show-container show-container group">
+
+    <div class="left-bar">
+      <div class="info">
+        <p class="heading">Event Information</p>
+
+        <h1>
+          <%= groupEvent.escape('title') %>
+        </h1>
+
+        <h3>created by:
+          <%= groupEvent.escape('author_name')%>
+        </h3>
+
+        <h3>location:
+          <%= groupEvent.escape('location') %>
+        </h3>
+
+        <h3>date:
+          <%= groupEvent.escape('date') %>
+        </h3>
+
+        <h3>body:
+          <%= groupEvent.escape('body') %>
+        </h3>
+
+        <h3>hosted by group:
+          <%= groupEvent.escape('group_name') %>
+        </h3>
+
+      </div>
+    </div>
+
+
+    <div class="mid-bar">
+
+      <div class="comments">
+        <p class="heading">The Wall:</p>
+        <div class="event-show-comment-list"></div>
+      </div>
+
+      <br><br>
+    </div>
+
+
+    <div class="right-bar">
+
+      <div class="members">
+        <p class="heading">Going:</p>
+        <div class="event-show-user-list"></div>
+      </div>
+    </div>
+
+</div>
+
+<br><br>

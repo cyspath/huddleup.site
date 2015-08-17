@@ -1,0 +1,42 @@
+<div class="faded-background"></div>
+
+<form class="huddle-form">
+
+  <h1><%= huddle.isNew() ? 'Schedule a Huddle' : 'Edit Huddle' %>
+    <span>Please be as detailed as you can.</span>
+  </h1>
+
+  <input type="hidden" name="group_id" value=<%= group_id %>>
+
+  <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+
+  <label>
+    <span>Huddle</span>
+    <input class="focus-target" type="text" name='title' value="<%= huddle.escape('title')%>" placeholder="Let's huddle and ... ">
+  </label>
+
+  <label>
+    <span>Location</span>
+    <input type="text" name='location' value="<%= huddle.escape('location')%>" placeholder="Where is it?">
+  </label>
+
+  <label>
+    <span>Date</span>
+    <input type="date" name="date"/>
+  </label>
+
+
+  <label>
+    <span class="text">Details</span>
+    <textarea id="message" name='body' placeholder="Things to bring, expected budget, etc"></textarea>
+  </label>
+
+  <span>&nbsp;</span>
+
+  <button class="button">Huddle Up!</button><br><br>
+
+  <p>
+    Close [x]
+  </p>
+
+</form>

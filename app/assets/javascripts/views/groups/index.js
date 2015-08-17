@@ -2,11 +2,12 @@ App.Views.GroupsIndex = Backbone.CompositeView.extend({
   template: JST['groups/index'],
 
   initialize: function () {
+  //
     this.listenTo(this.collection, "add", this.addGroupView);
 
     this.listenTo(this.collection, "remove", this.removeGroupView);
 
-    // this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync", this.render);
 
     this.collection.each(this.addGroupView.bind(this));
   },

@@ -1,0 +1,49 @@
+<% var userAlias = user.escape('alias') %>
+
+<div class="user-show-container show-container group">
+
+  <div class="left-bar">
+    <div class="groups">
+      <p class="heading"><%= userAlias %> belongs to:</p>
+      <div class="user-show-group-list"></div>
+    </div>
+
+    <br><br>
+  </div>
+
+  <div class="mid-bar">
+    <div class="info">
+      <p class="heading">
+      <%= userAlias %></p>
+
+      <h3>Short bio:
+        <% var bio = user.escape('bio') %>
+        <%= bio != 'null' ? bio : '' %>
+      </h3>
+
+    </div>
+
+    <div class="comments">
+      <p class="heading">The Wall:</p>
+      <div class="user-show-comment-list"></div>
+    </div>
+  </div>
+
+  <div class="right-bar">
+    <div class="events">
+      <p class="heading"><%= userAlias %>'s upcoming events: </p>
+      <div class="user-show-upcoming-events"></div>
+    </div>
+
+    <br><br>
+
+
+    <br><br>
+    <div class="events">
+      <p class="heading"><%= userAlias %>'s past events: </p>
+      <div class="user-show-past-events"></div>
+    </div>
+
+    <br><br>
+  </div>
+</div>

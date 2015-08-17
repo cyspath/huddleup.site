@@ -1,3 +1,20 @@
 // Place all the styles related to the api/comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+p.comment-body {
+  padding: 5px;
+  font-family: monospace;
+  color: #8a2be2;
+  border-bottom: 1px solid #ccc;
+}
+
+
+p.comment-author-name {
+  padding: 5px;
+  font-family: monospace;
+  color: #3b5998;
+  font-weight: bolder;
+  font-size: 16px;
+}

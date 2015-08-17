@@ -30,3 +30,27 @@
 }
 
 // group show
+
+.left-bar, .mid-bar, .right-bar {
+  float: left;
+  min-height: 500px;
+  width: 300px;
+  margin: 5px;
+  background-color: white;
+  border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+
+}
+
+.show-container {
+  font-family: 'Lucida Grande', Verdana, sans-serif;
+  border: none;
+  background-color: #6897bb;
+  border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+
+}
+
+p.heading {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+}
