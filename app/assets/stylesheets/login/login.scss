@@ -15,6 +15,18 @@ input, textarea, select, label {
   @include box-sizing(border-box);
 }
 
+// form.login div.register, form.login div.sign-in {
+//   text-align: center;
+// }
+
+form.login div.register a, form.login div.sign-in a {
+  margin-left: 75%;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
 .login {
   margin: 100px auto;
   padding: 36px 40px;

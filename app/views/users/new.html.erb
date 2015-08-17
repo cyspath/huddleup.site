@@ -15,16 +15,13 @@
     <input type="submit" value="Sign In" class="login-submit">
 
     <input type="submit" value="Demo Account" class="login-submit demo-account" onclick="loginDemoGuest()">
+
+    <div class="sign-in">
+      <%= link_to "Sign In", new_session_url %>
+    </div>
+
   </form>
 
-
-  <p class="sign-in">
-    <%= link_to "Sign In", new_session_url %>
-  </p>
-
-  <p class="register">
-    <%= link_to "Register", new_user_url %>
-  </p>
 
 </div>
 
