@@ -8,15 +8,16 @@
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 
-    <input type="text" name="user[username]" class="login-input" placeholder="Username" autofocus>
+    <input type="text" name="user[username]" class="login-input login-username" placeholder="Username" autofocus>
 
-    <input type="password" name="user[password]" class="login-input" placeholder="Password">
+    <input type="password" name="user[password]" class="login-input login-password" placeholder="Password">
 
     <input type="submit" value="Sign In" class="login-submit">
 
-    <input type="submit" value="Demo Account" class="login-submit demo-account">
-
+    <input type="submit" value="Demo Account" class="login-submit demo-account" onclick="loginDemoGuest()">
   </form>
+
+
 
   <p class="sign-in">
     <%= link_to "Sign In", new_session_url %>
@@ -27,3 +28,10 @@
   </p>
 
 </div>
+
+<script>
+  function loginDemoGuest() {
+    $('.login-username').val('Guest');
+    $('.login-password').val('foobar');
+  }
+</script>
