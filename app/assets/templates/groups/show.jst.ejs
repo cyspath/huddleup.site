@@ -10,6 +10,10 @@
       <h3>created by: <%= group.escape('author_name')%></h3>
     </div>
 
+    <button type="button" class="join-leave">
+      Join this Group!
+    </button>
+
     <br><br>
 
     <div class="start-event-div">
@@ -21,7 +25,11 @@
       </div>
     </div>
 
-    <br><br>
+
+    <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
+      <button type="button" class="group-delete" data-id=<%= group.id %>>Disband Group</button>
+    <% } %>
+
   </div>
 
 
@@ -58,7 +66,7 @@
         <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
 
         <label>
-          <textarea id="message" name='body' placeholder="Ask a question, share something, or post a comment ... "></textarea>
+          <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
         </label>
 
         <button class="start-comment-btn">
@@ -78,6 +86,7 @@
       <p class="heading">Members:</p>
       <div class="group-show-user-list"></div>
     </div>
+
   </div>
 
 </div>

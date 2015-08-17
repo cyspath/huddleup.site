@@ -8,8 +8,12 @@
           <%= groupEvent.escape('title') %>
         </h1>
 
-        <h3>created by:
-          <%= groupEvent.escape('author_name')%>
+        <h3>hosted by:
+          <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
+              you
+          <% } else { %>
+            <%= groupEvent.escape('author_name')%>
+          <% } %>
         </h3>
 
         <h3>location:
@@ -28,6 +32,10 @@
           <%= groupEvent.escape('group_name') %>
         </h3>
 
+        <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
+          <button type="button" class="event-delete" data-id=<%= groupEvent.id %>>Cancel Event</button>
+        <% } %>
+
       </div>
     </div>
 
@@ -40,13 +48,30 @@
       </div>
 
       <br><br>
+        <form class="comment-form">
+
+          <input type="hidden" name="commentable_id" value=<%= event_id %>>
+
+          <input type="hidden" name="commentable_type" value="Event">
+
+          <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+
+          <label>
+            <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
+          </label>
+
+          <button class="start-comment-btn">
+            Post
+          </button>
+
+        </form>
     </div>
 
 
     <div class="right-bar">
 
       <button type="button" class="going-not-going">
-        Attend/Do not Attend (needs work)
+        Huddle!
       </button>
 
       <div class="members">

@@ -6,17 +6,49 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, "sync", this.render);
 
+    this.listenTo(this.model.comments(), "sync", this.render);
+
+    this.addingThemSubviews();
+
+  },
+
+  addingThemSubviews: function () {
     this.model.fetch({
       success: function () {
         this.addMembersIndex(this.model.users());
         this.addCommentsIndex(this.model.comments());
       }.bind(this)
     });
-
   },
 
+
   events: {
-    "click button.going-not-going": "setAttendingStatus"
+    "click button.going-not-going": "setAttendingStatus",
+    "click .event-delete": "deleteEvent",
+    "submit form": "newComment",
+    "click .delete": "deleteComment",
+  },
+
+  newComment: function (e) {
+    e.preventDefault();
+    var attributes = $(e.currentTarget).serializeJSON();
+    var comment = new App.Models.Comment();
+    comment.set(attributes);
+    comment.save(attributes, {
+      success: function () {
+        console.log(comment.attributes);
+        comment.set({ author_name: App.CURRENT_USER.username})
+        this.model.comments().add(comment);
+      }.bind(this)
+    });
+  },
+
+  deleteComment: function (e) {
+
+    e.preventDefault();
+    var $button = $(e.currentTarget)
+    var comment = this.model.comments().get($button.attr("data-id"));
+    comment.destroy();
   },
 
   setAttendingStatus: function (e) {
@@ -36,12 +68,30 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
       eventMember.save(attributes, {
         success: function () {
           console.log(eventMember.attributes);
+          var user_id = eventMember.attributes.user_id
+          var user = new App.Models.User({ id: user_id });
+
+          user.fetch({
+            success: function () {
+              this.model.users().add(user)
+            }.bind(this)
+          })
 
         }.bind(this)
       });
     }
 
   },
+
+  deleteEvent: function (e) {
+    e.preventDefault();
+    this.model.destroy({
+      success: function () {
+        Backbone.history.navigate("", { trigger: true })
+      }
+    });
+  },
+
 
   // content list of comments
 
@@ -67,7 +117,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
   // good ol render
   render: function () {
-    var content = this.template({ groupEvent: this.model });
+    var content = this.template({ groupEvent: this.model, event_id: this.model.id });
     this.$el.html(content);
     this.attachSubviews();
     return this;

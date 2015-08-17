@@ -21,7 +21,9 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   },
 
   events: {
+    "click button.join-leave": "setMemberStatus",
     "click .start-event-div": "newHuddle",
+    "click .group-delete": "deleteGroup",
     "submit form": "newComment",
     "click .delete": "deleteComment",
   },
@@ -40,12 +42,52 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     });
   },
 
-  deleteComment: function (e) {
+  setMemberStatus: function (e) {
+    e.preventDefault();
 
+    if (this.model.users().get(App.CURRENT_USER.id)) {
+
+      console.log('user already joined this group');
+
+    } else {
+
+      var attributes = { user_id: App.CURRENT_USER.id, group_id: this.model.id }
+
+      var groupMember = new App.Models.GroupMember();
+      groupMember.set(attributes);
+
+      groupMember.save(attributes, {
+        success: function () {
+          console.log(groupMember.attributes);
+          var user_id = groupMember.attributes.user_id
+          var user = new App.Models.User({ id: user_id });
+
+          user.fetch({
+            success: function () {
+              this.model.users().add(user)
+            }.bind(this)
+          })
+
+        }.bind(this)
+      });
+    }
+
+  },
+
+  deleteComment: function (e) {
     e.preventDefault();
     var $button = $(e.currentTarget)
     var comment = this.model.comments().get($button.attr("data-id"));
     comment.destroy();
+  },
+
+  deleteGroup: function (e) {
+    e.preventDefault();
+    this.model.destroy({
+      success: function () {
+        Backbone.history.navigate("", { trigger: true })
+      }
+    });
   },
 
   newHuddle: function (e) {

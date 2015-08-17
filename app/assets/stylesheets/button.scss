@@ -13,23 +13,46 @@ button.button {
 }
 
 
-button.button:hover {
+button.button:hover, button.join-leave:hover {
   cursor: hand;
   cursor: pointer;
   background-color: #1e9feb;
 
 }
 
-button.button:active{
+button.button:active {
   position: relative;
   background-color: #1e9feb;
   top: 5px;
-  border-top: 6px solid transparent;
+  margin-top: 5px;
   border-bottom: 0px solid #0f5177;
 }
 
-button.button:focus {
+button.button:focus, button.join-leave:focus {
   outline: none;
+}
+
+
+button.join-leave {
+  margin: 10px auto;
+  display: block;
+  background-color: #1984c3;
+  color: #fff;
+  font-size: 10px;
+  font-family: Courier, sans-serif;
+  padding: 8px 20px;
+
+  text-transform: uppercase;
+  border-radius: 8px;
+  border-bottom: 3px solid #0f5177;
+}
+
+button.join-leave:active {
+  position: relative;
+  background-color: #1e9feb;
+  top: 3px;
+  margin-top: 12px;
+  border-bottom: 0px solid #0f5177;
 }
 
 // schedule a new Huddle button
@@ -95,4 +118,18 @@ div.start-event-div div.big {
 }
 .start-event-div>div {
   color: #3b5998;
+}
+
+// cancel event/group
+
+button.event-delete, button.group-delete {
+  padding: 20px;
+  border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+  margin: 35px;
+  background-color: #f5f5f5;
+}
+
+button.event-delete:hover, button.group-delete:hover {
+  background-color: #cc0000;
+  color: white;
 }

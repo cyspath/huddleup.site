@@ -6,15 +6,47 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, "sync", this.render);
 
+    this.listenTo(this.model.comments(), "sync", this.render);
+    
+    this.addingThemSubviews();
+
+  },
+
+  addingThemSubviews: function () {
     this.model.fetch({
       success: function () {
         this.addGroupsIndex(this.model.groups());
         this.addUpcomingEventsIndex(this.model.upcomingEvents());        this.addPastEventsIndex(this.model.pastEvents());
         this.addCommentsIndex(this.model.comments());
-
       }.bind(this)
     });
+  },
 
+  events: {
+    "submit form": "newComment",
+    "click .delete": "deleteComment",
+  },
+
+  newComment: function (e) {
+    e.preventDefault();
+    var attributes = $(e.currentTarget).serializeJSON();
+    var comment = new App.Models.Comment();
+    comment.set(attributes);
+    comment.save(attributes, {
+      success: function () {
+        console.log(comment.attributes);
+        comment.set({ author_name: App.CURRENT_USER.username})
+        this.model.comments().add(comment);
+      }.bind(this)
+    });
+  },
+
+  deleteComment: function (e) {
+
+    e.preventDefault();
+    var $button = $(e.currentTarget)
+    var comment = this.model.comments().get($button.attr("data-id"));
+    comment.destroy();
   },
 
   // content list of groups
@@ -63,7 +95,10 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
   // good ol render
   render: function () {
-    var content = this.template({ user: this.model });
+    var content = this.template({
+      user: this.model,
+      user_id: this.model.id,
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;

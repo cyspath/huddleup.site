@@ -1,7 +1,15 @@
 <a href="#/events/<%= groupEvent.escape('id')%>" class="groupEvent-item" data-id=<%= groupEvent.escape('id')%>>
-  <p>
+  <p class="event-item-title">
     <%= groupEvent.escape('title')%>
-    <%= groupEvent.escape('location')%>
-    <%= groupEvent.escape('date')%>
   </p>
+  <p class="event-item-location">
+    <% if (groupEvent.escape('location')) { %>
+      Location: <%= groupEvent.escape('location')%>
+    <% } %>
+  </p>
+  <p class="event-item-date">
+    <%= groupEvent.escape('date')%>
+  </p><br>
+
+
 </a>

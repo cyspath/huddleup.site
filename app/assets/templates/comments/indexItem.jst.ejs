@@ -1,7 +1,11 @@
 
   <p class="comment-index-item">
     <p class="comment-author-name">
-      <%= comment.escape('author_name')%>:
+      <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
+        You:
+      <% } else { %>
+        <%= comment.escape('author_name')%>:
+      <% } %>
     </p>
 
     <p class="comment-body">

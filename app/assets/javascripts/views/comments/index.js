@@ -24,6 +24,9 @@ App.Views.CommentsIndex = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template();
     this.$el.html(content);
+    if (this.collection.length === 0) {
+      this.$el.append("Start a conversation here!")
+    }
     this.attachSubviews();
     return this;
   }
