@@ -1,5 +1,5 @@
-App.Views.GroupsIndex = Backbone.CompositeView.extend({
-  template: JST['groups/index'],
+App.Views.GroupsList = Backbone.CompositeView.extend({
+  template: JST['groups/list'],
 
   initialize: function () {
   //
@@ -13,12 +13,12 @@ App.Views.GroupsIndex = Backbone.CompositeView.extend({
   },
 
   addGroupView: function (group) {
-    var subview = new App.Views.GroupsIndexItem({ model: group });
-    this.addSubview('.groups-index-container', subview);
+    var subview = new App.Views.GroupsListItem({ model: group });
+    this.addSubview('.groups-container', subview);
   },
 
   removeGroupView: function (group) {
-    this.removeModelSubview('.groups-index-container', group)
+    this.removeModelSubview('.groups-container', group)
   },
 
   render: function () {

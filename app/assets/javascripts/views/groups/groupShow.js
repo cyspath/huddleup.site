@@ -6,6 +6,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.comments(), 'sync', this.render)
 
+    this.listenTo(this.model.events(), 'add sync change remove', this.render)
+
     this.addingThemSubviews()
   },
 
@@ -37,9 +39,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
         console.log(comment.attributes);
         comment.set({ author_name: App.CURRENT_USER.username})
         this.model.comments().add(comment);
-
-        // Backbone.history.navigate("", {trigger: true })
-        // Backbone.history.navigate("groups/"+ this.model.id, {trigger: true })
       }.bind(this)
     });
   },
@@ -55,7 +54,12 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   newHuddle: function (e) {
     e.preventDefault();
     var huddle = new App.Models.Event();
-    var modal = new App.Views.HuddleForm({ model: huddle, collection: this.model.events(), group_id: this.model.id });
+    var modal = new App.Views.HuddleForm({
+      model: huddle,
+      collection: this.model.events(),
+      group_id: this.model.id
+    });
+
     $('body').prepend(modal.$el);
     modal.render();
   },

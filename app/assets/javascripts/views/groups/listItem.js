@@ -1,6 +1,6 @@
-App.Views.GroupsIndexItem = Backbone.View.extend({
-  template: JST['groups/indexItem'],
-  className: "group-index-item-container",
+App.Views.GroupsListItem = Backbone.View.extend({
+  template: JST['groups/listItem'],
+  className: "group-item-container",
   initialize: function () {
     this.listenTo(this.model, "add sync remove", this.render);
   },

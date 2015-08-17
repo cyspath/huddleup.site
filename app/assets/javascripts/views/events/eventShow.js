@@ -15,6 +15,25 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
   },
 
+  events: {
+    "click button.going-not-going": "setAttendingStatus"
+  },
+
+  setAttendingStatus: function (e) {
+    e.preventDefault();
+    var attributes = { user_id: App.CURRENT_USER.id, event_id: this.model.id }
+    var eventMember = new App.Models.EventMember();
+    eventMember.set(attributes);
+
+    eventMember.save(attributes, {
+      success: function () {
+        console.log(eventMember.attributes);
+
+
+      }.bind(this)
+    });
+  },
+
   // content list of comments
 
   addCommentsIndex: function (commentIndex) {

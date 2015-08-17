@@ -35,7 +35,7 @@ App.Routers.Router = Backbone.Router.extend({
 
   AllGroups: function () {
     this.groups.fetch();
-    var view = new App.Views.GroupsIndex({ collection: this.groups });
+    var view = new App.Views.GroupsList({ collection: this.groups });
     this.swapView(view);
   },
 
