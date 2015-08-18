@@ -3,13 +3,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 101;
   background: rgba(92, 88, 88, 0.7);
   position: absolute;
 }
 
 .group-form, .huddle-form {
-    z-index: 2;
+    z-index: 102;
     top: 20%;
     left: 25%;
     position: absolute;
