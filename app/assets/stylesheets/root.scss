@@ -10,11 +10,21 @@ div.delete {
 
 
 body {
+  opacity:0;
+  transition: opacity 1s;
+  -webkit-transition: opacity 1s; /* Safari */
+
   // position: relative;
   font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
   color: #404040;
   background: #f7f7f7;
 }
+// 
+// div.group-show-container {
+//   opacity:0.5;
+//   transition: opacity 1s;
+//   -webkit-transition: opacity 1s; /* Safari */
+// }
 
 div.alert-danger {
   margin: -100px auto;

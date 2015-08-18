@@ -35,3 +35,11 @@ button.start-comment-btn {
   border-radius: 5px;
 
 }
+
+button.start-comment-btn {
+  outline: none;
+}
+
+button.start-comment-btn:active {
+  all: none;
+}

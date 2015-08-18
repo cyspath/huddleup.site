@@ -28,7 +28,9 @@ App.Views.HuddleForm = Backbone.View.extend({
     this.model.save(attributes, {
       success: function () {
         this.collection.add(this.model, { merge: true });
-        this.remove();
+        //animation
+        $('.huddle-form').addClass("animated zoomOutLeft")
+        $('.huddle-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
       }.bind(this)
     });
   },

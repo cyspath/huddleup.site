@@ -5,7 +5,7 @@ App.Views.MembersIndex = Backbone.CompositeView.extend({
 
     this.listenTo(this.collection, "add", this.addMemberView);
 
-    this.listenTo(this.collection, "remove", this.removeCommentView);
+    this.listenTo(this.collection, "remove", this.removeMemberView);
 
     this.listenTo(this.collection, "sync", this.render);
 
@@ -17,7 +17,7 @@ App.Views.MembersIndex = Backbone.CompositeView.extend({
     this.addSubview('.users-container', subview);
   },
 
-  removeCommentView: function (memberItem) {
+  removeMemberView: function (memberItem) {
     this.removeModelSubview('.users-container', memberItem)
   },
 

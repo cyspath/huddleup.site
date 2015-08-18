@@ -3,7 +3,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   className: 'group-show-container',
 
   initialize: function () {
-    // this.groupMembers = new
+
     this.listenTo(this.model.comments(), 'sync', this.render);
 
     this.listenTo(this.model, 'sync', this.render);
@@ -15,34 +15,31 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   addingThemSubviews: function () {
     this.model.fetch({
       success: function () {
+
         this.addCommentsIndex(this.model.comments());
+
         this.addMembersIndex(this.model.users());
-        // this.addEventsIndex(this.model.events());
-        this.addUpcomingEventsIndex(this.model.upcomingEvents());        this.addPastEventsIndex(this.model.pastEvents());
+
+        this.createMembershipCollection();
+
+        this.addUpcomingEventsIndex(this.model.upcomingEvents());
+
+        this.addPastEventsIndex(this.model.pastEvents());
+
       }.bind(this)
     });
   },
 
   events: {
     "click button.join-group": "joinGroup",
+    "click button.leave-group": "leaveGroup",
+
     "click .start-event-div": "newHuddle",
+
     "click .group-delete": "deleteGroup",
+
     "submit form": "newComment",
     "click .delete": "deleteComment",
-  },
-
-  newComment: function (e) {
-    e.preventDefault();
-    var attributes = $(e.currentTarget).serializeJSON();
-    var comment = new App.Models.Comment();
-    comment.set(attributes);
-    comment.save(attributes, {
-      success: function () {
-        console.log(comment.attributes);
-        comment.set({ author_name: App.CURRENT_USER.username})
-        this.model.comments().add(comment);
-      }.bind(this)
-    });
   },
 
   joinGroup: function (e) {
@@ -60,8 +57,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
       groupMember.save(attributes, {
         success: function () {
+          this.selectedMembers.add(groupMember);
 
-          console.log(groupMember.attributes);
           var user_id = groupMember.attributes.user_id
           var user = new App.Models.User({ id: user_id });
 
@@ -77,6 +74,36 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     }
 
   },
+
+  leaveGroup: function (e) {
+    e.preventDefault();
+    this.selectedMembers.each(function(membership){
+      if (membership.get('user_id') === App.CURRENT_USER.id) {
+        this.currentUserMembership = membership;
+      }
+    }.bind(this))
+    //delete membership from db and collection
+    this.currentUserMembership.destroy();
+    //remove user from user collection
+    this.model.users().remove(App.CURRENT_USER.id);
+    //change button to join
+    $("button.leave-group").addClass("join-group").removeClass("leave-group").text("Join this Group");
+  },
+
+  newComment: function (e) {
+    e.preventDefault();
+    var attributes = $(e.currentTarget).serializeJSON();
+    var comment = new App.Models.Comment();
+    comment.set(attributes);
+    comment.save(attributes, {
+      success: function () {
+        console.log(comment.attributes);
+        comment.set({ author_name: App.CURRENT_USER.username})
+        this.model.comments().add(comment);
+      }.bind(this)
+    });
+  },
+
 
   deleteComment: function (e) {
     e.preventDefault();
@@ -153,6 +180,29 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     this.removeModelSubview('.group-show-user-list', user )
   },
 
+
+  createMembershipCollection: function () {
+    this.allMembers = new App.Collections.GroupMembers();
+
+    this.selectedMembers = new App.Collections.GroupMembers();
+
+    var group_id = this.model.id;
+    //fetch all the memberships from db
+    this.allMembers.fetch({
+      success: function () {
+        //select membership that has this.model.id
+        var models = this.allMembers.select(function (model) {
+          return model.get('group_id') === group_id
+        });
+        //add selected to memberships collection
+        models.forEach(function(model) {
+          this.selectedMembers.add(model)
+        }.bind(this));
+        //this.selectedMembers is the Collection
+      }.bind(this)
+    })
+  },
+
   // good ol render
   render: function () {
     var existance = this.model.users().get(App.CURRENT_USER.id);
@@ -168,14 +218,5 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     return this;
   },
 
-  // content list of ALL events
 
-  // addEventsIndex: function (eventsIndex) {
-  //   var subview = new App.Views.EventsIndex({ collection: eventsIndex });
-  //   this.addSubview('.group-show-upcoming-events', subview);
-  // },
-  //
-  // removeUpcomingEventsIndex: function (groupEvent) {
-  //   this.removeModelSubview('.group-show-upcoming-events', groupEvent )
-  // },
 })

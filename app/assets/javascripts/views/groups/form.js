@@ -15,8 +15,7 @@ App.Views.GroupForm = Backbone.View.extend({
 
   handleKey: function (event) {
     if (event.keyCode === 27) {
-      this.remove();
-      Backbone.history.history.back();
+      this.removeViewAndGoBack();
     }
   },
 
@@ -32,10 +31,16 @@ App.Views.GroupForm = Backbone.View.extend({
     this.model.save(attributes, {
       success: function () {
         this.collection.add(this.model, { merge: true });
-        this.remove();
-        Backbone.history.history.back();
+        //animation
+        $('.group-form').addClass("animated bounceOut")
+        $('.group-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.callback.bind(this));
       }.bind(this)
     });
+  },
+
+  callback: function () {
+    this.remove();
+    Backbone.history.navigate("groups/"+ this.model.id, { trigger: true })
   },
 
   render: function () {

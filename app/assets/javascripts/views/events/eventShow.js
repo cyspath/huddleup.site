@@ -15,8 +15,13 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
   addingThemSubviews: function () {
     this.model.fetch({
       success: function () {
+
         this.addMembersIndex(this.model.users());
+
+        this.createMembershipCollection();
+
         this.addCommentsIndex(this.model.comments());
+
       }.bind(this)
     });
   },
@@ -24,10 +29,62 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
   events: {
     "click button.join-event": "joinEvent",
+    "click button.leave-event": "leaveEvent",
+
     "click .event-delete": "deleteEvent",
+
     "submit form": "newComment",
     "click .delete": "deleteComment",
   },
+
+  joinEvent: function (e) {
+    e.preventDefault();
+
+    if (this.model.users().get(App.CURRENT_USER.id)) {
+      console.log('user already attending');
+
+    } else {
+
+      var attributes = { user_id: App.CURRENT_USER.id, event_id: this.model.id }
+
+      var eventMember = new App.Models.EventMember();
+      eventMember.set(attributes);
+
+      eventMember.save(attributes, {
+        success: function () {
+          this.selectedMembers.add(eventMember);
+
+          var user_id = eventMember.attributes.user_id
+          var user = new App.Models.User({ id: user_id });
+
+          user.fetch({
+            success: function () {
+              this.model.users().add(user);
+                $("button.join-event").addClass("leave-event").removeClass("join-event").text("Leave this Huddle");
+            }.bind(this)
+          })
+
+        }.bind(this)
+      });
+    }
+
+  },
+
+  leaveEvent: function (e) {
+    e.preventDefault();
+    this.selectedMembers.each(function(membership){
+      if (membership.get('user_id') === App.CURRENT_USER.id) {
+        this.currentUserMembership = membership;
+      }
+    }.bind(this))
+    //delete membership from db and collection
+    this.currentUserMembership.destroy();
+    //remove user from user collection
+    this.model.users().remove(App.CURRENT_USER.id);
+    //change button to join
+    $("button.leave-event").addClass("join-event").removeClass("leave-event").text("Join this Huddle");
+  },
+
 
   newComment: function (e) {
     e.preventDefault();
@@ -51,37 +108,6 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     comment.destroy();
   },
 
-  joinEvent: function (e) {
-    e.preventDefault();
-
-    if (this.model.users().get(App.CURRENT_USER.id)) {
-      console.log('user already attending');
-
-    } else {
-
-      var attributes = { user_id: App.CURRENT_USER.id, event_id: this.model.id }
-
-      var eventMember = new App.Models.EventMember();
-      eventMember.set(attributes);
-
-      eventMember.save(attributes, {
-        success: function () {
-          console.log(eventMember.attributes);
-          var user_id = eventMember.attributes.user_id
-          var user = new App.Models.User({ id: user_id });
-
-          user.fetch({
-            success: function () {
-              this.model.users().add(user);
-                $("button.join-event").addClass("leave-event").removeClass("join-event").text("Leave this Huddle");
-            }.bind(this)
-          })
-
-        }.bind(this)
-      });
-    }
-
-  },
 
   deleteEvent: function (e) {
     e.preventDefault();
@@ -113,6 +139,28 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
   removeMembersIndex: function (user) {
     this.removeModelSubview('.event-show-user-list', user )
+  },
+
+  createMembershipCollection: function () {
+    this.allMembers = new App.Collections.EventMembers();
+
+    this.selectedMembers = new App.Collections.EventMembers();
+
+    var event_id = this.model.id;
+    //fetch all the memberships from db
+    this.allMembers.fetch({
+      success: function () {
+        //select membership that has this.model.id
+        var models = this.allMembers.select(function (model) {
+          return model.get('event_id') === event_id
+        });
+        //add selected to memberships collection
+        models.forEach(function(model) {
+          this.selectedMembers.add(model)
+        }.bind(this));
+        //this.selectedMembers is the Collection
+      }.bind(this)
+    })
   },
 
   // good ol render

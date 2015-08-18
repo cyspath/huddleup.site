@@ -10,13 +10,25 @@ button.button {
   text-transform: uppercase;
   border-radius: 8px;
   border-bottom: 5px solid #0f5177;
+
+
 }
 
 
-button.button:hover, button.join-leave:hover {
+button.button:hover,
+button.join-group:hover,
+button.join-event:hover {
   cursor: hand;
   cursor: pointer;
-  background-color: #1e9feb;
+  background-color: #55a5d2; //#63BF19;
+
+}
+
+button.leave-group:hover,
+button.leave-event:hover {
+  cursor: hand;
+  cursor: pointer;
+  background-color: #55a5d2;
 
 }
 
@@ -28,28 +40,61 @@ button.button:active {
   border-bottom: 0px solid #0f5177;
 }
 
-button.button:focus, button.join-leave:focus {
+button.button:focus,
+button.join-group:focus,
+button.leave-group:focus,
+button.join-event:focus,
+button.leave-event:focus {
   outline: none;
 }
 
 
-button.join-leave {
+button.join-group,
+button.leave-group {
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+	font-size:15px;
   margin: 10px auto;
   display: block;
   background-color: #1984c3;
   color: #fff;
-  font-size: 10px;
-  font-family: Courier, sans-serif;
   padding: 8px 20px;
+  width: 180px;
 
-  text-transform: uppercase;
-  border-radius: 8px;
+  border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
   border-bottom: 3px solid #0f5177;
 }
 
-button.join-leave:active {
+button.join-event,
+button.leave-event {
+  -webkit-transition: background 0.1s linear;
+  -moz-transition: background 0.1s linear;
+  -ms-transition: background 0.1s linear;
+  -o-transition: background 0.1s linear;
+  transition: background 0.1s linear;
+
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+	font-size:20px;
+  margin: 10px auto;
+  display: block;
+  background-color: #1984c3;
+  color: #fff;
+  padding: 12px 10px;
+  width: 200px;
+
+  border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+  border-bottom: 3px solid #0f5177;
+}
+
+button.join-group:active,
+button.leave-group:active,
+button.join-event:active,
+button.leave-event:active {
   position: relative;
-  background-color: #1e9feb;
+  background-color: #55a5d2;
   top: 3px;
   margin-top: 12px;
   border-bottom: 0px solid #0f5177;
