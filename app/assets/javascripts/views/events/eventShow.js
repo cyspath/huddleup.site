@@ -3,6 +3,8 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
   className: 'event-show-container',
 
   initialize: function () {
+    $(document).on('keyup', this.handleKey.bind(this));
+
 
     this.listenTo(this.model, "sync", this.render);
 
@@ -85,11 +87,27 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     $("button.leave-event").addClass("join-event").removeClass("leave-event").text("Join this Huddle");
   },
 
+  handleKey: function (event) {
+    if (event.keyCode === 13) {
+      this.createComment();
+    }
+  },
+
+  createComment: function () {
+    var attributes = $(".comment-form").serializeJSON();
+    var comment = new App.Models.Comment();
+    comment.set(attributes);
+    comment.save(attributes, {
+      success: function () {
+        comment.set({ author_name: App.CURRENT_USER.username})
+        this.model.comments().add(comment);
+      }.bind(this)
+    });
+  },
 
   newComment: function (e) {
     e.preventDefault();
     var attributes = $(e.currentTarget).serializeJSON();
-    var comment = new App.Models.Comment();
     comment.set(attributes);
     comment.save(attributes, {
       success: function () {

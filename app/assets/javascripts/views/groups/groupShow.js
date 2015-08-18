@@ -4,6 +4,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
   initialize: function () {
 
+    $(document).on('keyup', this.handleKey.bind(this));
+
     this.listenTo(this.model.comments(), 'sync', this.render);
 
     this.listenTo(this.model, 'sync', this.render);
@@ -90,6 +92,24 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     $("button.leave-group").addClass("join-group").removeClass("leave-group").text("Join this Group");
   },
 
+  handleKey: function (event) {
+    if (event.keyCode === 13) {
+      this.createComment();
+    }
+  },
+
+  createComment: function () {
+    var attributes = $(".comment-form").serializeJSON();
+    var comment = new App.Models.Comment();
+    comment.set(attributes);
+    comment.save(attributes, {
+      success: function () {
+        comment.set({ author_name: App.CURRENT_USER.username})
+        this.model.comments().add(comment);
+      }.bind(this)
+    });
+  },
+
   newComment: function (e) {
     e.preventDefault();
     var attributes = $(e.currentTarget).serializeJSON();
@@ -97,7 +117,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     comment.set(attributes);
     comment.save(attributes, {
       success: function () {
-        console.log(comment.attributes);
         comment.set({ author_name: App.CURRENT_USER.username})
         this.model.comments().add(comment);
       }.bind(this)
