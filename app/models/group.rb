@@ -6,6 +6,8 @@ class Group < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :images, as: :imageable
+
   has_many :events
 
   validates :name, :author, presence: true

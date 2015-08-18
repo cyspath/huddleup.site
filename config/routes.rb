@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :event_members
     resources :group_members
+    resources :images
 
     # get '/users/current', to: 'users#current', as: 'users_current'
     resources :users, only: [:index, :show]

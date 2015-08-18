@@ -9,5 +9,7 @@ class Event < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :images, as: :imageable
+
   validates :title, :author, :group, presence: true
 end
