@@ -3,8 +3,11 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   className: 'group-show-container',
 
   initialize: function () {
+    // this.groupMembers = new
+    this.listenTo(this.model.comments(), 'sync', this.render);
 
-    this.listenTo(this.model.comments(), 'sync', this.render)
+    this.listenTo(this.model, 'sync', this.render);
+
 
     this.addingThemSubviews()
   },
@@ -21,7 +24,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click button.join-leave": "setMemberStatus",
+    "click button.join-group": "joinGroup",
     "click .start-event-div": "newHuddle",
     "click .group-delete": "deleteGroup",
     "submit form": "newComment",
@@ -42,11 +45,10 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     });
   },
 
-  setMemberStatus: function (e) {
+  joinGroup: function (e) {
     e.preventDefault();
 
     if (this.model.users().get(App.CURRENT_USER.id)) {
-
       console.log('user already joined this group');
 
     } else {
@@ -58,13 +60,15 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
       groupMember.save(attributes, {
         success: function () {
+
           console.log(groupMember.attributes);
           var user_id = groupMember.attributes.user_id
           var user = new App.Models.User({ id: user_id });
 
           user.fetch({
             success: function () {
-              this.model.users().add(user)
+              this.model.users().add(user);
+              $("button.join-group").addClass("leave-group").removeClass("join-group").text("Leave this Group");
             }.bind(this)
           })
 
@@ -151,9 +155,12 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
   // good ol render
   render: function () {
+    var existance = this.model.users().get(App.CURRENT_USER.id);
+
     var content = this.template({
       group: this.model,
       group_id: this.model.id,
+      user_list: this.model.users()
     });
     this.$el.html(content);
 

@@ -23,7 +23,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
 
   events: {
-    "click button.going-not-going": "setAttendingStatus",
+    "click button.join-event": "joinEvent",
     "click .event-delete": "deleteEvent",
     "submit form": "newComment",
     "click .delete": "deleteComment",
@@ -51,11 +51,10 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     comment.destroy();
   },
 
-  setAttendingStatus: function (e) {
+  joinEvent: function (e) {
     e.preventDefault();
 
     if (this.model.users().get(App.CURRENT_USER.id)) {
-
       console.log('user already attending');
 
     } else {
@@ -73,7 +72,8 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
           user.fetch({
             success: function () {
-              this.model.users().add(user)
+              this.model.users().add(user);
+                $("button.join-event").addClass("leave-event").removeClass("join-event").text("Leave this Huddle");
             }.bind(this)
           })
 

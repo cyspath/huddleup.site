@@ -10,9 +10,15 @@
       <h3>created by: <%= group.escape('author_name')%></h3>
     </div>
 
-    <button type="button" class="join-leave">
-      Join this Group!
-    </button>
+    <% if (!group.users().get(App.CURRENT_USER.id)) { %>
+      <button type="button" class="join-group">
+        Join this Group!
+      </button>
+    <% } else { %>
+      <button type="button" class="leave-group">
+        Leave this Group
+      </button>
+    <% } %>
 
     <br><br>
 
