@@ -42,6 +42,24 @@
 
     <div class="mid-bar">
 
+      <% if (ableToUploadImage) { %>
+        <button class="uploadImage">Upload a Photo</button>
+      <% } else { %>
+        <p>* Only Huddlers can ad photos to this Huddle.</p>
+      <% } %>
+
+      <ul class="gallery">
+        <% images.each(function(image){ %>
+        <li>
+
+          <a href="#/images/<%= image.id %>">
+            <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+          </a>
+
+        </li>
+        <% }) %>
+      </ul>
+
       <div class="comments">
         <p class="heading">The Wall:</p>
         <div class="event-show-comment-list"></div>

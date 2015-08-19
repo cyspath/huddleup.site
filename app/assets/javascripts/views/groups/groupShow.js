@@ -3,31 +3,16 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   className: 'group-show-container',
 
   initialize: function () {
-    
+
     this.listenTo(this.model.comments(), 'sync', this.render);
+
+    this.listenTo(this.model.users(), 'sync', this.render);
 
     this.listenTo(this.model, 'sync', this.render);
 
+    this.listenTo(this.model.images(), "sync", this.render);
 
     this.addingThemSubviews()
-  },
-
-  addingThemSubviews: function () {
-    this.model.fetch({
-      success: function () {
-
-        this.addCommentsIndex(this.model.comments());
-
-        this.addMembersIndex(this.model.users());
-
-        this.createMembershipCollection();
-
-        this.addUpcomingEventsIndex(this.model.upcomingEvents());
-
-        this.addPastEventsIndex(this.model.pastEvents());
-
-      }.bind(this)
-    });
   },
 
   events: {
@@ -41,7 +26,29 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     "keyup form": "handleKey",
     "submit form": "newComment",
     "click .delete": "deleteComment",
+
+    "click .uploadImage": "uploadImage",
   },
+
+  addingThemSubviews: function () {
+    this.model.fetch({
+      success: function () {
+
+        this.addCommentsIndex(this.model.comments());
+
+        this.addMembersIndex(this.model.users());
+
+        this.createMembershipCollection();
+        this.ableToUploadImage = this.canUpload();
+
+        this.addUpcomingEventsIndex(this.model.upcomingEvents());
+
+        this.addPastEventsIndex(this.model.pastEvents());
+
+      }.bind(this)
+    });
+  },
+
 
   joinGroup: function (e) {
     e.preventDefault();
@@ -221,14 +228,86 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     })
   },
 
+  // Image Upload
+
+  uploadImage: function(e) {
+    e.preventDefault();
+    var image = new App.Models.Image();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result) {
+      if (result) {
+
+        var data = result[0];
+
+        var croppedUrl = this.generateCroppedUrl(
+          data.url,
+          data.public_id,
+          data.path,
+          data.coordinates.custom[0]
+        );
+
+        var thumbCroppedUrl = this.generateThumbCroppedUrl(
+          data.url,
+          data.public_id,
+          data.path,
+          data.coordinates.custom[0],
+          60,
+          60
+        );
+
+        image.set({
+          url: data.url,
+          thumb_url: data.thumbnail_url,
+          url_cropped: croppedUrl,
+          thumb_url_cropped: thumbCroppedUrl,
+          imageable_id: this.model.id,
+          imageable_type: "Group",
+        });
+
+        image.save({}, {
+          success: function() {
+            this.model.images().add(image);
+          }.bind(this)
+        })
+      }
+    }.bind(this))
+  },
+
+  generateCroppedUrl: function (url, publicId, path, coordinates) {
+    var head = url.replace(path, "");
+    var idx = path.match(publicId).index;
+    var tail = path.slice(idx);
+    var mid = "x_" + coordinates[0] + ",y_" + coordinates[1] + ",w_" + coordinates[2] + ",h_" + coordinates[3] + ",c_crop/";
+    return head + mid + tail
+  },
+
+  generateThumbCroppedUrl: function (url, publicId, path, coordinates, thumbWidth, thumbHeight) {
+    var head = url.replace(path, "");
+    var idx = path.match(publicId).index;
+    var tail = path.slice(idx);
+    var mid = "x_" + coordinates[0] + ",y_" + coordinates[1] + ",w_" + coordinates[2] + ",h_" + coordinates[3] + ",c_crop/";
+    var thumbSize = "w_" + thumbWidth + ",h_" + thumbHeight + ",c_fill/"
+    return head + mid + thumbSize + tail
+  },
+
+  canUpload: function () {
+    var result = false;
+    this.model.users().models.forEach(function(user){
+      if (user.id === App.CURRENT_USER.id) {
+        result = true;
+      }
+    }.bind(this))
+    return result;
+  },
+
   // good ol render
   render: function () {
     var existance = this.model.users().get(App.CURRENT_USER.id);
-
     var content = this.template({
       group: this.model,
       group_id: this.model.id,
-      user_list: this.model.users()
+      user_list: this.model.users(),
+      images: this.model.images(),
+      ableToUploadImage: this.ableToUploadImage,
     });
     this.$el.html(content);
 

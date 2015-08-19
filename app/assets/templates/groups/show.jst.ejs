@@ -42,6 +42,25 @@
 
   <div class="mid-bar">
 
+    <% if (ableToUploadImage) { %>
+      <button class="uploadImage">Upload a Image</button>
+    <% } else { %>
+      <p>* Only members can upload photos.</p>
+    <% } %>
+
+    <ul class="gallery">
+      <% images.each(function(image){ %>
+      <li>
+
+        <a href="#/images/<%= image.id %>">
+          <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+        </a>
+
+      </li>
+      <% }) %>
+    </ul>
+
+
     <div class="events">
       <p class="heading">Upcoming Events: </p>
       <div class="group-show-upcoming-events"></div>

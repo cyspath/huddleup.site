@@ -1,6 +1,7 @@
 class Api::ImagesController < ApplicationController
   def index
-    render json: Image.all.to_json
+    @images = Image.all
+    render 'index'
   end
 
   def create
@@ -13,7 +14,8 @@ class Api::ImagesController < ApplicationController
   end
 
   def show
-    render json: Image.find(params[:id])
+    @image = Image.find(params[:id])
+    render 'show'
   end
 
   def destroy
@@ -24,6 +26,6 @@ class Api::ImagesController < ApplicationController
 
   private
   def image_params
-    params.require(:image).permit(:url, :thumb_url, :imageable_type, :imageable_id)
+    params.require(:image).permit(:url, :thumb_url, :url_cropped, :thumb_url_cropped, :imageable_type, :imageable_id)
   end
 end

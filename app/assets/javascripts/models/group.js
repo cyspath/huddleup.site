@@ -3,6 +3,11 @@ App.Models.Group = Backbone.Model.extend({
 
   parse: function(payload) {
 
+    if(payload.images) {
+      this.images().set(payload.images);
+      delete payload.images;
+    }
+
     if(payload.events) {
       this.events().set(payload.events);
       delete payload.events;
@@ -30,6 +35,13 @@ App.Models.Group = Backbone.Model.extend({
     }
 
     return payload;
+  },
+
+  images: function () {
+    if(this._selfImages === undefined) {
+      this._selfImages = new App.Collections.Images();
+    }
+    return this._selfImages;
   },
 
   events: function () {

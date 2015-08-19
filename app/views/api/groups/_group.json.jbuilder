@@ -8,6 +8,11 @@ json.extract!(
 
 json.set! :author_name, group.author.username.capitalize
 
+json.images do
+  json.array! group.images do |image|
+    json.partial! 'api/images/image', image: image
+  end
+end
 
 if display_users
   json.users do

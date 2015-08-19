@@ -8,6 +8,8 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.comments(), "sync", this.render);
 
+    this.listenTo(this.model.images(), "sync", this.render);
+
     this.addingThemSubviews();
 
   },
@@ -19,26 +21,6 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     "click .uploadImage": "uploadImage",
   },
 
-  uploadImage: function(e) {
-    e.preventDefault();
-    var image = new App.Models.Image();
-    debugger
-    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result) {
-      var data = result[0];
-      image.set({
-        url: data.url,
-        thumb_url: data.thumbnail_url,
-        imageable_id: App.CURRENT_USER.id,
-        imageable_type: "User"
-      });
-      image.save({}, {
-        success: function() {
-          this.model.images().add(image);
-        }.bind(this)
-      })
-    }.bind(this))
-
-  },
 
   addingThemSubviews: function () {
     this.model.fetch({
@@ -140,6 +122,67 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
   removeCommentsIndex: function (comment) {
     this.removeModelSubview('.user-show-comment-list', comment )
+  },
+
+  // Image Upload
+
+  uploadImage: function(e) {
+    e.preventDefault();
+    var image = new App.Models.Image();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result) {
+      if (result) {
+
+        var data = result[0];
+
+        var croppedUrl = this.generateCroppedUrl(
+          data.url,
+          data.public_id,
+          data.path,
+          data.coordinates.custom[0]
+        );
+
+        var thumbCroppedUrl = this.generateThumbCroppedUrl(
+          data.url,
+          data.public_id,
+          data.path,
+          data.coordinates.custom[0],
+          60,
+          60
+        );
+
+        image.set({
+          url: data.url,
+          thumb_url: data.thumbnail_url,
+          url_cropped: croppedUrl,
+          thumb_url_cropped: thumbCroppedUrl,
+          imageable_id: App.CURRENT_USER.id,
+          imageable_type: "User",
+        });
+
+        image.save({}, {
+          success: function() {
+            this.model.images().add(image);
+          }.bind(this)
+        })
+      }
+    }.bind(this))
+  },
+
+  generateCroppedUrl: function (url, publicId, path, coordinates) {
+    var head = url.replace(path, "");
+    var idx = path.match(publicId).index;
+    var tail = path.slice(idx);
+    var mid = "x_" + coordinates[0] + ",y_" + coordinates[1] + ",w_" + coordinates[2] + ",h_" + coordinates[3] + ",c_crop/";
+    return head + mid + tail
+  },
+
+  generateThumbCroppedUrl: function (url, publicId, path, coordinates, thumbWidth, thumbHeight) {
+    var head = url.replace(path, "");
+    var idx = path.match(publicId).index;
+    var tail = path.slice(idx);
+    var mid = "x_" + coordinates[0] + ",y_" + coordinates[1] + ",w_" + coordinates[2] + ",h_" + coordinates[3] + ",c_crop/";
+    var thumbSize = "w_" + thumbWidth + ",h_" + thumbHeight + ",c_fill/"
+    return head + mid + thumbSize + tail
   },
 
   // good ol render

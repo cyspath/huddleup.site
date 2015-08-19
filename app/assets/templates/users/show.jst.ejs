@@ -1,10 +1,16 @@
-<% var userAlias = user.escape('alias') %>
+
+<% if (user.id == App.CURRENT_USER.id) { %>
+  <% var userAlias = "You" %>
+<% } else { %>
+  <% var userAlias = user.escape('alias') %>
+<% } %>
+
+
 
 <div class="user-show-container show-container group">
 
   <div class="left-bar">
 
-    <button class="uploadImage">Upload a Image</button>
 
     <div class="groups">
       <p class="heading"><%= userAlias %> belongs to:</p>
@@ -51,12 +57,18 @@
     </div>
 
 
+    <% if (user.id == App.CURRENT_USER.id) { %>
+      <button class="uploadImage">Upload a Photo</button>
+    <% } %>
+
     <ul class="gallery">
       <% images.each(function(image){ %>
       <li>
+
         <a href="#/images/<%= image.id %>">
-          <img src="<%= image.escape('thumb_url') %>" alt="" />
+          <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
         </a>
+
       </li>
       <% }) %>
     </ul>
@@ -64,9 +76,15 @@
 
   </div>
 
+  <% if (user.id == App.CURRENT_USER.id) { %>
+    <% var userAlias = "Your" %>
+  <% } else { %>
+    <% var userAlias = user.escape('alias') + "'s" %>
+  <% } %>
+
   <div class="right-bar">
     <div class="events">
-      <p class="heading"><%= userAlias %>'s upcoming events: </p>
+      <p class="heading"><%= userAlias %> upcoming events: </p>
       <div class="user-show-upcoming-events"></div>
     </div>
 
@@ -75,7 +93,7 @@
 
     <br><br>
     <div class="events">
-      <p class="heading"><%= userAlias %>'s past events: </p>
+      <p class="heading"><%= userAlias %> past events: </p>
       <div class="user-show-past-events"></div>
     </div>
 

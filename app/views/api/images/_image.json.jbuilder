@@ -3,6 +3,8 @@ json.extract!(
   :id,
   :url,
   :thumb_url,
+  :url_cropped,
+  :thumb_url_cropped,
   :ord,
   :created_at,
   :updated_at,

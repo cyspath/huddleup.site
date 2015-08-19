@@ -12,6 +12,12 @@ json.extract!(
 json.set! :group_name, event.group.name
 json.set! :author_name, event.author.username.capitalize
 
+json.images do
+  json.array! event.images do |image|
+    json.partial! 'api/images/image', image: image
+  end
+end
+
 
 if event.date && event.date >= Date.today
   json.set! :status, "Upcoming"

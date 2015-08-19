@@ -3,6 +3,11 @@ App.Models.Event = Backbone.Model.extend({
 
   parse: function(payload) {
 
+    if(payload.images) {
+      this.images().set(payload.images);
+      delete payload.images;
+    }
+
     if(payload.users) {
       this.users().set(payload.users);
       delete payload.users;
@@ -15,6 +20,14 @@ App.Models.Event = Backbone.Model.extend({
 
     return payload;
   },
+
+  images: function () {
+    if(this._selfImages === undefined) {
+      this._selfImages = new App.Collections.Images();
+    }
+    return this._selfImages;
+  },
+
 
   users: function () {
     if(this._users === undefined) {

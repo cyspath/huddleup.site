@@ -10,19 +10,23 @@
 
   <script src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
 
-  <script type="text/javascript" charset="utf-8">
+  <!-- <script type="text/javascript" charset="utf-8">
     window.CLOUDINARY_OPTIONS = {
       cloud_name: "<%=ENV['CLOUD_NAME']%>",
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
     };
-  </script>
+  </script> -->
 
-<!-- <script type="text/javascript">
-  $('#upload_widget_opener').cloudinary_upload_widget(
-    { cloud_name: 'demo', upload_preset: 'a5vxnzbp',
-      cropping: 'server', 'folder': 'user_photos' },
-    function(error, result) { console.log(error, result) });
-</script> -->
+  <script type="text/javascript" charset="utf-8">
+    window.CLOUDINARY_OPTIONS = {
+      cloud_name: "<%= ENV['CLOUD_NAME'] %>",
+      upload_preset: "<%= ENV['UPLOAD_PRESET'] %>",
+      cropping: 'server',
+      cropping_aspect_ratio: 1,
+      gravity: 'custom',
+      theme: 'white'
+    };
+  </script>
 
   <!-- <script type="text/javascript" charset="utf-8">
     window.CLOUDINARY_OPTIONS = {
