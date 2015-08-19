@@ -3,9 +3,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   className: 'group-show-container',
 
   initialize: function () {
-
-    $(document).on('keyup', this.handleKey.bind(this));
-
+    
     this.listenTo(this.model.comments(), 'sync', this.render);
 
     this.listenTo(this.model, 'sync', this.render);
@@ -40,6 +38,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     "click .group-delete": "deleteGroup",
 
+    "keyup form": "handleKey",
     "submit form": "newComment",
     "click .delete": "deleteComment",
   },

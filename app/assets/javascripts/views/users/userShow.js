@@ -3,8 +3,6 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   className: 'user-show-container',
 
   initialize: function () {
-    $(document).on('keyup', this.handleKey.bind(this));
-
 
     this.listenTo(this.model, "sync", this.render);
 
@@ -14,20 +12,52 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
   },
 
+  events: {
+    "keyup form": "handleKey",
+    "submit form": "newComment",
+    "click .delete": "deleteComment",
+    "click .uploadImage": "uploadImage",
+  },
+
+  uploadImage: function(e) {
+    e.preventDefault();
+    var image = new App.Models.Image();
+    debugger
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result) {
+      var data = result[0];
+      image.set({
+        url: data.url,
+        thumb_url: data.thumbnail_url,
+        imageable_id: App.CURRENT_USER.id,
+        imageable_type: "User"
+      });
+      image.save({}, {
+        success: function() {
+          this.model.images().add(image);
+        }.bind(this)
+      })
+    }.bind(this))
+
+  },
+
   addingThemSubviews: function () {
     this.model.fetch({
       success: function () {
+
+        // this.addImagesIndex(this.model.images());
+
         this.addGroupsIndex(this.model.groups());
-        this.addUpcomingEventsIndex(this.model.upcomingEvents());        this.addPastEventsIndex(this.model.pastEvents());
+
+        this.addUpcomingEventsIndex(this.model.upcomingEvents());
+
+        this.addPastEventsIndex(this.model.pastEvents());
+
         this.addCommentsIndex(this.model.comments());
+
       }.bind(this)
     });
   },
 
-  events: {
-    "submit form": "newComment",
-    "click .delete": "deleteComment",
-  },
 
   handleKey: function (event) {
     if (event.keyCode === 13) {
@@ -117,6 +147,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     var content = this.template({
       user: this.model,
       user_id: this.model.id,
+      images: this.model.images(),
     });
     this.$el.html(content);
     this.attachSubviews();

@@ -1,0 +1,9 @@
+json.extract!(
+  image,
+  :id,
+  :url,
+  :thumb_url,
+  :ord,
+  :created_at,
+  :updated_at,
+  )

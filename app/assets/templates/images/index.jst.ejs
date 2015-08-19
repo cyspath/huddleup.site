@@ -1,0 +1,11 @@
+<h1>All Images!</h1>
+<button class="upload-button">upload new image</button>
+<ul class="gallery">
+  <% images.each(function(image){ %>
+  <li>
+    <a href="#/images/<%= image.id %>">
+      <img src="<%= image.escape('thumb_url') %>" alt="" />
+    </a>
+  </li>
+  <% }) %>
+</ul>

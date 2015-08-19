@@ -3,6 +3,9 @@
 <div class="user-show-container show-container group">
 
   <div class="left-bar">
+
+    <button class="uploadImage">Upload a Image</button>
+
     <div class="groups">
       <p class="heading"><%= userAlias %> belongs to:</p>
       <div class="user-show-group-list"></div>
@@ -46,6 +49,19 @@
 
         </form>
     </div>
+
+
+    <ul class="gallery">
+      <% images.each(function(image){ %>
+      <li>
+        <a href="#/images/<%= image.id %>">
+          <img src="<%= image.escape('thumb_url') %>" alt="" />
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+
+
   </div>
 
   <div class="right-bar">

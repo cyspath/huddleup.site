@@ -1,12 +1,7 @@
-App.Models.User = Backbone.Model.extend({
-  urlRoot: '/api/users',
+App.Models.Image = Backbone.Model.extend({
+  urlRoot: 'api/images',
 
   parse: function(payload) {
-
-    if(payload.images) {
-      this.images().set(payload.images);
-      delete payload.images;
-    }
 
     if(payload.upcoming_events) {
       this.upcomingEvents().set(payload.upcoming_events);
@@ -29,13 +24,6 @@ App.Models.User = Backbone.Model.extend({
     }
 
     return payload;
-  },
-
-  images: function () {
-    if(this._selfImages === undefined) {
-      this._selfImages = new App.Collections.Images();
-    }
-    return this._selfImages;
   },
 
   upcomingEvents: function () {
@@ -66,4 +54,4 @@ App.Models.User = Backbone.Model.extend({
     return this._comments;
   },
 
-})
+});

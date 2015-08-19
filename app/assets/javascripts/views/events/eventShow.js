@@ -3,8 +3,6 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
   className: 'event-show-container',
 
   initialize: function () {
-    $(document).on('keyup', this.handleKey.bind(this));
-
 
     this.listenTo(this.model, "sync", this.render);
 
@@ -35,6 +33,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
     "click .event-delete": "deleteEvent",
 
+    "keyup form": "handleKey",
     "submit form": "newComment",
     "click .delete": "deleteComment",
   },

@@ -5,7 +5,6 @@ App.Routers.Router = Backbone.Router.extend({
     this.groups = new App.Collections.Groups();
     this.events = new App.Collections.Events();
     this.users = new App.Collections.Users();
-
   },
 
   routes: {
