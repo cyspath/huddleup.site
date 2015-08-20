@@ -11,7 +11,7 @@ App.FunnyPhrases = function () {
   var s2 = ["speak none and come to",
   "or if you dont like that, better to",
   "and everyone is an opposite of you at",
-  "by coming to",
+  "by going to",
   "because you didn't come to",
   "they knew you would come to",
   "by coming to"]

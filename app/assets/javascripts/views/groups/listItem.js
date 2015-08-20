@@ -6,7 +6,12 @@ App.Views.GroupsListItem = Backbone.View.extend({
   },
 
   render: function () {
-    var content = this.template({ group: this.model });
+    var images = this.model.images().models;
+    var length = images.length;
+    var content = this.template({
+      group: this.model,
+      image: images[length - 1]
+    });
     this.$el.html(content);
     return this;
   }

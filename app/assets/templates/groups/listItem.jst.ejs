@@ -4,3 +4,9 @@
     <!-- num members -->
   </p>
 </a>
+
+<% if (image != undefined) { %>
+  <a href="#/images/<%= image.id %>">
+    <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+  </a>
+<% } %>
