@@ -1,12 +1,6 @@
 <a href="#/groups/<%= group.escape('id')%>" class="group-item" data-id=<%= group.escape('id')%>>
-  <p>
-    <%= group.escape('name').capitalize()%>
-    <!-- num members -->
-  </p>
-</a>
-
-<% if (image != undefined) { %>
-  <a href="#/images/<%= image.id %>">
+  <% if (image != undefined) { %>
+    <p><%= group.escape('name').capitalize()%></p>
     <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
-  </a>
-<% } %>
+  <% } %>
+</a>
