@@ -1,108 +1,121 @@
+<div class="title-div-1 group-title-div-1">
+  <h1><%= group.escape('name').capitalize() %> Group</h1>
+</div>
 
-<div class="group-show-container show-container group">
+<div class="title-div-2 group-title-div-2"></div>
 
-  <div class="left-bar">
+<div class="title-div-3 group-title-div-3"></div>
 
-    <div class="info">
-      <p class="heading">Group Information</p>
+<div class="group-show-container inner-container group">
 
-      <h1><%= group.escape('name') %></h1>
-      <h3>created by: <%= group.escape('author_name')%></h3>
-    </div>
+<div class="left-bar">
 
-    <% if (!group.users().get(App.CURRENT_USER.id)) { %>
-      <button type="button" class="join-group">
-        Join this Group!
-      </button>
-    <% } else { %>
-      <button type="button" class="leave-group">
-        Leave this Group
-      </button>
+  <div class="info">
+
+    <% if (image != undefined) { %>
+      <a href="#/images/<%= image.id %>">
+        <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+      </a>
     <% } %>
-
-    <br><br>
-
-    <div class="start-event-div">
-      <div class="small">
-        Schedule a New
-      </div><br>
-      <div class="big">
-        Huddle
-      </div>
-    </div>
-
-
-    <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
-      <button type="button" class="group-delete" data-id=<%= group.id %>>Disband Group</button>
-    <% } %>
-
-  </div>
-
-
-
-  <div class="mid-bar">
 
     <% if (ableToUploadImage) { %>
-      <button class="uploadImage">Upload a Image</button>
-    <% } else { %>
-      <p>* Only members can upload photos.</p>
+      <p>You, as the group creator, can</p>
+
+      <% if (images.length > 0) { %>
+        <button class="uploadImage">change your group banner</button>
+      <% } else { %>
+        <button class="uploadImage">give your group a banner</button>
+      <% } %>
+
     <% } %>
 
-    <ul class="gallery">
-      <% images.each(function(image){ %>
-      <li>
 
-        <a href="#/images/<%= image.id %>">
-          <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
-        </a>
+    <p class="heading">Group Information</p>
 
-      </li>
-      <% }) %>
-    </ul>
+    <h3>Created by
+      <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
+          you
+      <% } else { %>
+        <%= group.escape('author_name')%>
+      <% } %>
+    </h3>
 
-
-    <div class="events">
-      <p class="heading">Upcoming Events: </p>
-      <div class="group-show-upcoming-events"></div>
-    </div>
-
-    <br><br>
-
-    <div class="events">
-      <p class="heading">Past Events: </p>
-      <div class="group-show-past-events"></div>
-    </div>
-
-    <br><br>
-
-
-    <div class="comments">
-      <p class="heading">The Wall:</p>
-      <div class="group-show-comment-list"></div>
-    </div>
-
-    <br><br>
-      <form class="comment-form">
-
-        <input type="hidden" name="commentable_id" value=<%= group_id %>>
-
-        <input type="hidden" name="commentable_type" value="Group">
-
-        <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
-
-        <label>
-          <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
-        </label>
-
-        <button class="start-comment-btn">
-          Post
-        </button>
-
-      </form>
-
-
-    <br><br>
   </div>
+
+  <% if (!group.users().get(App.CURRENT_USER.id)) { %>
+    <button type="button" class="join-group">
+      Join this Group!
+    </button>
+  <% } else { %>
+    <button type="button" class="leave-group">
+      Leave this Group
+    </button>
+  <% } %>
+
+  <br><br>
+
+  <div class="start-event-div">
+    <div class="small">
+      Schedule a New
+    </div><br>
+    <div class="big">
+      Huddle
+    </div>
+  </div>
+
+
+  <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
+    <button type="button" class="group-delete" data-id=<%= group.id %>>Disband Group</button>
+  <% } %>
+
+</div>
+
+
+
+<div class="mid-bar">
+
+  <div class="events">
+    <p class="heading">Upcoming Events: </p>
+    <div class="group-show-upcoming-events"></div>
+  </div>
+
+  <br><br>
+
+  <div class="events">
+    <p class="heading">Past Events: </p>
+    <div class="group-show-past-events"></div>
+  </div>
+
+  <br><br>
+
+
+  <div class="comments">
+    <p class="heading">The Wall:</p>
+    <div class="group-show-comment-list"></div>
+  </div>
+
+  <br><br>
+    <form class="comment-form">
+
+      <input type="hidden" name="commentable_id" value=<%= group_id %>>
+
+      <input type="hidden" name="commentable_type" value="Group">
+
+      <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+
+      <label>
+        <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
+      </label>
+
+      <button class="start-comment-btn">
+        Post
+      </button>
+
+    </form>
+
+
+  <br><br>
+</div>
 
 
   <div class="right-bar">

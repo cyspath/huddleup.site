@@ -1,6 +1,6 @@
 App.Views.UserShowView = Backbone.CompositeView.extend({
   template: JST['users/show'],
-  className: 'user-show-container',
+  className: 'user-show-container outer-container',
 
   initialize: function () {
 
@@ -17,7 +17,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   events: {
     "keyup form": "handleKey",
     "submit form": "newComment",
-    "click .delete": "deleteComment",
+    "click .comment-delete-btn": "deleteComment",
     "click .uploadImage": "uploadImage",
   },
 

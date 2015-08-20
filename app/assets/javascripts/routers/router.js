@@ -53,7 +53,10 @@ App.Routers.Router = Backbone.Router.extend({
 
   showEvent: function (id) {
     var groupEvent = this.events.getOrFetch(id);
-    var view = new App.Views.EventShowView({ model: groupEvent });
+    var view = new App.Views.EventShowView({
+      model: groupEvent,
+      funnyPhrase: App.FunnyPhrases()
+    });
     this.swapView(view);
   },
 

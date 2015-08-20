@@ -1,12 +1,10 @@
 App.Views.GroupShowView = Backbone.CompositeView.extend({
   template: JST['groups/show'],
-  className: 'group-show-container',
+  className: 'group-show-container outer-container',
 
   initialize: function () {
 
     this.listenTo(this.model.comments(), 'sync', this.render);
-
-    this.listenTo(this.model.users(), 'sync', this.render);
 
     this.listenTo(this.model, 'sync', this.render);
 
@@ -25,7 +23,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     "keyup form": "handleKey",
     "submit form": "newComment",
-    "click .delete": "deleteComment",
+    "click .comment-delete-btn": "deleteComment",
 
     "click .uploadImage": "uploadImage",
   },
@@ -250,8 +248,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
           data.public_id,
           data.path,
           data.coordinates.custom[0],
-          60,
-          60
+          225,
+          225
         );
 
         image.set({
@@ -290,23 +288,28 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   },
 
   canUpload: function () {
+    // only group creator can upload group banner
     var result = false;
-    this.model.users().models.forEach(function(user){
-      if (user.id === App.CURRENT_USER.id) {
-        result = true;
-      }
-    }.bind(this))
+    if (this.model.escape('author_name') === App.CURRENT_USER.username) {
+      result = true;
+    }
     return result;
   },
 
   // good ol render
   render: function () {
+
     var existance = this.model.users().get(App.CURRENT_USER.id);
+
+    var images = this.model.images();
+    var image = images.models[images.length - 1];
+
     var content = this.template({
       group: this.model,
       group_id: this.model.id,
       user_list: this.model.users(),
-      images: this.model.images(),
+      images: images,
+      image: image,
       ableToUploadImage: this.ableToUploadImage,
     });
     this.$el.html(content);

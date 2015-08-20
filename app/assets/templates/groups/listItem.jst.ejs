@@ -1,6 +1,6 @@
 <a href="#/groups/<%= group.escape('id')%>" class="group-item" data-id=<%= group.escape('id')%>>
   <p>
-    <%= group.escape('name')%>
+    <%= group.escape('name').capitalize()%>
     <!-- num members -->
   </p>
 </a>

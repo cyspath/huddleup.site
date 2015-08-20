@@ -5,9 +5,14 @@ nav {
 nav div.container-fluid {
   font-family: 'Lucida Grande', Verdana, sans-serif;
   margin: 0 auto;
-  width: 980px;
+  min-width: 985px;
+  width: 80%;
+  max-width: 1275px;
 }
 
+a.dropdown-toggle {
+  padding-right: 0px;
+}
 a.navbar-brand.overwrite {
   padding: 0px 15px 0px 26px;
   background-color: white;

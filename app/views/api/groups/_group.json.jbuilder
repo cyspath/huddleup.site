@@ -8,6 +8,11 @@ json.extract!(
 
 json.set! :author_name, group.author.username.capitalize
 
+arr = group.name.split(" ").map { |word| word.capitalize }
+str = arr.join(" ")
+json.set! :group_name, str
+
+
 json.images do
   json.array! group.images do |image|
     json.partial! 'api/images/image', image: image

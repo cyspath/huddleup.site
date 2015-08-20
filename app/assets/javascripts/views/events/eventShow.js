@@ -1,12 +1,15 @@
 App.Views.EventShowView = Backbone.CompositeView.extend({
   template: JST['events/show'],
-  className: 'event-show-container',
+  className: 'event-show-container outer-container',
 
-  initialize: function () {
+  initialize: function (options) {
+    this.funnyPhrase = options.funnyPhrase;
 
     this.listenTo(this.model, "sync", this.render);
 
     this.listenTo(this.model.comments(), "sync", this.render);
+
+    this.listenTo(this.model.users(), 'sync remove', this.checkCanUploadAndRender);
 
     this.listenTo(this.model.images(), "sync", this.render);
 
@@ -22,7 +25,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
     "keyup form": "handleKey",
     "submit form": "newComment",
-    "click .delete": "deleteComment",
+    "click .comment-delete-btn": "deleteComment",
 
     "click .uploadImage": "uploadImage",
   },
@@ -32,7 +35,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
       success: function () {
 
         this.addMembersIndex(this.model.users());
-        
+
         this.ableToUploadImage = this.canUpload();
 
         this.createMembershipCollection();
@@ -262,6 +265,11 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     return result;
   },
 
+  checkCanUploadAndRender: function () {
+    this.ableToUploadImage = this.canUpload();
+    this.render();
+  },
+
   // good ol render
   render: function () {
     var content = this.template({
@@ -269,6 +277,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
       event_id: this.model.id,
       images: this.model.images(),
       ableToUploadImage: this.ableToUploadImage,
+      funnyPhrase: this.funnyPhrase
     });
 
     this.$el.html(content);

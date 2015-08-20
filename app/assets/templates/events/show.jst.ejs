@@ -1,12 +1,22 @@
-<div class="event-show-container show-container group">
+
+<div class="title-div-1 event-title-div-1 group">
+  <h4><%= funnyPhrase[0] %></h4>
+  <h5><%= funnyPhrase[1] %></h5>
+
+  <h2><%= groupEvent.escape('group_name') %></h2>
+  <h3><%= groupEvent.escape('title').capitalize() %></h3>
+</div>
+
+<div class="title-div-2 event-title-div-2"></div>
+
+<div class="title-div-3 event-title-div-3"></div>
+
+
+<div class="event-show-container inner-container group">
 
     <div class="left-bar">
       <div class="info">
         <p class="heading">Event Information</p>
-
-        <h1>
-          <%= groupEvent.escape('title') %>
-        </h1>
 
         <h3>hosted by:
           <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
@@ -105,5 +115,3 @@
     </div>
 
 </div>
-
-<br><br>

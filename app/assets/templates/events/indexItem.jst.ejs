@@ -1,6 +1,6 @@
 <a href="#/events/<%= groupEvent.escape('id')%>" class="groupEvent-item" data-id=<%= groupEvent.escape('id')%>>
   <p class="event-item-title">
-    <%= groupEvent.escape('title')%>
+    <%= groupEvent.escape('title').capitalize()%>
   </p>
   <p class="event-item-location">
     <% if (groupEvent.escape('location')) { %>

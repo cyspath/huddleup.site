@@ -9,7 +9,16 @@ json.extract!(
   :group_id,
 )
 
-json.set! :group_name, event.group.name
+arr = event.group.name.split(" ").map { |word| word.capitalize }
+str = arr.join(" ")
+json.set! :group_name, str
+
+
+arr = event.title.split(" ").map { |word| word.capitalize }
+str = arr.join(" ")
+json.set! :event_name, str
+
+
 json.set! :author_name, event.author.username.capitalize
 
 json.images do

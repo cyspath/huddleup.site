@@ -26,6 +26,10 @@
       gravity: 'custom',
       theme: 'white'
     };
+
+    String.prototype.capitalize = function() {
+      return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+    };
   </script>
 
   <!-- <script type="text/javascript" charset="utf-8">

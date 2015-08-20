@@ -2,14 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 div.delete {
   width: 200px;
   height: 100px;
   background-color: #000;
 }
 
-
+html {
+  height: 100%;
+}
 body {
+  min-height: 100%;
+
   opacity:0;
   transition: opacity 1s;
   -webkit-transition: opacity 1s; /* Safari */
@@ -17,9 +22,10 @@ body {
   // position: relative;
   font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
   color: #404040;
-  background: #f7f7f7;
+  // background: #f7f7f7;
+  background-color: #FAF5F5;
 }
-// 
+//
 // div.group-show-container {
 //   opacity:0.5;
 //   transition: opacity 1s;

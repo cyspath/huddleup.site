@@ -14,7 +14,7 @@
     created at: <%= comment.escape('created_at')%>
 
     <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
-      <button type="button" class="delete" data-id=<%= comment.id %>>x</button>
+      <button type="button" class="comment-delete-btn" data-id=<%= comment.id %>>☓</button>
     <% } %>
 
     </p>
