@@ -4,7 +4,7 @@ App.Views.GroupsListItem = Backbone.View.extend({
   initialize: function () {
     this.listenTo(this.model, "add sync remove", this.render);
   },
-
+  new: function () {},
   render: function () {
     var images = this.model.images().models;
     var length = images.length;
