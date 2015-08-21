@@ -2,10 +2,17 @@ json.extract!(
   user,
   :id,
   :username,
-  :bio
+  :bio,
+  :sex,
+  :residence,
+  :occupation,
+  :age_preference,
+  :interest_fact,
+  :created_at,
   )
 
 json.set! :alias, user.username.capitalize
+json.set! :join_date, user.created_at.strftime("%b %d, %Y")
 
 
 json.images do

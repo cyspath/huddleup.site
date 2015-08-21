@@ -44,9 +44,9 @@
         </p>
 
 
-        <a href="#/groups/<%= group.escape('id')%>">
+        <a class="underline-gone" href="#/groups/<%= group.escape('id')%>">
           <button type="button" class="leave-group join-group">
-            Return to Group's Page
+            Back to <%= groupEvent.escape('group_name') %>
           </button>
         </a>
       <% } %>
@@ -85,7 +85,8 @@
             </div>
           <% } else { %>
             <div class="bar-inner bar-inner-upload-image">
-              <p>* Only Huddlers can add        photos to this Huddle.</p>
+              <p>* Only Huddlers can add</p>
+              <span class="glyphicon glyphicon-picture huddler-image-glyph"></span>
             </div>
           <% } %>
 
@@ -129,15 +130,14 @@
       <% } %>
 
       <div class="bar-inner">
+
         <div class="comments">
           <p class="heading">The Wall:</p>
           <div class="event-show-comment-list"></div>
         </div>
 
         <div class="comment-group">
-          <div class="user-avatar">
-
-          </div>
+          <div class="user-avatar"></div>
           <form class="comment-form">
 
             <input type="hidden" name="commentable_id" value=<%= event_id %>>
@@ -151,8 +151,8 @@
             </label>
 
           </form>
-
         </div>
+
       </div>
 
 
@@ -164,11 +164,11 @@
 
       <% if (!groupEvent.users().get(App.CURRENT_USER.id)) { %>
         <button type="button" class="join-event">
-          Join this Huddle
+          Join Huddle
         </button>
       <% } else { %>
         <button type="button" class="leave-event">
-          Leave this Huddle
+          Leave Huddle
         </button>
       <% } %>
 

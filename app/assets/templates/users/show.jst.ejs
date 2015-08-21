@@ -1,12 +1,18 @@
 
 <% if (user.id == App.CURRENT_USER.id) { %>
   <% var userAlias = "You" %>
+  <% var currentUser = true %>
 <% } else { %>
   <% var userAlias = user.escape('alias') %>
+  <% var currentUser = false %>
 <% } %>
 
 <div class="title-div-1 user-title-div-1">
-  <h1><%= user.escape('name') %></h1>
+  <% if (currentUser) { %>
+    <h1>Your Profile Page</h1>
+  <% } else { %>
+    <h1><%= user.escape('username').capitalize() %>'s Profile Page</h1>
+  <% } %>
 </div>
 
 <div class="title-div-2 user-title-div-2"></div>
@@ -16,120 +22,112 @@
 
 <div class="user-show-container inner-container group">
 
+
+
+
+
   <div class="left-bar">
 
+    <div class="bar-inner">
 
-    <div class="groups">
-      <p class="heading"><%= userAlias %> belongs to:</p>
-      <div class="user-show-group-list"></div>
+      <div class="groups">
+        <p class="heading"><%= userAlias %> belongs to:</p>
+        <div class="user-show-group-list"></div>
+      </div>
+
     </div>
+    <div class="bar-divider"></div>
 
-    <br><br>
   </div>
+
+
+
+
+
+
 
   <div class="mid-bar">
 
-    <!--  -->
-    <div class="slide-show-div">
-      <% if (images != undefined && images.length > 0) { %>
+    <div class="bar-inner group">
 
-        <div class="group-index-carousel user">
+      <!--  -->
+      <div class="slide-show-div">
+        <% if (images != undefined && images.length > 0) { %>
 
-          <div id="owl-example" class="owl-carousel owl-theme">
+          <div class="group-index-carousel-user">
 
-            <% images.forEach(function(image){ %>
-              <div class="item hover">
-                <img src="<%= image.escape("url_cropped") %>">
-              </div>
-            <% }) %>
+            <div id="owl-example" class="owl-carousel owl-theme">
 
-          </div>
-        </div>
-      <% } else { %>
-        <div class="group-index-carousel user">
+              <% images.forEach(function(image){ %>
+                <div class="item hover">
+                  <img src="<%= image.escape("url_cropped") %>">
+                </div>
+              <% }) %>
 
-          <div id="owl-example" class="owl-carousel owl-theme">
-
-            <div class="item hover">
-              <img src=" http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096559/male_bruusp.png">
             </div>
-
           </div>
-        </div>
-      <% } %>
+        <% } else { %>
+          <div class="group-index-carousel-user">
+
+            <div id="owl-example" class="owl-carousel owl-theme">
+
+              <div class="item hover">
+                <img src=" http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096559/male_bruusp.png">
+              </div>
+
+            </div>
+          </div>
+        <% } %>
 
 
-      <% if (user.id === App.CURRENT_USER.id) { %>
-        <button class="uploadImage join-group">Upload a Photo</button>
-      <% } else { %>
-        <p>* Only Huddlers can ad photos to this Huddle.</p>
-      <% } %>
+        <% if (currentUser) { %>
+          <div class="bar-inner bar-inner-upload-image">
+
+            <button class="btn btn-info btn-lg uploadImage-user">
+              <span class="glyphicon glyphicon-camera"></span>
+              Upload a Picture
+            </button>
+          </div>
+        <% } %>
+      </div>
+
+      <!--  -->
+      <div class="rating-container">
+        RATNG here
+      </div>
 
     </div>
+
+    <div class="bar-divider"></div>
 
     <!--  -->
-    <div class="info">
-      <p class="heading">
-      <%= userAlias %></p>
-
-      <h3>Short bio:
-        <% var bio = user.escape('bio') %>
-        <%= bio != 'null' ? bio : '' %>
-      </h3>
-
-    </div>
-
-
-
-    <% if (groupEvent.escape('body').length > 0) { %>
-      <div class="bar-inner">
-        <h5><%= groupEvent.escape('body') %></h5>
-      </div>
-      <div class="bar-divider"></div>
-
-    <% } %>
-
     <div class="bar-inner">
-      <div class="comments">
-        <p class="heading">The Wall:</p>
-        <div class="event-show-comment-list"></div>
+
+      <div class="user-info">
+        <p class="heading"><%= userAlias %></p>
+
+        <% if (currentUser) { %>
+          <button class="btn btn-info btn-lg btn-edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        <% } %>
+
+
+        </button>
+        <% if (user.escape('bio').length > 0) { %>
+          <div class="bar-inner">
+            <h5><%= user.escape('bio') %></h5>
+          </div>
+          <div class="bar-divider"></div>
+        <% } %>
       </div>
 
-      <div class="comment-group">
-        <div class="user-avatar">
-
-        </div>
-        <form class="comment-form">
-
-          <input type="hidden" name="commentable_id" value=<%= event_id %>>
-
-          <input type="hidden" name="commentable_type" value="Event">
-
-          <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
-
-          <label>
-            <textarea class="comment-textarea" id="message" name='body' rows="3" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
-          </label>
-
-        </form>
-
-      </div>
     </div>
 
+    <div class="bar-divider"></div>
 
 
-    <% if (user.id == App.CURRENT_USER.id) { %>
-      <button class="uploadImage">Upload a Photo</button>
-    <% } %>
-
-    <% if (groupEvent.escape('body').length > 0) { %>
-      <div class="bar-inner">
-        <h5><%= groupEvent.escape('body') %></h5>
-      </div>
-      <div class="bar-divider"></div>
-
-    <% } %>
-
+    <!--  -->
     <div class="bar-inner">
       <div class="comments">
         <p class="heading">The Wall:</p>
@@ -137,9 +135,7 @@
       </div>
 
       <div class="comment-group">
-        <div class="user-avatar">
-
-        </div>
+        <div class="user-avatar"></div>
         <form class="comment-form">
 
           <input type="hidden" name="commentable_id" value=<%= user_id %>>
@@ -153,12 +149,18 @@
           </label>
 
         </form>
-
       </div>
+
     </div>
 
 
   </div>
+
+
+
+
+
+
 
 
 
@@ -175,18 +177,24 @@
       <div class="user-show-upcoming-events"></div>
     </div>
 
-    <br><br>
 
-
-    <br><br>
     <div class="events">
       <p class="heading"><%= userAlias %> past events: </p>
       <div class="user-show-past-events"></div>
     </div>
 
-    <br><br>
   </div>
+
+
+
+
 </div>
+
+
+
+
+
+
 
 <script>
   $(document).ready(function() {

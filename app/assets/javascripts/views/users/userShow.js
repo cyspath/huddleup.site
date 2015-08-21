@@ -16,9 +16,14 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
   events: {
     "keyup form": "handleKey",
+
     "submit form": "newComment",
     "click .comment-delete-btn": "deleteComment",
-    "click .uploadImage": "uploadImage",
+
+    "click .uploadImage-user": "uploadImage",
+
+    "click .btn-edit": "updateProfileInfo",
+
   },
 
 

@@ -1,11 +1,14 @@
+a.underline-gone {
+  text-decoration: none;
+}
+
 button.button {
   margin: 0 auto;
   display: block;
   background-color: #1984c3;
   color: #fff;
   font-size: 24px;
-  font-family: Courier, sans-serif;
-  padding: 16px 80px;
+  font-family: 'Lucida Grande', Verdana, sans-serif;  padding: 16px 80px;
 
   text-transform: uppercase;
   border-radius: 8px;
@@ -51,7 +54,6 @@ button.leave-event:focus {
 
 button.join-group,
 button.leave-group {
-  font-family: 'Helvetica Neue',Arial,sans-serif;
 	font-size:15px;
   margin: 10px auto;
   display: block;
@@ -74,14 +76,13 @@ button.leave-event {
   -o-transition: background 0.1s linear;
   transition: background 0.1s linear;
 
-  font-family: 'Helvetica Neue',Arial,sans-serif;
 	font-size:20px;
   margin: 10px auto;
   display: block;
   background-color: #1984c3;
   color: #fff;
   padding: 12px 10px;
-  width: 200px;
+  width: 175px;
 
   border-radius:6px;
 	-moz-border-radius:6px;
@@ -187,8 +188,21 @@ button.uploadImage:focus {
 
 button.uploadImage {
   max-width: 100%;
-  margin: 0px auto;
   background-color: #1984C3;
   // position: absolute;
   margin-left: 15px;
+}
+
+button.uploadImage-user {
+  max-width: 100%;
+  margin: -15px 0px 25px -15px;
+  background-color: #1984C3;
+}
+
+// edit button
+
+.btn-edit {
+  padding: 5px 10px;
+  margin-top: -13%;
+  margin-left: 81%;
 }
