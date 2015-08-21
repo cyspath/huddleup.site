@@ -165,9 +165,17 @@ div.event-item-container p.event-item-title {
   font-weight: bolder;
 }
 
+// bar div
+
+.bar-divider {
+  border-top: 1px solid #E3D8D8;
+  margin-bottom: 10px;
+}
+
 // inner containers under each bar
 .bar-inner {
-  margin: 20px auto;
+  margin-top: 20px;
+  margin-left: auto;
   width: 90%;
   height: auto;
 }
@@ -175,9 +183,10 @@ div.event-item-container p.event-item-title {
 .bar-inner-upload-image {
   display: inline-block;
   min-height: 46px;
-  overflow: visible;
-  white-space: nowrap;
+  // overflow: visible;
+  // white-space: nowrap;
 }
+
 
 .bar-inner-upload-image p {
   color: #bbb9bb;
@@ -185,6 +194,7 @@ div.event-item-container p.event-item-title {
 
 .group .slide-show-div {
   float: left;
+  width: 225px;
 }
 
 .group .event-info-div {
@@ -196,9 +206,45 @@ div.event-item-container p.event-item-title {
 
 .bar-inner h3 {
   font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .bar-inner h4 {
   font-weight: bolder;
   font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.bar-inner h5 {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+// comment form section
+.comment-body {
+  width: 88%;
+}
+
+.comment-group {
+  margin-left: -10px;
+}
+
+.comment-form {
+  margin-top: 30px;
+  float: left;
+  width: 310px;
+  margin-bottom: 35px;
+}
+
+.user-avatar {
+  border: 1px solid #B3B3B3;
+  border-radius: 15px 15px 15px 15px / 15px 15px 15px 15px;
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-top: 6%;
+  margin-right: 4%;
+  overflow: hidden;
 }

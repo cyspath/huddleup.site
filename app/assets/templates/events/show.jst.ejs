@@ -85,7 +85,7 @@
             </div>
           <% } else { %>
             <div class="bar-inner bar-inner-upload-image">
-              <p>* Only Huddlers can ad photos to this Huddle.</p>
+              <p>* Only Huddlers can add        photos to this Huddle.</p>
             </div>
           <% } %>
 
@@ -118,38 +118,44 @@
 
       </div>
 
-          <h3>body:
-            <%= groupEvent.escape('body') %>
-          </h3>
+      <div class="bar-divider"></div>
 
-          <h3>hosted by group:
-            <%= groupEvent.escape('group_name') %>
-          </h3>
+      <% if (groupEvent.escape('body').length > 0) { %>
+        <div class="bar-inner">
+          <h5><%= groupEvent.escape('body') %></h5>
+        </div>
+        <div class="bar-divider"></div>
 
+      <% } %>
 
-      <div class="divider"></div>
+      <div class="bar-inner">
+        <div class="comments">
+          <p class="heading">The Wall:</p>
+          <div class="event-show-comment-list"></div>
+        </div>
 
-      <div class="comments">
-        <p class="heading">The Wall:</p>
-        <div class="event-show-comment-list"></div>
+        <div class="comment-group">
+          <div class="user-avatar">
+
+          </div>
+          <form class="comment-form">
+
+            <input type="hidden" name="commentable_id" value=<%= event_id %>>
+
+            <input type="hidden" name="commentable_type" value="Event">
+
+            <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+
+            <label>
+              <textarea class="comment-textarea" id="message" name='body' rows="3" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
+            </label>
+
+          </form>
+
+        </div>
       </div>
 
-      <form class="comment-form">
 
-        <input type="hidden" name="commentable_id" value=<%= event_id %>>
-
-        <input type="hidden" name="commentable_type" value="Event">
-
-        <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
-
-        <label>
-          <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
-        </label>
-
-        <button class="start-comment-btn">
-          Post
-        </button>
-      </form>
 
     </div>
 
