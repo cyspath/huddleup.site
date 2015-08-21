@@ -4,7 +4,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
   initialize: function () {
 
-    this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "add sync change remove", this.render);
 
     this.listenTo(this.model.comments(), "sync", this.render);
 
@@ -51,6 +51,17 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
       this.createComment();
     }
   },
+
+  updateProfileInfo: function (e) {
+    e.preventDefault();
+    var modal = new App.Views.UserForm({
+      model: this.model,
+    });
+
+    $('body').prepend(modal.$el);
+    modal.render();
+  },
+
 
   createComment: function () {
     var attributes = $(".comment-form").serializeJSON();

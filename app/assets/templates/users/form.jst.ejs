@@ -1,39 +1,61 @@
 <div class="faded-background"></div>
 
-<form class="huddle-form">
+<form class="user-form">
 
-  <h1><%= huddle.isNew() ? 'Schedule a Huddle' : 'Edit Huddle' %>
+  <h1>Update Your Profile Information
     <span>Please be as detailed as you can.</span>
   </h1>
 
-  <input type="hidden" name="group_id" value=<%= group_id %>>
-
-  <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
-
   <label>
-    <span>Huddle</span>
-    <input class="focus-target" type="text" name='title' value="<%= huddle.escape('title')%>" placeholder="Let's huddle and ... ">
+    <span>Headline</span>
+    <input type="text" name='interest_fact' value='<%= user.escape('interest_fact') %>' placeholder="Say something interesting!">
   </label>
 
   <label>
-    <span>Location</span>
-    <input type="text" name='location' value="<%= huddle.escape('location')%>" placeholder="Where is it?">
+    <span>Gender</span>
+    <select name="sex">
+      <option value="♀">Lady</option>
+      <option value="♂">Gentleman</option>
+      <option value="other">Other</option>
+    </select>
   </label>
 
   <label>
-    <span>Date</span>
-    <input type="date" name="date"/>
+    <span>Residence</span>
+    <select name="residence">
+      <option value="Blooming Grassland">Blooming Grassland</option>
+      <option value="Desolate Swamp">Desolate Swamp</option>
+      <option value="Ethereal Island">Ethereal Island</option>
+      <option value="Misty Forest">Misty Forest</option>
+      <option value="Parched Woodland">Parched Woodland</option>
+      <option value="Windy Valley">Windy Valley</option>
+    </select>
   </label>
 
+  <label>
+    <span>Prefered Crowd</span>
+    <select name="age_preference">
+      <option value="Not yet legal to drink crowd">Not yet legal to drink crowd</option>
+      <option value="The 20 somethings">The 20 somethings</option>
+      <option value="The 30s workhorses">The 30s workhorses</option>
+      <option value="The 40s and 50s crowd">The 40s and 50s crowd</option>
+      <option value="The never too late to huddle crowd">The never too late to huddle crowd</option>
+    </select>
+  </label>
 
   <label>
-    <span class="text">Details</span>
-    <textarea id="message" name='body' placeholder="Things to bring, expected budget, etc"></textarea>
+    <span>Occupation</span>
+    <input type="text" name='occupation' value='<%= user.escape('occupation') %>' placeholder="Your current occupation">
+  </label>
+
+  <label>
+    <span class="text">About</span>
+    <textarea id="message" name='bio' value='<%= user.escape('bio') %>' placeholder="Describe yourself, why are you here, and what do you like to do ..."></textarea>
   </label>
 
   <span>&nbsp;</span>
 
-  <button class="button">Huddle Up!</button><br><br>
+  <button class="button-update">Update Profile</button><br><br>
 
   <p>
     Close [x]

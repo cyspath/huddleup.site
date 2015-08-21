@@ -7,6 +7,12 @@
   <% var currentUser = false %>
 <% } %>
 
+<% if (user.escape('sex')=== "♀") { %>
+  <% var heOrShe = "She" %>
+<% } else { %>
+  <% var heOrShe = "He" %>
+<% } %>
+
 <div class="title-div-1 user-title-div-1">
   <% if (currentUser) { %>
     <h1>Your Profile Page</h1>
@@ -72,7 +78,11 @@
             <div id="owl-example" class="owl-carousel owl-theme">
 
               <div class="item hover">
-                <img src=" http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096559/male_bruusp.png">
+                <% if (user.escape('sex') === "♀") { %>
+                  <img src="http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096548/female_bvab1f.png">
+                <% } else { %>
+                  <img src="http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096559/male_bruusp.png">
+                <% } %>
               </div>
 
             </div>
@@ -93,17 +103,6 @@
 
       <!--  -->
       <div class="rating-container">
-        RATNG here
-      </div>
-
-    </div>
-
-    <div class="bar-divider"></div>
-
-    <!--  -->
-    <div class="bar-inner">
-
-      <div class="user-info">
         <p class="heading"><%= userAlias %></p>
 
         <% if (currentUser) { %>
@@ -112,17 +111,68 @@
           </button>
         <% } %>
 
+        <form class="rating-form">
+          <select id="example">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </form>
+      </div>
 
-        </button>
+    </div>
+
+    <div class="bar-divider"></div>
+
+    <!--  -->
+    <div class="user-info">
+
+      <div class="top-level-info group">
+
+        <div class="bar-inner-user-group-item">
+          <% if (user.escape('residence').length > 0) { %>
+            <p>Lives in: </p>
+            <h6><%= user.escape('residence') %></h6>
+          <% } %>
+        </div>
+
+        <div class="bar-inner-user-group-item">
+          <% if (user.escape('occupation').length > 0) { %>
+            <p>Occupation: </p>
+            <h6><%= user.escape('occupation').capitalize() %></h6>
+          <% } %>
+        </div>
+
+        <div class="bar-inner-user-group-item">
+          <p>Join date: </p>
+          <h6><%= user.escape('join_date') %></h6>
+        </div>
+
+      </div>
+
+      <div class="bar-inner-user">
+        <% if (user.escape('age_preference').length > 0) { %>
+          <p><%= heOrShe %> prefers to attend huddles with</p>
+          <h6><%= user.escape('age_preference') %></h6>
+        <% } %>
+      </div>
+
+      <div class="bar-inner-user">
         <% if (user.escape('bio').length > 0) { %>
-          <div class="bar-inner">
-            <h5><%= user.escape('bio') %></h5>
-          </div>
-          <div class="bar-divider"></div>
+          <p>About me</p>
+          <h6><%= user.escape('bio') %></h6>
         <% } %>
       </div>
 
     </div>
+
 
     <div class="bar-divider"></div>
 
@@ -208,4 +258,12 @@
     });
 
   });
+</script>
+
+<script type="text/javascript">
+   $(function() {
+      $('#example').barrating({
+        theme: 'bars-1to10'
+      });
+   });
 </script>

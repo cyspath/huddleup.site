@@ -1,17 +1,15 @@
-App.Views.HuddleForm = Backbone.View.extend({
+App.Views.UserForm = Backbone.View.extend({
 
-  template: JST['events/form'],
+  template: JST['users/form'],
 
   events: {
-    'submit form': 'submitForm',
+    'click .button-update': 'submitForm',
     'click .faded-background': 'remove',
     'click .link': 'remove',
     'click p': 'remove'
   },
 
   initialize: function (options) {
-    this.group_id = options.group_id;
-
     $(document).on('keyup', this.handleKey.bind(this));
   },
 
@@ -23,20 +21,22 @@ App.Views.HuddleForm = Backbone.View.extend({
 
   submitForm: function (e) {
     e.preventDefault();
-    var attributes = $(e.currentTarget).serializeJSON();
-    this.model.set(attributes);
+    var attributes = $('.user-form').serializeJSON();
     this.model.save(attributes, {
       success: function () {
-        this.collection.add(this.model, { merge: true });
         //animation
-        $('.huddle-form').addClass("animated zoomOutLeft")
-        $('.huddle-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
-      }.bind(this)
+        debugger
+        $('.user-form').addClass("animated bounceOut")
+        $('.user-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
+      }.bind(this),
+      error: function (error,a,b) {
+        debugger
+      }
     });
   },
 
   render: function () {
-    var content = this.template({ huddle: this.model, group_id: this.group_id });
+    var content = this.template({ user: this.model });
     this.$el.html(content);
     this.onRender();
     return this;
@@ -47,22 +47,3 @@ App.Views.HuddleForm = Backbone.View.extend({
   },
 
 })
-
-
-
-    <select name="user[sex]">
-      <option value="♀">Lady</option>
-      <option value="♂">Gentleman</option>
-    </select>
-
-    <select name="user[age_preference]">
-      <option value="♀">Lady</option>
-      <option value="♂">Gentleman</option>
-    </select>
-
-    <select name="cars">
-      <option value="volvo">Volvo XC90</option>
-      <option value="saab">Saab 95</option>
-      <option value="mercedes">Mercedes SLK</option>
-      <option value="audi">Audi TT</option>
-    </select>

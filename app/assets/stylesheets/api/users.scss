@@ -1,3 +1,58 @@
 // Place all the styles related to the api/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.rating-container .heading {
+  font-size: 35px;
+}
+
+.rating-container {
+  width: 233px;
+  padding: 0px;
+}
+
+.bar-inner-user {
+  font-family: arial, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  min-width: 467px;
+  width: 86%;
+  height: auto;
+}
+
+.bar-inner-user p {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #111D28;
+}
+
+.bar-inner-user h6 {
+  font-size: 15px;
+  color: #6C7068;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
+
+.bar-inner-user-group-item {
+  font-family: arial, sans-serif;
+  margin-top: 10px;
+  margin-left: 35px;
+  height: auto;
+  float: left;
+  width: 137px;
+}
+
+.bar-inner-user-group-item p {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #111D28;
+}
+
+.bar-inner-user-group-item h6 {
+  font-size: 15px;
+  color: #6C7068;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}

@@ -12,6 +12,12 @@
 
     <input type="password" name="user[password]" class="login-input login-password" placeholder="Password">
 
+    <select class="login-input op-less" name="user[sex]" >
+      <option disabled selected style='display:none'>Gender</option>
+      <option value="♀">Lady</option>
+      <option value="♂">Gentleman</option>
+    </select>
+
     <input type="submit" value="Sign Up" class="login-submit">
 
     <input type="submit" value="Demo Account" class="login-submit demo-account" onclick="loginDemoGuest()">
