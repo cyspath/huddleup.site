@@ -27,6 +27,14 @@ json.images do
   end
 end
 
+json.group do
+  json.partial! 'api/groups/group', group: event.group,
+  display_events: false,
+  display_comments: false,
+  display_users: true
+
+end
+
 
 if event.date && event.date >= Date.today
   json.set! :status, "Upcoming"

@@ -28,6 +28,46 @@
   </div>
 
   <div class="mid-bar">
+
+    <!--  -->
+    <div class="slide-show-div">
+      <% if (images != undefined && images.length > 0) { %>
+
+        <div class="group-index-carousel user">
+
+          <div id="owl-example" class="owl-carousel owl-theme">
+
+            <% images.forEach(function(image){ %>
+              <div class="item hover">
+                <img src="<%= image.escape("url_cropped") %>">
+              </div>
+            <% }) %>
+
+          </div>
+        </div>
+      <% } else { %>
+        <div class="group-index-carousel user">
+
+          <div id="owl-example" class="owl-carousel owl-theme">
+
+            <div class="item hover">
+              <img src=" http://res.cloudinary.com/djdfz4a67/image/upload/o_51/v1440096559/male_bruusp.png">
+            </div>
+
+          </div>
+        </div>
+      <% } %>
+
+
+      <% if (user.id === App.CURRENT_USER.id) { %>
+        <button class="uploadImage join-group">Upload a Photo</button>
+      <% } else { %>
+        <p>* Only Huddlers can ad photos to this Huddle.</p>
+      <% } %>
+
+    </div>
+
+    <!--  -->
     <div class="info">
       <p class="heading">
       <%= userAlias %></p>
@@ -68,28 +108,20 @@
       <button class="uploadImage">Upload a Photo</button>
     <% } %>
 
-    <ul class="gallery">
-      <% images.each(function(image){ %>
-      <li>
-
-        <a href="#/images/<%= image.id %>">
-          <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
-        </a>
-
-      </li>
-      <% }) %>
-    </ul>
 
 
   </div>
 
-  <% if (user.id == App.CURRENT_USER.id) { %>
-    <% var userAlias = "Your" %>
-  <% } else { %>
-    <% var userAlias = user.escape('alias') + "'s" %>
-  <% } %>
+
 
   <div class="right-bar">
+
+    <% if (user.id == App.CURRENT_USER.id) { %>
+      <% var userAlias = "Your" %>
+    <% } else { %>
+      <% var userAlias = user.escape('alias') + "'s" %>
+    <% } %>
+
     <div class="events">
       <p class="heading"><%= userAlias %> upcoming events: </p>
       <div class="user-show-upcoming-events"></div>
@@ -107,3 +139,17 @@
     <br><br>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+
+    $("#owl-example").owlCarousel({
+      slideSpeed : 800,
+      singleItem:true,
+      paginationSpeed: 800,
+      autoPlay: false,
+      // stopOnHover: true,
+    });
+
+  });
+</script>

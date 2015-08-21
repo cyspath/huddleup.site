@@ -21,8 +21,28 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     this.removeModelSubview('.groups-container', group)
   },
 
+  getSlideShowImages: function () {
+    //shuffle collection
+    var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
+
+    this.slideShowImages = [];
+    newCollection.forEach(function(group){
+      var images = group.images().models;
+      var length = images.length;
+      this.slideShowImages.push(images[length - 1])
+    }.bind(this))
+
+  },
+
   render: function () {
-    var content = this.template();
+
+    // get am array of slide show pics from groups and also remove the undefined from the array, shuffle
+    this.getSlideShowImages();
+    var shuffled = $.grep(this.slideShowImages,function(n){ return(n) });
+
+    var content = this.template({
+      slideShowImages: shuffled
+    });
     this.$el.html(content);
     this.attachSubviews();
     return this;

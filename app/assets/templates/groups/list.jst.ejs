@@ -1,3 +1,45 @@
-<div class="groups-container group">
+
+<div class="chapter-banner banner-1">
+
+  <div class="group-index-carousel">
+
+    <div id="owl-example" class="owl-carousel owl-theme">
+
+      <% slideShowImages.forEach(function(image){ %>
+        <div class="item hover">
+          <img src="<%= image.escape("url_cropped") %>">
+        </div>
+      <% }) %>
+
+    </div>
+  </div>
 
 </div>
+
+<div class="chapter-banner banner-2">
+
+</div>
+
+<div class="chapter-banner banner-3">
+
+</div>
+
+
+<div class="groups-container group"></div>
+
+<script>
+  $(document).ready(function() {
+
+    $("#owl-example").owlCarousel({
+
+      slideSpeed : 800,
+      singleItem:true,
+
+      autoPlay: 2000,
+      stopOnHover: true,
+
+
+    });
+
+  });
+</script>

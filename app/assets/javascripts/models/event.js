@@ -8,6 +8,11 @@ App.Models.Event = Backbone.Model.extend({
       delete payload.images;
     }
 
+    if(payload.group) {
+      this.group().set(payload.group);
+      delete payload.group;
+    }
+
     if(payload.users) {
       this.users().set(payload.users);
       delete payload.users;
@@ -28,6 +33,12 @@ App.Models.Event = Backbone.Model.extend({
     return this._selfImages;
   },
 
+  group: function () {
+    if(this._group === undefined) {
+      this._group = new App.Collections.Groups();
+    }
+    return this._group;
+  },
 
   users: function () {
     if(this._users === undefined) {

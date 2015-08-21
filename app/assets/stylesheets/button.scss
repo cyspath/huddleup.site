@@ -178,3 +178,17 @@ button.event-delete:hover, button.group-delete:hover {
   background-color: #cc0000;
   color: white;
 }
+
+// photo upload bootstrap custom button
+
+button.uploadImage:focus {
+  outline: 0;
+}
+
+button.uploadImage {
+  max-width: 100%;
+  margin: 0px auto;
+  background-color: #1984C3;
+  // position: absolute;
+  margin-left: 15px;
+}

@@ -185,6 +185,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     return head + mid + thumbSize + tail
   },
 
+
   // good ol render
   render: function () {
     var content = this.template({

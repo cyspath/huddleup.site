@@ -1,3 +1,24 @@
 // Place all the styles related to the api/images controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image-box-big {
+  // background-color: #385A95;
+  border: 1px solid #B3B3B3;
+  height: 187px;
+  width: 187px;
+  margin: 20px auto;
+  border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+
+}
+
+// .image-box-small {
+//   background-color: black;
+//   height: 182px;
+//   width: 182px;
+//   margin: 3px auto;
+// }
+
+.group-image {
+  margin: 5px;
+}

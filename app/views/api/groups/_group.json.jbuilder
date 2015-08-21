@@ -12,6 +12,10 @@ arr = group.name.split(" ").map { |word| word.capitalize }
 str = arr.join(" ")
 json.set! :group_name, str
 
+if group.images.length > 0
+  json.set! :group_url_cropped, group.images.last.thumb_url_cropped
+  json.set! :group_url_cropped_id, group.images.last.id
+end
 
 json.images do
   json.array! group.images do |image|

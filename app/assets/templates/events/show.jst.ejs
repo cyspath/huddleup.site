@@ -14,85 +14,143 @@
 
 <div class="event-show-container inner-container group">
 
-    <div class="left-bar">
-      <div class="info">
-        <p class="heading">Event Information</p>
 
-        <h3>hosted by:
-          <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
+  <div class="left-bar">
+
+      <% if (group != undefined) { %>
+
+        <% var group_image = group.escape('group_url_cropped') %>
+
+
+          <a href="#/images/<%= group.escape('group_url_cropped_id') %>">
+            <div class="image-box-big">
+              <img class="group-image"src="<%= group_image %>" width="175" height="175" alt="" />
+            </div>
+          </a>
+
+
+        <p class="heading">Group Information</p>
+
+        <p class="group-created-by">Created by
+          <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
               you
           <% } else { %>
-            <%= groupEvent.escape('author_name')%>
+            <%= group.escape('author_name')%>
           <% } %>
-        </h3>
+        </p>
 
-        <h3>location:
-          <%= groupEvent.escape('location') %>
-        </h3>
+        <p class="group-description">
+          <%= group.escape('body') %>
+        </p>
 
-        <h3>date:
-          <%= groupEvent.escape('date') %>
-        </h3>
 
-        <h3>body:
-          <%= groupEvent.escape('body') %>
-        </h3>
+        <a href="#/groups/<%= group.escape('id')%>">
+          <button type="button" class="leave-group join-group">
+            Return to Group's Page
+          </button>
+        </a>
+      <% } %>
 
-        <h3>hosted by group:
-          <%= groupEvent.escape('group_name') %>
-        </h3>
-
-        <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
-          <button type="button" class="event-delete" data-id=<%= groupEvent.id %>>Cancel Event</button>
-        <% } %>
-
-      </div>
-    </div>
+  </div>
 
 
     <div class="mid-bar">
+      <!--  -->
+      <div class="bar-inner group">
 
-      <% if (ableToUploadImage) { %>
-        <button class="uploadImage">Upload a Photo</button>
-      <% } else { %>
-        <p>* Only Huddlers can ad photos to this Huddle.</p>
-      <% } %>
+        <div class="slide-show-div">
+          <% if (slideShowImages.length > 0) { %>
 
-      <ul class="gallery">
-        <% images.each(function(image){ %>
-        <li>
+            <div class="group-index-carousel">
 
-          <a href="#/images/<%= image.id %>">
-            <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
-          </a>
+              <div id="owl-example" class="owl-carousel owl-theme">
 
-        </li>
-        <% }) %>
-      </ul>
+                <% slideShowImages.forEach(function(image){ %>
+                  <div class="item hover">
+                    <img src="<%= image.escape("url_cropped") %>">
+                  </div>
+                <% }) %>
+
+              </div>
+            </div>
+          <% } %>
+
+          <% if (ableToUploadImage) { %>
+            <div class="bar-inner bar-inner-upload-image">
+
+              <button class="btn btn-info btn-lg uploadImage">
+                <span class="glyphicon glyphicon-picture"></span>
+                Upload a Photo
+              </button>
+            </div>
+          <% } else { %>
+            <div class="bar-inner bar-inner-upload-image">
+              <p>* Only Huddlers can ad photos to this Huddle.</p>
+            </div>
+          <% } %>
+
+        </div>
+        <!--  -->
+        <div class="event-info-div">
+          <p class="heading">Event Information</p>
+
+          <h3>Hosted by
+            <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
+                you
+            <% } else { %>
+              <%= groupEvent.escape('author_name')%>
+            <% } %>
+          </h3>
+
+          <h3>Location:</h3>
+          <h4><%= groupEvent.escape('location') %></h4>
+
+          <h3>Date:</h3>
+          <h4><%= groupEvent.escape('date') %></h4>
+
+
+
+          <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
+            <button type="button" class="event-delete" data-id=<%= groupEvent.id %>>Cancel Event</button>
+          <% } %>
+
+        </div>
+
+      </div>
+
+          <h3>body:
+            <%= groupEvent.escape('body') %>
+          </h3>
+
+          <h3>hosted by group:
+            <%= groupEvent.escape('group_name') %>
+          </h3>
+
+
+      <div class="divider"></div>
 
       <div class="comments">
         <p class="heading">The Wall:</p>
         <div class="event-show-comment-list"></div>
       </div>
 
-      <br><br>
-        <form class="comment-form">
+      <form class="comment-form">
 
-          <input type="hidden" name="commentable_id" value=<%= event_id %>>
+        <input type="hidden" name="commentable_id" value=<%= event_id %>>
 
-          <input type="hidden" name="commentable_type" value="Event">
+        <input type="hidden" name="commentable_type" value="Event">
 
-          <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
+        <input type="hidden" name="author_id" value=<%= App.CURRENT_USER.id %>>
 
-          <label>
-            <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
-          </label>
+        <label>
+          <textarea class="comment-textarea" id="message" name='body' rows="4" cols="35" placeholder="Ask a question, share something, or post a comment ... "></textarea>
+        </label>
 
-          <button class="start-comment-btn">
-            Post
-          </button>
+        <button class="start-comment-btn">
+          Post
+        </button>
+      </form>
 
-        </form>
     </div>
 
 
@@ -115,3 +173,21 @@
     </div>
 
 </div>
+
+
+<script>
+  $(document).ready(function() {
+
+    $("#owl-example").owlCarousel({
+
+      slideSpeed : 800,
+      singleItem:true,
+
+      autoPlay: 2000,
+      // stopOnHover: true,
+
+
+    });
+
+  });
+</script>

@@ -270,14 +270,25 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     this.render();
   },
 
+  getSlideShowImages: function () {
+    //shuffle collection
+    var newCollection = this.model.images().reset(this.model.images().shuffle(), {silent:true});
+    return newCollection;
+  },
+
   // good ol render
   render: function () {
+
+    var group = this.model.group().models[0];
+
+    var shuffled = this.getSlideShowImages();
     var content = this.template({
       groupEvent: this.model,
       event_id: this.model.id,
-      images: this.model.images(),
+      slideShowImages: shuffled,
       ableToUploadImage: this.ableToUploadImage,
-      funnyPhrase: this.funnyPhrase
+      funnyPhrase: this.funnyPhrase,
+      group: group,
     });
 
     this.$el.html(content);

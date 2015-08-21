@@ -14,31 +14,48 @@
 
     <% if (image != undefined) { %>
       <a href="#/images/<%= image.id %>">
-        <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+        <div class="image-box-big">
+          <img class="group-image"src="<%= image.escape('thumb_url_cropped') %>" width="175" height="175" alt="" />
+        </div>
       </a>
+
+
     <% } %>
 
-    <% if (ableToUploadImage) { %>
-      <p>You, as the group creator, can</p>
 
-      <% if (images.length > 0) { %>
-        <button class="uploadImage">change your group banner</button>
-      <% } else { %>
-        <button class="uploadImage">give your group a banner</button>
+      <% if (ableToUploadImage) { %>
+      <div class="bar-inner bar-inner-upload-image">
+        <p>You, as the group creator, can</p>
+
+        <% if (images.length > 0) { %>
+          <button class="btn btn-info btn-lg uploadImage">
+            Upload new
+            <span class="glyphicon glyphicon-picture"></span>
+          </button>
+        <% } else { %>
+          <button class="btn btn-info btn-lg uploadImage">
+            Upload a
+            <span class="glyphicon glyphicon-picture"></span>
+          </button>
+        <% } %>
+
+      </div>
       <% } %>
-
-    <% } %>
 
 
     <p class="heading">Group Information</p>
 
-    <h3>Created by
+    <p class="group-created-by">Created by
       <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
           you
       <% } else { %>
         <%= group.escape('author_name')%>
       <% } %>
-    </h3>
+    </p>
+
+    <p class="group-description">
+      <%= group.escape('body') %>
+    </p>
 
   </div>
 
@@ -53,15 +70,19 @@
   <% } %>
 
   <br><br>
+  <% if (ableToCreateHuddle) { %>
 
-  <div class="start-event-div">
-    <div class="small">
-      Schedule a New
-    </div><br>
-    <div class="big">
-      Huddle
+    <div class="start-event-div">
+      <div class="small">
+        Schedule a New
+      </div><br>
+      <div class="big">
+        Huddle
+      </div>
     </div>
-  </div>
+
+  <% } %>
+
 
 
   <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>

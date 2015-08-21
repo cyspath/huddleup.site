@@ -1,0 +1,32 @@
+#owl-example .item img{
+  display: block;
+  width: 100%;
+  margin-top: -20px;
+
+}
+
+// .owl-item {
+//   border: 1px solid #0f1e2d;
+// }
+
+.item.hover img:hover {
+  cursor:pointer;
+}
+
+.group-index-carousel {
+  width: 225px;
+  height: 180px;
+  overflow: hidden;
+  // border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+  margin-top: 15px;
+  // margin-left: 40px;
+}
+
+
+.group-index-carousel.user {
+  width: 225px;
+  height: auto;
+  // border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+  margin-top: 15px;
+  margin-left: 40px;
+}

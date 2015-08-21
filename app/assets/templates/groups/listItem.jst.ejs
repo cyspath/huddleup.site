@@ -1,6 +1,11 @@
-<a href="#/groups/<%= group.escape('id')%>" class="group-item" data-id=<%= group.escape('id')%>>
+<a href="#/groups/<%= group.escape('id')%>" class="group-item frame" data-id=<%= group.escape('id')%>>
+
+
   <% if (image != undefined) { %>
     <p><%= group.escape('name').capitalize()%></p>
     <img src="<%= image.escape('thumb_url_cropped') %>" alt="" />
+  <% } else { %>
+    <p><%= group.escape('name').capitalize()%></p>
+    <img src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,e_sepia:58,o_38,w_228/v1440096555/group_lcu8kc.png">
   <% } %>
 </a>

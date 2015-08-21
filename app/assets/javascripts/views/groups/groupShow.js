@@ -8,6 +8,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, 'sync', this.render);
 
+    this.listenTo(this.model.users(), 'add sync remove', this.render);
+
     this.listenTo(this.model.images(), "sync", this.render);
 
     this.addingThemSubviews()
@@ -38,6 +40,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
         this.createMembershipCollection();
         this.ableToUploadImage = this.canUpload();
+        this.ableToCreateHuddle = this.canCreateHuddle();
 
         this.addUpcomingEventsIndex(this.model.upcomingEvents());
 
@@ -72,6 +75,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
             success: function () {
               this.model.users().add(user);
               $("button.join-group").addClass("leave-group").removeClass("join-group").text("Leave this Group");
+              this.ableToCreateHuddle = true;
             }.bind(this)
           })
 
@@ -88,12 +92,17 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
         this.currentUserMembership = membership;
       }
     }.bind(this))
+
+    this.ableToCreateHuddle = false;
+    $("start-event-div").remove()
+
     //delete membership from db and collection
     this.currentUserMembership.destroy();
     //remove user from user collection
     this.model.users().remove(App.CURRENT_USER.id);
     //change button to join
     $("button.leave-group").addClass("join-group").removeClass("leave-group").text("Join this Group");
+
   },
 
   handleKey: function (event) {
@@ -296,6 +305,16 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     return result;
   },
 
+  canCreateHuddle: function () {
+    var result = false;
+    this.model.users().models.forEach(function(user){
+      if (user.id === App.CURRENT_USER.id) {
+        result = true;
+      }
+    }.bind(this))
+    return result;
+  },
+
   // good ol render
   render: function () {
 
@@ -311,6 +330,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
       images: images,
       image: image,
       ableToUploadImage: this.ableToUploadImage,
+      ableToCreateHuddle: this.ableToCreateHuddle,
     });
     this.$el.html(content);
 
