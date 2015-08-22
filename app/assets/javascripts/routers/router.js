@@ -18,8 +18,6 @@ App.Routers.Router = Backbone.Router.extend({
     "events/:id/edit": "editEvent",
     "events/:id": "showEvent",
 
-    "users": "AllUsers",
-    "users/:id/edit": "editUser",
     "users/:id": "showUser",
 
     "comments": "AllComments",

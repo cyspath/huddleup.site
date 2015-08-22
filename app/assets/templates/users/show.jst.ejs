@@ -185,7 +185,9 @@
       </div>
 
       <div class="comment-group">
-        <div class="user-avatar"></div>
+        <div class="user-avatar">
+          <img src="<%= App.CURRENT_USER.thumb_avatar %>">
+        </div>
         <form class="comment-form">
 
           <input type="hidden" name="commentable_id" value=<%= user_id %>>

@@ -8,6 +8,7 @@
   $(App.initialize);
   App.CURRENT_USER = {
     username: "<%= current_user.username.capitalize %>",
-    id: <%= current_user.id %>
+    id: <%= current_user.id %>,
+    thumb_avatar: "<%= current_user.images.first.thumb_url_cropped %>"
   }
 </script>

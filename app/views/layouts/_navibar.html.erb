@@ -62,7 +62,7 @@
 
 
         <li class="avatar">
-            <img alt="avatar" src="<%= image_url("coolcat.jpg")%>" width="30" height="30">
+            <img alt="avatar" src="<%= current_user.images.first.thumb_url_cropped %>" width="30" height="30">
         </li>
 
         <li><a href="#">Messages <span class="badge">3</span></a><li>
