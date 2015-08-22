@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :ratings, as: :rateable
+
   has_many :images, as: :imageable
 
   has_many :authored_events, foreign_key: :author_id, class_name: Event

@@ -24,6 +24,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     "click .btn-edit": "updateProfileInfo",
 
+    "click .submit-rating": "submitRating",
   },
 
 
@@ -62,6 +63,12 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     modal.render();
   },
 
+  submitRating: function (e) {
+    e.preventDefault();
+    debugger
+    var data = $('.rating-form').serializeJSON()
+    var rating = new App.Models.Rating();
+  },
 
   createComment: function () {
     var attributes = $(".comment-form").serializeJSON();

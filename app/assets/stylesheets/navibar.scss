@@ -20,9 +20,16 @@ a.navbar-brand.overwrite {
 
 div#root { padding-top: 70px; }
 
-li.avatar img{
-  margin-top: 10px;
-  border-radius: 30%;
+
+.avatar-mini img {
+  border: 1px solid #B3B3B3;
+  border-radius: 50%;
+}
+
+a.avatar-mini {
+  float: left;
+  padding: 0px;
+  margin-top: 5px;
 }
 
 li.start-group {

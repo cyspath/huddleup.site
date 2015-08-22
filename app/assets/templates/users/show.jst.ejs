@@ -111,10 +111,12 @@
           </button>
         <% } %>
 
+        Friendliness level (?)
+
         <form class="rating-form">
-          <select id="example">
+          <select id="rating" name='score'>
             <option value="1">1</option>
-            <option value="2">2</option>
+            <option class="try" value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
@@ -126,6 +128,8 @@
           </select>
         </form>
       </div>
+
+      <button class="submit-rating">Rate me!</button>
 
     </div>
 
@@ -264,8 +268,10 @@
 
 <script type="text/javascript">
    $(function() {
-      $('#example').barrating({
-        theme: 'bars-1to10'
+      $('#rating').barrating({
+        theme: 'bars-1to10',
+        initialRating: 8,
+        readonly: false, //dynamic
       });
    });
 </script>
