@@ -7,7 +7,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, "sync", this.render);
 
-    this.listenTo(this.model.comments(), "sync", this.render);
+    this.listenTo(this.model.comments(), "sync", this.renderScrollDown);
 
     this.listenTo(this.model.users(), 'sync remove', this.checkCanUploadAndRender);
 
@@ -112,7 +112,11 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     comment.save(attributes, {
       success: function () {
         comment.set({ author_name: App.CURRENT_USER.username})
-        this.model.comments().add(comment);
+        comment.fetch({
+          success: function () {
+            this.model.comments().add(comment);
+          }.bind(this)
+        })
       }.bind(this)
     });
   },
@@ -276,6 +280,28 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     return newCollection;
   },
 
+  // for commenting, page after will stay at bottom
+  renderScrollDown: function () {
+
+    var group = this.model.group().models[0];
+
+    var shuffled = this.getSlideShowImages();
+    var content = this.template({
+      groupEvent: this.model,
+      event_id: this.model.id,
+      slideShowImages: shuffled,
+      ableToUploadImage: this.ableToUploadImage,
+      funnyPhrase: this.funnyPhrase,
+      group: group,
+    });
+
+    this.$el.html(content);
+    this.attachSubviews();
+    //set timeago
+    jQuery("abbr.timeago").timeago();
+    $('html, body').scrollTop($(document).height())
+    return this;
+  },
   // good ol render
   render: function () {
 

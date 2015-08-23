@@ -1,22 +1,43 @@
 
-  <p class="comment-index-item">
-    <p class="comment-author-name">
-      <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
-        You:
-      <% } else { %>
-        <%= comment.escape('author_name')%>:
-      <% } %>
-    </p>
+  <div class="comment-index-item group">
 
-    <p class="comment-body">
-    <%= comment.escape('body')%>
-    <br>
-    <abbr class="timeago"  title="<%= comment.escape('created_at')%>"></abbr>
+    <div class="tiny-user-avatar">
+      <img src="<%= comment.escape('author_thumb_url') %>">
+    </div>
 
-    <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
-      <button type="button" class="comment-delete-btn" data-id=<%= comment.id %>>☓</button>
-    <% } %>
+    <div class="comment-container-right">
+      <div class="comment-container-inner-top group">
 
-    </p>
+        <div class="commenter-name-div">
 
-  </p>
+          <a class="commenter-name" href="#/users/<%= comment.escape('author_id') %>">
+            <p class="comment-author-name">
+              <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
+                You
+              <% } else { %>
+                <%= comment.escape('author_name')%>
+              <% } %>
+            </p>
+          </a>
+        </div>
+
+        <div class="comment-body">
+          <%= comment.escape('body')%>
+        </div>
+
+        <div class="delete-btn-comment">    
+          <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
+            <button type="button" class="comment-delete-btn" data-id=<%= comment.id %>>☓</button>
+          <% } %>
+        </div>
+
+      </div>
+
+      <abbr class="timeago"  title="<%= comment.escape('created_at')%>"></abbr>
+
+
+    </div>
+
+
+
+  </div>

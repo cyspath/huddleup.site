@@ -4,7 +4,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
   initialize: function () {
 
-    this.listenTo(this.model.comments(), 'sync', this.render);
+    this.listenTo(this.model.comments(), 'sync', this.renderScrollDown);
 
     this.listenTo(this.model, 'sync', this.render);
 
@@ -118,7 +118,11 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     comment.save(attributes, {
       success: function () {
         comment.set({ author_name: App.CURRENT_USER.username})
-        this.model.comments().add(comment);
+        comment.fetch({
+          success: function () {
+            this.model.comments().add(comment);
+          }.bind(this)
+        })
       }.bind(this)
     });
   },
@@ -320,6 +324,31 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     return result;
   },
 
+  // for commenting, page after will stay at bottom
+  renderScrollDown: function () {
+
+    var existance = this.model.users().get(App.CURRENT_USER.id);
+
+    var images = this.model.images();
+    var image = images.models[images.length - 1];
+
+    var content = this.template({
+      group: this.model,
+      group_id: this.model.id,
+      user_list: this.model.users(),
+      images: images,
+      image: image,
+      ableToUploadImage: this.ableToUploadImage,
+      ableToCreateHuddle: this.ableToCreateHuddle,
+    });
+    this.$el.html(content);
+
+    this.attachSubviews();
+    //set timeago
+    jQuery("abbr.timeago").timeago();
+    $('html, body').scrollTop($(document).height())
+    return this;
+  },
   // good ol render
   render: function () {
 
@@ -342,7 +371,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     this.attachSubviews();
     //set timeago
     jQuery("abbr.timeago").timeago();
-    
+
     return this;
   },
 

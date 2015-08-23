@@ -1,23 +1,59 @@
 // Place all the styles related to the api/comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-p.comment-body {
-  padding: 5px;
-  font-size: 14px;
-  font-family: monospace;
-  color: #283b56;
-  border-bottom: 1px solid #ccc;
+.comment-index-item {
+  margin-top: 20px;
 }
 
+.tiny-user-avatar {
+  height: 45px;
+  width: 45px;
+  border: 1px solid #B3B3B3;
+  overflow: hidden;
+  border-radius: 7px;
+  float: left;
+}
 
-p.comment-author-name {
-  padding-top: 5px;
-  font-family: monospace;
-  color: #3b5998;
+.comment-container-right {
+  float: left;
+  margin-left: 15px;
+}
+
+.commenter-name {
+  float: left;
+}
+
+.comment-container-inner-top {
+  width: 380px;
+}
+
+.comment-body {
+  float: left;
+  margin-left: 10px;
+  font-size: 15px;
+  color: #575757;
+  width: 300px;
+}
+
+.comment-delete-btn {
+  border: none;
+  color: white;
+  background: none;
+}
+
+.delete-btn-comment {
+  float: left;
+}
+
+.comment-index-item:hover .comment-delete-btn {
+  color: #716565;
+}
+
+.comment-author-name {
+  // padding-top: 5px;
+  color: #1984C3;
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 textarea.comment-textarea {
@@ -44,8 +80,8 @@ button.start-comment-btn:active {
   all: none;
 }
 
-abbr {
-  border-bottom: none;
-  text-decoration: none;
-  color: #9197A3;
+abbr.timeago {
+  border: none;
+  color: #C3C6CC;
+  font-size: 15px;
 }

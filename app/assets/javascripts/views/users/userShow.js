@@ -7,7 +7,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model, "add sync change remove", this.render);
 
-    this.listenTo(this.model.comments(), "sync", this.render);
+    this.listenTo(this.model.comments(), "sync", this.renderScrollDown);
 
     this.listenTo(this.model.images(), "sync", this.render);
 
@@ -146,7 +146,11 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     comment.save(attributes, {
       success: function () {
         comment.set({ author_name: App.CURRENT_USER.username})
-        this.model.comments().add(comment);
+        comment.fetch({
+          success: function () {
+            this.model.comments().add(comment);
+          }.bind(this)
+        })
       }.bind(this)
     });
   },
@@ -278,6 +282,24 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   },
 
 
+  renderScrollDown: function () {
+    var content = this.template({
+      user: this.model,
+      user_id: this.model.id,
+      images: this.model.images(),
+      ratingCount: this.ratingCount,
+      alreadyRated: this.alreadyRated,
+    });
+    this.$el.html(content);
+    this.attachSubviews();
+
+    //and set the current rating of the user
+    $('select#rating').barrating('set', this.rating);
+    //set timeago
+    jQuery("abbr.timeago").timeago();
+    $('html, body').scrollTop($(document).height())
+    return this;
+  },
   // good ol render
   render: function () {
     var content = this.template({
