@@ -22,11 +22,11 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
   },
 
   getSlideShowImages: function () {
-    //shuffle collection
-    var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
+    //shuffle collection - disabled
+    // var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
 
     this.slideShowImages = [];
-    newCollection.forEach(function(group){
+    this.ollection.forEach(function(group){
       var images = group.images().models;
       var length = images.length;
       this.slideShowImages.push(images[length - 1])
@@ -37,8 +37,8 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
   render: function () {
 
     // get am array of slide show pics from groups and also remove the undefined from the array, shuffle
-    this.getSlideShowImages();
-    var shuffled = $.grep(this.slideShowImages,function(n){ return(n) });
+    // this.getSlideShowImages();
+
 
     var content = this.template({
       slideShowImages: shuffled
