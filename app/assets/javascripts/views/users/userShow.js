@@ -3,6 +3,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   className: 'user-show-container outer-container',
 
   initialize: function () {
+    this.tallyRating();
 
     this.listenTo(this.model, "add sync change remove", this.render);
 
@@ -11,6 +12,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     this.listenTo(this.model.images(), "sync", this.render);
 
     this.addingThemSubviews();
+
 
   },
 
@@ -60,14 +62,81 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     });
 
     $('body').prepend(modal.$el);
+    //slow scroll to top
+    $("body").animate({ scrollTop: 0 }, "slow");
     modal.render();
+    // set faded-background height
+    $('.faded-background').height($(document).height());
+
   },
 
   submitRating: function (e) {
     e.preventDefault();
-    debugger
-    var data = $('.rating-form').serializeJSON()
-    var rating = new App.Models.Rating();
+    var attributes = $('.rating-form').serializeJSON()
+
+    // remove button only if user have choosen an option
+    if (!attributes.score === false) {
+      var newRating = new App.Models.Rating();
+      newRating.set(attributes);
+      this.afterVoteDomModification();
+    } else {
+      console.log("Please choose a rating option");
+      return null;
+    }
+
+
+    newRating.save(attributes, {
+      success: function () {
+        $('.post-rate-msg').text("Thank you for letting us know!")
+        $('.post-rate-msg').addClass('animated fadeIn');
+        $('.post-rate-msg').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.fadeOut);
+
+      }.bind(this)
+    });
+  },
+
+  afterVoteDomModification: function () {
+    $('.submit-rating').remove();
+    var oldCount = $('.count-num').text();
+    var newCount = parseInt(oldCount) + 1
+    $('.count-num').text(newCount)
+    if (newCount == 1) {
+      $('.count-votes').text("vote")
+    }
+    $('.pre-rate-msg').remove()
+  },
+
+  fadeOut: function () {
+    $('.post-rate-msg').addClass('animated fadeOut');
+  },
+
+  tallyRating: function () {
+    this.ratingsCollection = new App.Collections.Ratings();
+
+    this.ratingCount = 0;
+
+    this.ratingsCollection.fetch({
+      success: function () {
+        var sum = 0;
+        var count = 0;
+        this.alreadyRated = false;
+
+        this.ratingsCollection.each(function(rating){
+          var score = parseInt(rating.escape('score'));
+          if (rating.escape('rateable_id') == this.model.id) {
+            sum += score;
+            count += 1;
+          }
+          if (rating.escape('voter_id') == App.CURRENT_USER.id && rating.escape('rateable_id') == this.model.id) {
+            this.alreadyRated = true;
+          }
+          this.ratingCount = count; //total num of ratings
+        }.bind(this))
+
+        this.rating = Math.round(sum/count); //average rating
+
+      }.bind(this)
+    })
   },
 
   createComment: function () {
@@ -215,9 +284,17 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
       user: this.model,
       user_id: this.model.id,
       images: this.model.images(),
+      ratingCount: this.ratingCount,
+      alreadyRated: this.alreadyRated,
     });
     this.$el.html(content);
     this.attachSubviews();
+
+    //and set the current rating of the user
+    $('select#rating').barrating('set', this.rating);
+    //set timeago
+    jQuery("abbr.timeago").timeago();
+
     return this;
   }
 

@@ -2,16 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.rating-container .heading {
-  font-size: 35px;
-}
-
-.rating-container {
-  width: 233px;
-  padding: 0px;
-}
-
 .bar-inner-user {
   font-family: arial, sans-serif;
   margin-top: 10px;
@@ -55,4 +45,90 @@
   color: #6C7068;
   line-height: 1.4;
   margin-bottom: 25px;
+}
+
+// more rating
+
+.rating-count {
+  display: block;
+}
+
+.count-num, .count-votes, .rating-count p {
+  font-size: 15px;
+  color: #aeb1ad;
+  display: inline-block;
+}
+
+.rating-count {
+  color: #aeb1ad;
+  margin-left: 20px;
+  margin-bottom: -10px;
+}
+
+p.heading {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.rating-container {
+  margin-left: -20px;
+  min-width: 275px;
+  padding: 0px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.user-name-heading {
+  display: inline-block;
+}
+
+.user-name-heading-inner {
+  font-size: 32px;
+  font-size: 31px;
+  color: #111D28;
+  font-weight: bold;
+}
+
+.btn-edit-container {
+  display: inline-block;
+  padding-left: 14px;
+}
+
+.btn-edit {
+  margin-top: -15px;
+}
+
+.rating-count p {
+  color: #2E393D;
+  font-size: 18px;
+  padding: 26px 0px 20px 0px;
+}
+
+.rating-bottom-container {
+  // position: absolute;
+  // left: 495px;
+  // margin-top: 175px;
+  margin-left: 20px;
+  height: 75px;
+  text-align: center;
+  width: 264px;
+}
+
+.pre-rate-msg, .post-rate-msg {
+  font-size: 18px;
+  color: #A6C096;
+  height:25px;
+  // margin-left: 30px;
+  overflow:visible;
+  margin-top: 70px;
+}
+
+.rating-form {
+  margin-left: 68px;
+  height:0;
+  overflow:visible;
+}
+
+.br-current-rating {
+  margin-left: -10px;
 }

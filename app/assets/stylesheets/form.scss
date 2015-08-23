@@ -2,13 +2,13 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  // bottom: 0;
   z-index: 101;
   background: rgba(92, 88, 88, 0.7);
   position: absolute;
 }
 
-.group-form, .huddle-form, .user-form {
+.general-form {
     z-index: 102;
     top: 20%;
     left: 25%;
@@ -26,7 +26,7 @@
     -moz-border-radius: 5px;
     box-shadow: 5px 5px 5px 5px #888888;
 }
-.group-form h1, .huddle-form h1 {
+.general-form h1{
 
     font: 40px "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0px 0px 20px 50px;
@@ -37,15 +37,15 @@
     box-shadow: 0px 0px 0px #888888;
 
 }
-.group-form h1>span, .huddle-form h1>span {
+.general-form h1>span {
     display: block;
     font-size: 11px;
 }
-.group-form label, .huddle-form label {
+.general-form label {
     display: block;
     margin: 0px 0px 5px;
 }
-.group-form label>span, .huddle-form label>span {
+.general-form label>span {
     float: left;
     width: 20%;
     text-align: right;
@@ -56,7 +56,7 @@
     font-weight: bold;
 }
 
-.group-form input[type="text"], .group-form textarea, .huddle-form input[type="text"], .huddle-form textarea, .huddle-form input[type="date"] {
+.general-form input[type="text"], .general-form textarea, .huddle-form input[type="text"], .huddle-form textarea, .huddle-form input[type="date"] {
     border: 1px solid #CCC;
     color: #3b5998;
     height: 30px;
@@ -75,7 +75,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-// .group-form select {
+// .general-form select {
 //     background: #FFF url('down-arrow.png') no-repeat right;
 //     background: #FFF url('down-arrow.png') no-repeat right;
 //     appearance:none;
@@ -87,17 +87,21 @@
 //     height: 35px;
 //     line-height:15px;
 // }
-.group-form textarea, .huddle-form textarea{
+.general-form textarea {
     height:100px;
     padding: 5px 0px 0px 5px;
     width: 70%;
 }
 
-.group-form p, .huddle-form p {
+.general-form p {
   text-align: center;
 }
 
-.group-form p:hover, .huddle -form p:hover {
+.general-form p:hover {
   font-weight: bolder;
   cursor: pointer;
+}
+
+.general-form select {
+  width: 328px;
 }

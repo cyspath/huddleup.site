@@ -11,7 +11,7 @@
     <p class="comment-body">
     <%= comment.escape('body')%>
     <br>
-    created at: <%= comment.escape('created_at')%>
+    <abbr class="timeago"  title="<%= comment.escape('created_at')%>"></abbr>
 
     <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
       <button type="button" class="comment-delete-btn" data-id=<%= comment.id %>>☓</button>

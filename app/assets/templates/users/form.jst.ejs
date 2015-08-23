@@ -1,8 +1,8 @@
 <div class="faded-background"></div>
 
-<form class="user-form">
+<form class="general-form">
 
-  <h1>Update Your Profile Information
+  <h1>Update Your Profile
     <span>Please be as detailed as you can.</span>
   </h1>
 
@@ -14,15 +14,18 @@
   <label>
     <span>Gender</span>
     <select name="sex">
+      <option disabled selected style='display:none'>Your are a ...</option>
       <option value="♀">Lady</option>
       <option value="♂">Gentleman</option>
-      <option value="other">Other</option>
     </select>
   </label>
 
+  <br>
+
   <label>
-    <span>Residence</span>
+    <span>Home</span>
     <select name="residence">
+      <option disabled selected style='display:none'>Where do you live?</option>
       <option value="Blooming Grassland">Blooming Grassland</option>
       <option value="Desolate Swamp">Desolate Swamp</option>
       <option value="Ethereal Island">Ethereal Island</option>
@@ -32,9 +35,13 @@
     </select>
   </label>
 
+  <br>
+
   <label>
-    <span>Prefered Crowd</span>
+    <span>Crowd</span>
     <select name="age_preference">
+      <option disabled selected style='display:none'>Which crowd do you prefer to huddle with?</option>
+
       <option value="Not yet legal to drink crowd">Not yet legal to drink crowd</option>
       <option value="The 20 somethings">The 20 somethings</option>
       <option value="The 30s workhorses">The 30s workhorses</option>
@@ -43,19 +50,20 @@
     </select>
   </label>
 
+  <br>
   <label>
-    <span>Occupation</span>
+    <span>Job</span>
     <input type="text" name='occupation' value='<%= user.escape('occupation') %>' placeholder="Your current occupation">
   </label>
 
   <label>
     <span class="text">About</span>
-    <textarea id="message" name='bio' value='<%= user.escape('bio') %>' placeholder="Describe yourself, why are you here, and what do you like to do ..."></textarea>
+    <textarea id="message" name='bio' placeholder="Describe yourself, why are you here, and what do you like to do ..."><%= user.escape('bio') %></textarea>
   </label>
 
   <span>&nbsp;</span>
 
-  <button class="button-update">Update Profile</button><br><br>
+  <button class="button button-update">Update Profile</button><br><br>
 
   <p>
     Close [x]

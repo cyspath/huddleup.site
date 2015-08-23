@@ -32,8 +32,8 @@ App.Views.GroupForm = Backbone.View.extend({
       success: function () {
         this.collection.add(this.model, { merge: true });
         //animation
-        $('.group-form').addClass("animated bounceOut")
-        $('.group-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.callback.bind(this));
+        $('.general-form').addClass("animated bounceOut")
+        $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.callback.bind(this));
       }.bind(this)
     });
   },

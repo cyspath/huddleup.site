@@ -7,6 +7,12 @@
   <% var currentUser = false %>
 <% } %>
 
+<% if (currentUser) { %>
+  <% var usernameBig = "Your Profile" %>
+<% } else { %>
+  <% var usernameBig = userAlias %>
+<% } %>
+
 <% if (user.escape('sex')=== "♀") { %>
   <% var heOrShe = "She" %>
 <% } else { %>
@@ -103,33 +109,67 @@
 
       <!--  -->
       <div class="rating-container">
-        <p class="heading"><%= userAlias %></p>
+
+        <div class="user-name-heading">
+          <div class="user-name-heading-inner">
+            <%= usernameBig %>
+          </div>
+        </div>
 
         <% if (currentUser) { %>
-          <button class="btn btn-info btn-lg btn-edit">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
+          <div class="btn-edit-container">
+            <button class="btn btn-info btn-lg btn-edit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </div>
         <% } %>
 
-        Friendliness level (?)
+        <% if (ratingCount == 1) { var votes = "vote" } else { var votes = "votes" } %>
+
+
+
+        <div class="rating-count">
+          <p>
+            Personality
+          </p>
+          (<div class="count-num">
+            <%= ratingCount %>
+          </div> <div class="count-votes"><%= votes %></div>)
+        </div>
+
 
         <form class="rating-form">
+
+          <input type="hidden" name="rateable_id" value=<%= user_id %>>
+
+          <input type="hidden" name="rateable_type" value="User">
+
+          <input type="hidden" name="voter_id" value=<%= App.CURRENT_USER.id %>>
+
           <select id="rating" name='score'>
-            <option value="1">1</option>
-            <option class="try" value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+            <option disabled selected style='display:none'></option>
+            <option value=1>Heart on Ice</option>
+            <option value=2>Cold Fish</option>
+            <option value=3>Average Joe</option>
+            <option value=4>Friendly</option>
+            <option value=5>Very Friendly</option>
+            <option value=6>Social Magnet</option>
           </select>
         </form>
+
+        <div class="rating-bottom-container">
+
+          <% if (!currentUser && !alreadyRated) { %>
+            <div class="pre-rate-msg">
+              How friendly was <%= userAlias %>?
+            </div>
+            <button class="submit-rating">Rate me!</button>
+          <% } %>
+
+          <div class="rating-msg post-rate-msg"></div>
+        </div>
       </div>
 
-      <button class="submit-rating">Rate me!</button>
 
     </div>
 
@@ -139,6 +179,11 @@
     <div class="user-info">
 
       <div class="top-level-info group">
+
+        <div class="bar-inner-user-group-item">
+          <p>Join date: </p>
+          <h6><%= user.escape('join_date') %></h6>
+        </div>
 
         <div class="bar-inner-user-group-item">
           <% if (user.escape('residence').length > 0) { %>
@@ -152,11 +197,6 @@
             <p>Occupation: </p>
             <h6><%= user.escape('occupation').capitalize() %></h6>
           <% } %>
-        </div>
-
-        <div class="bar-inner-user-group-item">
-          <p>Join date: </p>
-          <h6><%= user.escape('join_date') %></h6>
         </div>
 
       </div>
@@ -266,12 +306,24 @@
   });
 </script>
 
-<script type="text/javascript">
-   $(function() {
-      $('#rating').barrating({
-        theme: 'bars-1to10',
-        initialRating: 8,
-        readonly: false, //dynamic
-      });
-   });
-</script>
+<% if (currentUser || alreadyRated) { %>
+  <script type="text/javascript">
+     $(function() {
+        $('#rating').barrating({
+          theme: 'bars-1to10',
+          readonly: true, //dynamic
+        });
+     });
+
+  </script>
+<% } else { %>
+  <script type="text/javascript">
+     $(function() {
+        $('#rating').barrating({
+          theme: 'bars-1to10',
+          readonly: false, //dynamic
+        });
+     });
+
+  </script>
+<% } %>

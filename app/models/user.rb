@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   has_many :ratings, as: :rateable
+  has_many :submitted_ratings, foreign_key: :voter_id, class_name: Rating
 
   has_many :images, as: :imageable
 

@@ -21,13 +21,12 @@ App.Views.UserForm = Backbone.View.extend({
 
   submitForm: function (e) {
     e.preventDefault();
-    var attributes = $('.user-form').serializeJSON();
+    var attributes = $('.general-form').serializeJSON();
     this.model.save(attributes, {
       success: function () {
         //animation
-        debugger
-        $('.user-form').addClass("animated bounceOut")
-        $('.user-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
+        $('.general-form').addClass("animated bounceOut")
+        $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
       }.bind(this),
       error: function (error,a,b) {
         debugger

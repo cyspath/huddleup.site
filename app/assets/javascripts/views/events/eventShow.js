@@ -293,6 +293,8 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
     this.$el.html(content);
     this.attachSubviews();
+    //set timeago
+    jQuery("abbr.timeago").timeago();
     return this;
   }
 
