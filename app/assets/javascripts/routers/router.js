@@ -20,8 +20,9 @@ App.Routers.Router = Backbone.Router.extend({
 
     "users/:id": "showUser",
 
-    "comments": "AllComments",
     "comments/new": "newEvent",
+
+    "blank": "blankPage",
   },
 
   swapView: function (view) {
@@ -79,5 +80,8 @@ App.Routers.Router = Backbone.Router.extend({
     this.swapView(view);
   },
 
+  blankPage: function () {
+    console.log("rerendering");
+  }
 
 });

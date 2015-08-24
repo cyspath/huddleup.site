@@ -2,7 +2,11 @@
   <div class="comment-index-item group">
 
     <div class="tiny-user-avatar">
-      <img src="<%= comment.escape('author_thumb_url') %>">
+      <% if (comment.escape('author_thumb_url') != "") { %>
+        <img src="<%= comment.escape('author_thumb_url') %>" height="45" width="45">
+      <% } else { %>
+        <img src="http://www.sixthformcolleges.org/sites/default/files/user.png" height="45" width="45">
+      <% } %>
     </div>
 
     <div class="comment-container-right">
@@ -25,7 +29,7 @@
           <%= comment.escape('body')%>
         </div>
 
-        <div class="delete-btn-comment">    
+        <div class="delete-btn-comment">
           <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
             <button type="button" class="comment-delete-btn" data-id=<%= comment.id %>>☓</button>
           <% } %>

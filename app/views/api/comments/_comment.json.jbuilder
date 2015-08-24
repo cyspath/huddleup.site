@@ -9,13 +9,11 @@ json.extract!(
 )
 
 if comment.author
-
   json.set! :author_name, comment.author.username.capitalize
-
-  json.set! :author_thumb_url, comment.author.images.first.thumb_url
+  if comment.author.images && comment.author.images.first && comment.author.images.first.thumb_url_cropped
+    json.set! :author_thumb_url, comment.author.images.first.thumb_url_cropped
+  end
 end
-
-
 
 
 json.set! :created_at, comment.created_at

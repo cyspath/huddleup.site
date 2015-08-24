@@ -9,7 +9,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.comments(), "sync", this.renderScrollDown);
 
-    this.listenTo(this.model.images(), "sync", this.render);
+    this.listenTo(this.model.images(), "sync", this.renderOrRefresh);
 
     this.addingThemSubviews();
 
@@ -264,6 +264,14 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     }.bind(this))
   },
 
+  renderOrRefresh: function () {
+    if (this.model.images().length == 1) {
+      location.reload();
+    } else {
+      this.render();
+    }
+  },
+
   generateCroppedUrl: function (url, publicId, path, coordinates) {
     var head = url.replace(path, "");
     var idx = path.match(publicId).index;
@@ -302,6 +310,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   },
   // good ol render
   render: function () {
+
     var content = this.template({
       user: this.model,
       user_id: this.model.id,

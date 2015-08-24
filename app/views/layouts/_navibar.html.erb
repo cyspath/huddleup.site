@@ -59,12 +59,15 @@
           <li><%= link_to "Sign In", new_session_url %></li>
         <%end%>
 
-
-        <a class='avatar-mini' href="#users/<%= current_user.id %>">
-          <% if (current_user.images.first && current_user.images.first.thumb_url_cropped) %>
-            <img alt="avatar" src="<%= current_user.images.first.thumb_url_cropped %>" width="45" height="45">
-          <% end %>
-        </a>
+        <% if current_user.images.first && current_user.images.first.thumb_url_cropped %>
+          <a class='avatar-mini' href="#users/<%= current_user.id %>">
+            <img id='avatar-mini' alt="avatar" src="<%= current_user.images.first.thumb_url_cropped %>" width="45" height="45">
+          </a>
+        <% else %>
+          <a class='avatar-mini' href="#users/<%= current_user.id %>">
+            <img id='avatar-mini' alt="avatar" src="http://www.sixthformcolleges.org/sites/default/files/user.png" width="45" height="45">
+          </a>
+        <% end %>
 
         <li><a href="#">Messages <span class="badge">3</span></a><li>
 
