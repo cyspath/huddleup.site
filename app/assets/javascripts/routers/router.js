@@ -3,7 +3,7 @@ App.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$el = options.$rootEl;
     this.groups = new App.Collections.Groups();
-    this.events = new App.Collections.Events();
+    this.allEvents = new App.Collections.Events();
     this.users = new App.Collections.Users();
   },
 
@@ -31,9 +31,20 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   AllGroups: function () {
-    this.groups.fetch();
-    var view = new App.Views.GroupsList({ collection: this.groups });
-    this.swapView(view);
+    this.groups.fetch({
+      success: function () {
+        this.allEvents.fetch({
+          success: function () {
+            var view = new App.Views.GroupsList({
+              collection: this.groups,
+              allEvents: this.allEvents
+            });
+            this.swapView(view);
+          }.bind(this)
+        });
+
+      }.bind(this)
+    });
   },
 
   showGroup: function (id) {
@@ -54,7 +65,7 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   showEvent: function (id) {
-    var groupEvent = this.events.getOrFetch(id);
+    var groupEvent = this.allEvents.getOrFetch(id);
     var view = new App.Views.EventShowView({
       model: groupEvent,
       funnyPhrase: App.FunnyPhrases()

@@ -1,8 +1,10 @@
 App.Views.GroupsList = Backbone.CompositeView.extend({
   template: JST['groups/list'],
 
-  initialize: function () {
-  //
+  initialize: function (options) {
+
+    this.allEvents = options.allEvents,
+
     this.listenTo(this.collection, "add", this.addGroupView);
 
     this.listenTo(this.collection, "remove", this.removeGroupView);
@@ -10,6 +12,35 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "sync", this.render);
 
     this.collection.each(this.addGroupView.bind(this));
+  },
+
+  events: { "keyup form": "handleKey" },
+
+  handleKey: function (event) {
+    if (event.keyCode === 13) {
+      this.search(event);
+    }
+  },
+
+  search: function (event) {
+    event.preventDefault()
+    if ($("input[type=text]").val() != "") {
+      var name = $("input[type=text]").val();
+    } else {
+      console.log("Search area empty")
+      return null
+    }
+
+    var modal = new App.Views.SearchForm({
+      collection: this.collection,
+    });
+
+    $('body').prepend(modal.$el);
+    //slow scroll to top
+    $("body").animate({ scrollTop: 0 }, "slow");
+    modal.render();
+    // set faded-background height
+    $('.faded-background').height($(document).height());
   },
 
   addGroupView: function (group) {
@@ -21,17 +52,33 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     this.removeModelSubview('.groups-container', group)
   },
 
+  // getSlideShowImages: function () {
+  //   //shuffle collection - disabled
+  //   // var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
+  //
+  //   this.slideShowImages = [];
+  //   this.ollection.forEach(function(group){
+  //     var images = group.images().models;
+  //     var length = images.length;
+  //     this.slideShowImages.push(images[length - 1])
+  //   }.bind(this))
+  //
+  // },
   getSlideShowImages: function () {
-    //shuffle collection - disabled
-    // var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
-
-    this.slideShowImages = [];
-    this.ollection.forEach(function(group){
-      var images = group.images().models;
-      var length = images.length;
-      this.slideShowImages.push(images[length - 1])
+    var events = this.allEvents.models
+    var images = []
+    events.forEach(function(event){
+      if (event.images() && event.images().length != 0) {
+        var length = event.images().length
+        var models = event.images().models
+        images.push(models[length-1].escape('url_cropped'))
+      }
+      // don't over load images, max 20 slides
+      if (images.length >= 20) {
+        return images;
+      }
     }.bind(this))
-
+    return images;
   },
 
   render: function () {
@@ -39,9 +86,8 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     // get am array of slide show pics from groups and also remove the undefined from the array, shuffle
     // this.getSlideShowImages();
 
-
     var content = this.template({
-      slideShowImages: shuffled
+      slideShowImages: this.getSlideShowImages()
     });
     this.$el.html(content);
     this.attachSubviews();

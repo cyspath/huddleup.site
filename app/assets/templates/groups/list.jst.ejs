@@ -5,6 +5,12 @@
   <div class="headline-container group">
     <div class="left-pane">
 
+      <div class="search-bar-container">
+        <form id='search-bar'>
+          <input type="text" name="name">
+        </form>
+      </div>
+
     </div>
 
     <div class="right-pane">
@@ -17,11 +23,13 @@
 
             <% slideShowImages.forEach(function(image){ %>
               <div class="item hover">
-                <img src="<%= image.escape("url_cropped") %>">
+                <img src="<%= image %>">
               </div>
             <% }) %>
 
           </div>
+
+
         </div>
 
         here is description

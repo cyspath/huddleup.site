@@ -61,7 +61,9 @@
 
 
         <a class='avatar-mini' href="#users/<%= current_user.id %>">
-          <img alt="avatar" src="<%= current_user.images.first.thumb_url_cropped %>" width="45" height="45">
+          <% if (current_user.images.first && current_user.images.first.thumb_url_cropped) %>
+            <img alt="avatar" src="<%= current_user.images.first.thumb_url_cropped %>" width="45" height="45">
+          <% end %>
         </a>
 
         <li><a href="#">Messages <span class="badge">3</span></a><li>

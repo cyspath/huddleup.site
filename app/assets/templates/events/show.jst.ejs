@@ -61,7 +61,7 @@
         <div class="slide-show-div">
           <% if (slideShowImages.length > 0) { %>
 
-            <div class="group-index-carousel">
+            <div class="group-index-carousel-user">
 
               <div id="owl-example" class="owl-carousel owl-theme">
 
@@ -78,7 +78,7 @@
           <% if (ableToUploadImage) { %>
             <div class="bar-inner bar-inner-upload-image">
 
-              <button class="btn btn-info btn-lg uploadImage">
+              <button class="btn btn-info btn-lg uploadImage event-upload-image">
                 <span class="glyphicon glyphicon-picture"></span>
                 Upload a Photo
               </button>
@@ -187,10 +187,10 @@
 
     $("#owl-example").owlCarousel({
 
-      slideSpeed : 800,
+      slideSpeed : 1200,
       singleItem:true,
 
-      autoPlay: 2000,
+      autoPlay: 3000,
       // stopOnHover: true,
 
 

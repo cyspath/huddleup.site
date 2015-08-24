@@ -4,11 +4,23 @@
   <!-- backbone goes here -->
 </div>
 
-<script>
-  $(App.initialize);
-  App.CURRENT_USER = {
-    username: "<%= current_user.username.capitalize %>",
-    id: <%= current_user.id %>,
-    thumb_avatar: "<%= current_user.images.first.thumb_url_cropped %>"
-  }
-</script>
+
+<% if current_user.images.first && current_user.images.first.thumb_url_cropped %>
+  <script>
+    $(App.initialize);
+    App.CURRENT_USER = {
+      username: "<%= current_user.username.capitalize %>",
+      id: <%= current_user.id %>,
+      thumb_avatar: "<%= current_user.images.first.thumb_url_cropped %>"
+    }
+  </script>
+<% else %>
+  <script>
+    $(App.initialize);
+    App.CURRENT_USER = {
+      username: "<%= current_user.username.capitalize %>",
+      id: <%= current_user.id %>,
+      thumb_avatar: "http://www.sixthformcolleges.org/sites/default/files/user.png"
+    }
+  </script>
+<% end %>
