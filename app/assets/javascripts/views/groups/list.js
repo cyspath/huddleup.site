@@ -14,25 +14,28 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     this.collection.each(this.addGroupView.bind(this));
   },
 
-  events: { "keyup form": "handleKey" },
+  events: {
+    "keyup form": "handleKey",
+    "mouseover .left-pane": "search"
+  },
 
-  handleKey: function (event) {
-    if (event.keyCode === 13) {
-      this.search(event);
+  handleKey: function (e) {
+    if (e.keyCode === 13) {
+      this.search(e);
     }
   },
 
-  search: function (event) {
-    event.preventDefault()
+  search: function (e) {
+    e.preventDefault()
     if ($("input[type=text]").val() != "") {
       var name = $("input[type=text]").val();
     } else {
       console.log("Search area empty")
       return null
     }
-
     var modal = new App.Views.SearchForm({
       collection: this.collection,
+      searchString: name,
     });
 
     $('body').prepend(modal.$el);

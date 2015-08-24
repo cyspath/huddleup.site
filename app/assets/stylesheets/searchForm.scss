@@ -1,14 +1,5 @@
-.faded-background {
-  top: 0;
-  left: 0;
-  right: 0;
-  // bottom: 0;
-  z-index: 101;
-  background: rgba(92, 88, 88, 0.7);
-  position: absolute;
-}
 
-.general-form {
+.search-results-div {
     z-index: 102;
     top: 10%;
     left: 25%;
@@ -26,7 +17,7 @@
     -moz-border-radius: 5px;
     box-shadow: 5px 5px 5px 5px #888888;
 }
-.general-form h1{
+.search-results-div h1{
 
     font: 40px "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0px 0px 20px 50px;
@@ -37,15 +28,15 @@
     box-shadow: 0px 0px 0px #888888;
 
 }
-.general-form h1>span {
+.search-results-div h1>span {
     display: block;
     font-size: 11px;
 }
-.general-form label {
+.search-results-div label {
     display: block;
     margin: 0px 0px 5px;
 }
-.general-form label>span {
+.search-results-div label>span {
     float: left;
     width: 20%;
     text-align: right;
@@ -56,7 +47,7 @@
     font-weight: bold;
 }
 
-.general-form input[type="text"], .general-form textarea, .huddle-form input[type="text"], .huddle-form textarea, .huddle-form input[type="date"] {
+.search-results-div input[type="text"], .search-results-div textarea, .huddle-form input[type="text"], .huddle-form textarea, .huddle-form input[type="date"] {
     border: 1px solid #CCC;
     color: #3b5998;
     height: 30px;
@@ -75,7 +66,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-// .general-form select {
+// .search-results-div select {
 //     background: #FFF url('down-arrow.png') no-repeat right;
 //     background: #FFF url('down-arrow.png') no-repeat right;
 //     appearance:none;
@@ -87,21 +78,21 @@
 //     height: 35px;
 //     line-height:15px;
 // }
-.general-form textarea {
+.search-results-div textarea {
     height:100px;
     padding: 5px 0px 0px 5px;
     width: 70%;
 }
 
-.general-form p {
+.search-results-div p {
   text-align: center;
 }
 
-.general-form p:hover {
+.search-results-div p:hover {
   font-weight: bolder;
   cursor: pointer;
 }
 
-.general-form select {
+.search-results-div select {
   width: 328px;
 }

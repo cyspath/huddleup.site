@@ -11,5 +11,5 @@ class Event < ActiveRecord::Base
 
   has_many :images, as: :imageable
 
-  validates :title, :author, :group, presence: true
+  validates :title, :author, :group, :date, presence: true
 end
