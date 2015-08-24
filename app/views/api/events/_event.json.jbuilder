@@ -13,6 +13,12 @@ arr = event.group.name.split(" ").map { |word| word.capitalize }
 str = arr.join(" ")
 json.set! :group_name, str
 
+if event.images.length > 0
+
+  json.set! :event_url_cropped, event.images.last.thumb_url_cropped
+  json.set! :event_url_cropped_id, event.images.last.id
+
+end
 
 arr = event.title.split(" ").map { |word| word.capitalize }
 str = arr.join(" ")

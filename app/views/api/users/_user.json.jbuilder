@@ -14,6 +14,12 @@ json.extract!(
 json.set! :alias, user.username.capitalize
 json.set! :join_date, user.created_at.strftime("%b %d, %Y")
 
+if user.images.length > 0
+
+  json.set! :user_url_cropped, user.images.first.thumb_url_cropped
+  json.set! :user_url_cropped_id, user.images.first.id
+
+end
 
 json.images do
   json.array! user.images do |image|

@@ -4,10 +4,91 @@
 
   <h1>Groups</h1>
 
+  <% if (groups != undefined) { %>
+    <% groups.forEach(function(group){ %>
 
+        <div class="comment-index-item group">
+
+          <div class="tiny-user-avatar">
+            <% if (group.escape('group_url_cropped') != "") { %>
+              <img src="<%= group.escape('group_url_cropped') %>" height="45" width="45">
+            <% } else { %>
+              <img src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,e_sepia:58,o_38,w_228/v1440096555/group_lcu8kc.png" height="45" width="45">
+            <% } %>
+          </div>
+
+          <div class="comment-container-right">
+            <div class="comment-container-inner-top group">
+
+              <div class="commenter-name-div">
+
+                <a class="commenter-name" href="#/groups/<%= group.id %>">
+                  <p class="comment-author-name">
+                   <%= group.escape('name').capitalize()%>
+                  </p>
+                </a>
+              </div>
+
+              <div class="comment-body">
+
+              </div>
+
+            </div>
+
+            <div class="sentence"><%= group.escape('sentence')%></div>
+
+
+          </div>
+
+
+
+        </div>
+    <% }) %>
+  <% } %>
 
   <h1>Huddles</h1>
 
+  <% if (huddles != undefined) { %>
+    <% huddles.forEach(function(huddle){ %>
+
+        <div class="comment-index-item group">
+
+          <div class="tiny-user-avatar">
+            <% if (huddle.escape('event_url_cropped') != "") { %>
+              <img src="<%= huddle.escape('event_url_cropped') %>" height="45" width="45">
+            <% } else { %>
+              <img src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,h_60,o_43/v1440459387/rdx8z8chvxtjutwxzj6q.png" height="45" width="45">
+            <% } %>
+          </div>
+
+          <div class="comment-container-right">
+            <div class="comment-container-inner-top group">
+
+              <div class="commenter-name-div">
+
+                <a class="commenter-name" href="#/huddles/<%= group.id %>">
+                  <p class="comment-author-name">
+                   <%= group.escape('name').capitalize()%>
+                  </p>
+                </a>
+              </div>
+
+              <div class="comment-body">
+
+              </div>
+
+            </div>
+
+            <div class="sentence"><%= group.escape('sentence')%></div>
+
+
+          </div>
+
+
+
+        </div>
+    <% }) %>
+  <% } %>
 
 
   <h1>Users</h1>

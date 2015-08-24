@@ -15,8 +15,8 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
   },
 
   events: {
-    "keyup form": "handleKey",
-    "mouseover .left-pane": "search"
+    "keyup input": "handleKey",
+    // "mouseover .left-pane": "search"
   },
 
   handleKey: function (e) {
@@ -33,17 +33,33 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
       console.log("Search area empty")
       return null
     }
-    var modal = new App.Views.SearchForm({
-      collection: this.collection,
-      searchString: name,
-    });
 
-    $('body').prepend(modal.$el);
-    //slow scroll to top
-    $("body").animate({ scrollTop: 0 }, "slow");
-    modal.render();
-    // set faded-background height
-    $('.faded-background').height($(document).height());
+    this.allEvents = new App.Collections.Events()
+    this.allEvents.fetch({
+      success: function () {
+        this.users = new App.Collections.Users();
+        this.users.fetch({
+          success: function () {
+
+            var modal = new App.Views.SearchForm({
+              groups: this.collection,
+              allEvents: this.allEvents,
+              users: this.users,
+              searchString: name,
+            });
+
+            $('body').prepend(modal.$el);
+            //slow scroll to top
+            $("body").animate({ scrollTop: 0 }, "slow");
+            modal.render();
+            // set faded-background height
+            $('.faded-background').height($(document).height());
+
+          }.bind(this)
+        })
+      }.bind(this)
+    })
+
   },
 
   addGroupView: function (group) {
