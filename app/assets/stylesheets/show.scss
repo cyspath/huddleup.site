@@ -343,6 +343,7 @@ div.event-item-container p.event-item-title {
 
 .right-bar-eventname-container {
   float: left;
+  margin-top: -14px;
 }
 
 //group show mid bar
@@ -464,4 +465,35 @@ div.event-item-container p.event-item-title {
   color: #786F6B;
   line-height: 1.4;
   max-width: 434px;
+}
+
+// user show left-bar
+
+.group-index-item-container-inner {
+  border-top: 1px solid #E3D8D8;
+  width: 165px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.hot-fix-1 {
+  padding: 10px;
+}
+
+.his-her-left-bar {
+  margin-left: 4px;
+  font-size: 27px;
+  margin-bottom: -5px;
+  color: #72C2DA;
+  font-family: inherit;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.right-bar-e2.dark-color-left-bar {
+  color: #1A75AB;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 15px;
+  margin-left: 8px;
 }

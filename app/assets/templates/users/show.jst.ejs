@@ -43,12 +43,21 @@
     <div class="bar-inner">
 
       <div class="groups">
-        <p class="heading"><%= userAlias %> Groups</p>
+        <% if (user.escape('sex') === "♀") { %>
+          <p class="his-her-left-bar">
+            Her
+          </p>
+        <% } else { %>
+          <p class="his-her-left-bar">
+            His
+          </p>
+        <% } %>
+
+        <p class="heading hot-fix-2">Groups</p>
         <div class="user-show-group-list"></div>
       </div>
 
     </div>
-    <div class="bar-divider"></div>
 
   </div>
 

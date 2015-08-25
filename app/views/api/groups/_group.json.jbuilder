@@ -7,6 +7,9 @@ json.extract!(
   :created_at
 )
 
+json.set! :num_events, group.events.count
+
+
 json.set! :author_name, group.author.username.capitalize
 
 arr = group.name.split(" ").map { |word| word.capitalize }

@@ -1,6 +1,28 @@
 <a href="#/groups/<%= group.escape('id')%>" class="group-index-item" data-id=<%= group.escape('id')%>>
-  <p class="hot-fix-1">
-    <%= group.escape('name').capitalize()%>
-    <!-- num members -->
-  </p>
+  <div class="group-index-item-container-inner group">
+
+    <div class="right-bar-avatar-container">
+      <% if (group.escape('group_url_cropped') != "") { %>
+        <img class="right-bar-avatar-img" src="<%= group.escape('group_url_cropped') %>" height="50" width="50">
+      <% } else { %>
+        <img class="right-bar-avatar-img"  src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,h_60,o_43/v1440459387/rdx8z8chvxtjutwxzj6q.png" height="50" width="50">
+      <% } %>
+    </div>
+
+    <div class="right-bar-eventname-container">
+
+      <p class="right-bar-e2 dark-color-left-bar">
+        <%= group.escape('name').capitalize()%>
+      </p>
+
+      <p class="right-bar-e3">
+        <% var n = group.escape('num_events') %>
+        <% if (n === 1) { %>
+          1 event
+        <% } else { %>
+          <%= n %> events
+        <% } %>
+      </p>
+
+  </div>
 </a>
