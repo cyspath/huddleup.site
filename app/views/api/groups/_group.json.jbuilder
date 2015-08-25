@@ -3,7 +3,8 @@ json.extract!(
   :id,
   :name,
   :body,
-  :author_id
+  :author_id,
+  :created_at
 )
 
 json.set! :author_name, group.author.username.capitalize

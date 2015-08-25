@@ -5,6 +5,13 @@
   <div class="headline-container group">
     <div class="left-pane">
 
+      <p class="welcome">
+        Welcome <%= App.CURRENT_USER.username.capitalize() %>!
+      </p>
+
+      <p class="tally-groups-events">
+        We currently hosts <%= groupCount %> groups of various interests, as well <%= eventCount %> huddle events where you can relax, have fun, and mingle with other huddlers...
+      </p>
 
       <div class="search-bar-container group">
 
@@ -30,7 +37,9 @@
 
             <% slideShowImages.forEach(function(image){ %>
               <div class="item hover">
-                <img src="<%= image %>">
+                <a href="#events/<%= image.escape('imageable_id')%>">
+                  <img src="<%= image.escape('url_cropped') %>">
+                </a>
               </div>
             <% }) %>
 
@@ -39,7 +48,9 @@
 
         </div>
 
-        here is description
+        <p class="slide-show-text">
+          Check out a recent Huddle!
+        </p>
 
       </div>
     </div>

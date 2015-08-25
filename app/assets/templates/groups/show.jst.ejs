@@ -24,8 +24,8 @@
 
 
       <% if (ableToUploadImage) { %>
-      <div class="bar-inner bar-inner-upload-image">
-        <p>You, as the group creator, can</p>
+      <div class="bar-inner bar-inner-upload-image bar-left-image-container">
+        <p class="tiny-text">As its creator you can...</p>
 
         <% if (images.length > 0) { %>
           <button class="btn btn-info btn-lg uploadImage">
@@ -40,80 +40,71 @@
         <% } %>
 
       </div>
+
+      <div class="bar-divider space-top-bar-divider"></div>
+
       <% } %>
 
-
-    <p class="heading">Group Information</p>
-
-    <p class="group-created-by">Created by
+    <div class="group-created-by">
+      <p class="group-creator">
+        Group started by:
+      </p>
       <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
-          you
+          <p class="group-creator-name">
+            You
+          </p>
       <% } else { %>
-        <%= group.escape('author_name')%>
+        <p class="group-creator-name">
+          <%= group.escape('author_name').capitalize()%>
+        </p>
       <% } %>
-    </p>
 
-    <p class="group-description">
-      <%= group.escape('body') %>
-    </p>
+      <abbr class="timeago"  title="<%= group.escape('created_at')%>"></abbr>
+    </div>
+
+
+
+
 
   </div>
 
-  <% if (!group.users().get(App.CURRENT_USER.id)) { %>
-    <button type="button" class="join-group">
-      Join this Group!
-    </button>
-  <% } else { %>
-    <button type="button" class="leave-group">
-      Leave this Group
-    </button>
-  <% } %>
-
-  <br><br>
-  <% if (ableToCreateHuddle) { %>
-
-    <div class="start-event-div">
-      <div class="small">
-        Schedule a New
-      </div><br>
-      <div class="big">
-        Huddle
-      </div>
-    </div>
-
-  <% } %>
 
 
 
-  <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
+  <!-- <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
     <button type="button" class="group-delete" data-id=<%= group.id %>>Disband Group</button>
-  <% } %>
+  <% } %> -->
 
 </div>
 
 
 
+
+
+
 <div class="mid-bar">
 
-  <div class="events">
+  <% if (group.escape('body').length > 0) { %>
+    <div class="bar-inner">
+
+      <div class="group-events">
+        <p class="heading-about-us">About Us: </p>
+      </div>
+
+      <h5 class="group-show-description"><%= group.escape('body') %></h5>
+    </div>
+    <div class="bar-divider"></div>
+  <% } %>
+
+  <div class="group-events group-event-container">
     <p class="heading">Upcoming Events: </p>
     <div class="group-show-upcoming-events"></div>
   </div>
 
-  <br><br>
-
-  <div class="events">
-    <p class="heading">Past Events: </p>
+  <div class="group-events group-event-container">
+    <p class="heading past-heading">Past Events: </p>
     <div class="group-show-past-events"></div>
   </div>
-
-  <% if (group.escape('body').length > 0) { %>
-    <div class="bar-inner">
-      <h5><%= group.escape('body') %></h5>
-    </div>
-    <div class="bar-divider"></div>
-
-  <% } %>
 
   <div class="bar-inner">
     <div class="comments">
@@ -146,8 +137,34 @@
 
   <div class="right-bar">
 
+    <% if (ableToCreateHuddle) { %>
+
+      <div class="start-event-div">
+        <div class="small">
+          Schedule a New
+        </div>
+        <div class="big">
+          Huddle
+        </div>
+
+      </div>
+
+      <div class="bar-divider-full"></div>
+    <% } %>
+
     <div class="members">
-      <p class="heading">Members:</p>
+      <p class="heading heading-group-member">Members:</p>
+
+      <% if (!group.users().get(App.CURRENT_USER.id)) { %>
+        <button type="button" class="join-group">
+          Join this Group!
+        </button>
+      <% } else { %>
+        <button type="button" class="leave-group">
+          Leave this Group
+        </button>
+      <% } %>
+
       <div class="group-show-user-list group"></div>
     </div>
 

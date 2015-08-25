@@ -7,6 +7,7 @@ json.extract!(
   :body,
   :author_id,
   :group_id,
+  :created_at
 )
 
 arr = event.group.name.split(" ").map { |word| word.capitalize }

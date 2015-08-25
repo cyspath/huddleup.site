@@ -16,7 +16,6 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
 
   events: {
     "keyup input": "handleKey",
-    // "mouseover .left-pane": "search"
   },
 
   handleKey: function (e) {
@@ -71,18 +70,6 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     this.removeModelSubview('.groups-container', group)
   },
 
-  // getSlideShowImages: function () {
-  //   //shuffle collection - disabled
-  //   // var newCollection = this.collection.reset(this.collection.shuffle(), {silent:true});
-  //
-  //   this.slideShowImages = [];
-  //   this.ollection.forEach(function(group){
-  //     var images = group.images().models;
-  //     var length = images.length;
-  //     this.slideShowImages.push(images[length - 1])
-  //   }.bind(this))
-  //
-  // },
   getSlideShowImages: function () {
     var events = this.allEvents.models
     var images = []
@@ -90,7 +77,7 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
       if (event.images() && event.images().length != 0) {
         var length = event.images().length
         var models = event.images().models
-        images.push(models[length-1].escape('url_cropped'))
+        images.push(models[length-1])
       }
       // don't over load images, max 20 slides
       if (images.length >= 20) {
@@ -100,12 +87,18 @@ App.Views.GroupsList = Backbone.CompositeView.extend({
     return images;
   },
 
+  countGroups: function () {
+    if (this.collection) {
+      return this.collection.length
+    } else {
+      return null
+    }
+  },
+
   render: function () {
-
-    // get am array of slide show pics from groups and also remove the undefined from the array, shuffle
-    // this.getSlideShowImages();
-
     var content = this.template({
+      groupCount: this.countGroups(),
+      eventCount: this.allEvents.length,
       slideShowImages: this.getSlideShowImages()
     });
     this.$el.html(content);

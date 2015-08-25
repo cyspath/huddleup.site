@@ -19,14 +19,22 @@
 
   <div class="right-bar-eventname-container">
 
-    <p class=".right-bar-e2">
+    <p class="right-bar-e2">
       <%= groupEvent.escape('date')%>
     </p>
 
-    <p class=".right-bar-e3">
-      <% if (groupEvent.escape('location')) { %>
-        <%= groupEvent.escape('location')%>
-      <% } %>
+    <p class="right-bar-e3">
+
+      <% var location = groupEvent.escape('location').capitalize()%>
+      <% if (location.length > 13) { %>
+        <% var newloc = location.substring(0, 10) + "..." %>
+      <% } else { %>
+        <% var newloc = location %>
+      <% }%>
+
+      <%= newloc %>
+
+
     </p>
   </div>
 

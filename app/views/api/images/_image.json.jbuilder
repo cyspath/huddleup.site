@@ -8,4 +8,6 @@ json.extract!(
   :ord,
   :created_at,
   :updated_at,
+  :imageable_id,
+  :imageable_type
   )
