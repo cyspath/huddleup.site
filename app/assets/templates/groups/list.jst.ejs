@@ -38,7 +38,7 @@
             <% slideShowImages.forEach(function(image){ %>
               <div class="item hover">
                 <a href="#events/<%= image.escape('imageable_id')%>">
-                  <img src="<%= image.escape('url_cropped') %>">
+                  <img src="<%= image.escape('url_cropped') %>" height='280'>
                 </a>
               </div>
             <% }) %>
