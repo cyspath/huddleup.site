@@ -3,7 +3,7 @@
   <h4><%= funnyPhrase[0] %></h4>
   <h5><%= funnyPhrase[1] %></h5>
 
-  <h2><%= groupEvent.escape('group_name') %></h2>
+  <h2><%= groupEvent.escape('group_name') %> Group</h2>
   <h3><%= groupEvent.escape('title').capitalize() %></h3>
 </div>
 
@@ -18,9 +18,7 @@
   <div class="left-bar">
 
       <% if (group != undefined) { %>
-
         <% var group_image = group.escape('group_url_cropped') %>
-
 
           <a href="#/images/<%= group.escape('group_url_cropped_id') %>">
             <div class="image-box-big">
@@ -29,24 +27,28 @@
           </a>
 
 
-        <p class="heading">Group Information</p>
 
-        <p class="group-created-by">Created by
+        <div class="group-created-by">
+          <p class="group-creator">
+            Group started by:
+          </p>
           <% if (group.escape('author_name') == App.CURRENT_USER.username) { %>
-              you
+            <p class="group-creator-name">
+              You
+            </p>
           <% } else { %>
-            <%= group.escape('author_name')%>
+            <p class="group-creator-name">
+              <%= group.escape('author_name').capitalize()%>
+            </p>
           <% } %>
-        </p>
+          <abbr class="timeago"  title="<%= group.escape('created_at')%>"></abbr>
 
-        <p class="group-description">
-          <%= group.escape('body') %>
-        </p>
+        </div>
 
 
         <a class="underline-gone" href="#/groups/<%= group.escape('id')%>">
           <button type="button" class="leave-group join-group">
-            Back to <%= groupEvent.escape('group_name') %>
+            Back to <%= groupEvent.escape('group_name').capitalize() %> Group
           </button>
         </a>
       <% } %>
@@ -85,7 +87,7 @@
             </div>
           <% } else { %>
             <div class="bar-inner bar-inner-upload-image">
-              <p>* Only Huddlers can add</p>
+              <p class="only-huddler-can">* Only Huddlers can add</p>
               <span class="glyphicon glyphicon-picture huddler-image-glyph"></span>
             </div>
           <% } %>
@@ -95,7 +97,7 @@
         <div class="event-info-div">
           <p class="heading">Event Information</p>
 
-          <h3>Hosted by
+          <h3 class="event-detail-head">Hosted by
             <% if (groupEvent.escape('author_name') == App.CURRENT_USER.username) { %>
                 you
             <% } else { %>
@@ -103,11 +105,11 @@
             <% } %>
           </h3>
 
-          <h3>Location:</h3>
-          <h4><%= groupEvent.escape('location') %></h4>
+          <h3 class="event-detail-head">Location:</h3>
+          <h4 class="event-detail-body"><%= groupEvent.escape('location') %></h4>
 
-          <h3>Date:</h3>
-          <h4><%= groupEvent.escape('date') %></h4>
+          <h3 class="event-detail-head">Date:</h3>
+          <h4 class="event-detail-body"><%= groupEvent.escape('date') %></h4>
 
 
 
@@ -119,11 +121,12 @@
 
       </div>
 
-      <div class="bar-divider"></div>
+      <!-- <div class="bar-divider"></div> -->
 
       <% if (groupEvent.escape('body').length > 0) { %>
         <div class="bar-inner">
-          <h5><%= groupEvent.escape('body') %></h5>
+          <h3 class="event-detail-details-head">Huddle Details:</h3>
+          <h5 class="huddle-detail"><%= groupEvent.escape('body') %></h5>
         </div>
         <div class="bar-divider"></div>
 
