@@ -261,20 +261,25 @@
 
   <div class="right-bar">
 
-    <% if (user.id == App.CURRENT_USER.id) { %>
-      <% var userAlias = "Your" %>
+    <% if (user.escape('sex') === '♀') { %>
+      <% var userAlias = "Her" %>
+    <% } else if (user.escape('sex') === '♂') { %>
+      <% var userAlias = "His" %>
     <% } else { %>
       <% var userAlias = user.escape('alias') + "'s" %>
     <% } %>
 
     <div class="events">
-      <p class="heading"><%= userAlias %> upcoming events: </p>
+      <p class="heading-his-her">
+        <%= userAlias %>
+      </p>
+      <p class="heading">Upcoming Huddles </p>
       <div class="user-show-upcoming-events"></div>
     </div>
 
 
     <div class="events">
-      <p class="heading"><%= userAlias %> past events: </p>
+      <p class="heading">Past Huddles </p>
       <div class="user-show-past-events"></div>
     </div>
 

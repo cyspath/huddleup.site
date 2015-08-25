@@ -1,15 +1,34 @@
-<a href="#/events/<%= groupEvent.escape('id')%>" class="groupEvent-item" data-id=<%= groupEvent.escape('id')%>>
-  <p class="event-item-title">
-    <%= groupEvent.escape('title').capitalize()%>
+<a href="#/events/<%= groupEvent.escape('id')%>" class="groupEvent-item group" data-id=<%= groupEvent.escape('id')%>>
+  <p class="right-bar-e1">
+    <% var title = groupEvent.escape('title').capitalize()%>
+    <% if (title.length > 18) { %>
+      <% var newTitle = title.substring(0, 15) + "..." %>
+    <% } else { %>
+      <% var newTitle = title %>
+    <% }%>
+    <%= newTitle %>
   </p>
-  <p class="event-item-location">
-    <% if (groupEvent.escape('location')) { %>
-      Location: <%= groupEvent.escape('location')%>
+
+  <div class="right-bar-avatar-container">
+    <% if (groupEvent.escape('event_url_cropped') != "") { %>
+      <img class="right-bar-avatar-img" src="<%= groupEvent.escape('event_url_cropped') %>" height="50" width="50">
+    <% } else { %>
+      <img class="right-bar-avatar-img"  src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,h_60,o_43/v1440459387/rdx8z8chvxtjutwxzj6q.png" height="50" width="50">
     <% } %>
-  </p>
-  <p class="event-item-date">
-    <%= groupEvent.escape('date')%>
-  </p><br>
+  </div>
+
+  <div class="right-bar-eventname-container">
+
+    <p class=".right-bar-e2">
+      <%= groupEvent.escape('date')%>
+    </p>
+
+    <p class=".right-bar-e3">
+      <% if (groupEvent.escape('location')) { %>
+        <%= groupEvent.escape('location')%>
+      <% } %>
+    </p>
+  </div>
 
 
 </a>

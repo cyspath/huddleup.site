@@ -1,6 +1,22 @@
 <a href="#/users/<%= user.escape('id')%>" class="user-item" data-id=<%= user.escape('id')%>>
-  <p>
-    <%= user.escape('alias')%>
-    <%= user.escape('bio')%>
-  </p>
+
+  <div class="right-bar-avatar-container">
+    <% if (user.escape('user_url_cropped') != "") { %>
+      <img class="right-bar-avatar-img" src="<%= user.escape('user_url_cropped') %>" height="50" width="50">
+    <% } else { %>
+      <img class="right-bar-avatar-img"  src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,o_51,w_128/v1440459652/usericon_t44xbb.png" height="50" width="50">
+    <% } %>
+  </div>
+
+  <div class="right-bar-username-container">
+    <p class="right-bar-p1">
+      <%= user.escape('alias')%>
+    </p>
+    <% if (user.escape('residence') !== "") { %>
+      <p class="right-bar-p2 ">
+        <%= user.escape('residence')%>
+      </p>
+    <% } %>
+  </div>
+  
 </a>

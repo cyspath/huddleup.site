@@ -255,3 +255,94 @@ div.event-item-container p.event-item-title {
 }
 
 // right-bar user show styleing!!!
+.user-item-container {
+  border-top: 1px solid #E3D8D8;
+  padding-top: 15px;
+  height: 83px;
+}
+
+.right-bar-avatar-container {
+  float: left;
+}
+
+.right-bar-username-container {
+  float: left;
+}
+
+.right-bar-avatar-img {
+  border-radius: 7px;
+  border: 1px solid #B3B3B3;
+}
+
+.right-bar-p1 {
+  color: #0C496D;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.right-bar-p2 {
+  color: #9BC8C4;
+  font-size: 10px;
+  margin-left: 10px;
+  margin-top: 13px;
+}
+
+.user-item {
+  text-decoration: none;
+}
+
+.members .heading {
+  padding: 10px 0px 20px 0px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #404040;
+  margin-left: 5px;
+}
+
+.events .heading {
+  padding: 10px 0px 20px 0px;
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: bold;
+  color: #182632;
+  margin-left: 5px;
+}
+
+.events .heading-his-her {
+  margin-left: 4px;
+  font-size: 27px;
+  margin-bottom: -5px;
+  color: #72C2DA;
+  font-family: inherit;
+  font-weight: bold;
+  margin-top: 13px;
+}
+
+
+.right-bar-e1 {
+  color: #0C496D;
+  font-size: 16px;
+  margin-top: 4px;
+  margin-bottom: 7px;
+  font-weight: bold;
+  color: #1A75AB;
+}
+
+.right-bar-e2 {
+  color: #9BC8C4;
+  font-size: 10px;
+  margin-left: 10px;
+  margin-top: 13px;
+}
+
+.right-bar-e2 {
+  color: #9BC8C4;
+  font-size: 10px;
+  margin-left: 10px;
+  margin-top: 13px;
+}
+
+.right-bar-eventname-container {
+  float: left;
+}
