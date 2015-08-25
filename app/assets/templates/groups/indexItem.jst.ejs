@@ -12,7 +12,14 @@
     <div class="right-bar-eventname-container">
 
       <p class="right-bar-e2 dark-color-left-bar">
-        <%= group.escape('name').capitalize()%>
+        <% var gName = group.escape('name').capitalize()%>
+        <% if (gName.length > 11) { %>
+          <% var newName = gName.substring(0, 8) + "..." %>
+        <% } else { %>
+          <% var newName = gName %>
+        <% }%>
+
+        <%= newName %>
       </p>
 
       <p class="right-bar-e3">
