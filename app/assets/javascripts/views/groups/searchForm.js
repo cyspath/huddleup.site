@@ -20,13 +20,8 @@ App.Views.SearchForm = Backbone.View.extend({
 
     handleKey: function (event) {
       if (event.keyCode === 27) {
-        this.removeViewAndGoBack();
+        this.remove();
       }
-    },
-
-    removeViewAndGoBack: function () {
-      this.remove();
-      Backbone.history.history.back();
     },
 
     searchResults: function () {
@@ -103,7 +98,6 @@ App.Views.SearchForm = Backbone.View.extend({
     },
 
     render: function () {
-      debugger
       var content = this.template({
         groups: this.matchedGroups,
         huddles: this.matchedEvents,
