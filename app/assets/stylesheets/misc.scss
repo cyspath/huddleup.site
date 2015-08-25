@@ -20,3 +20,16 @@
   margin-left: 5px;
   border-bottom: none;
 }
+
+.img-bkg {
+  z-index: -10;
+  margin-top: -149px;
+  position: absolute;
+  overflow: hidden;
+    height: 1500px;
+    width: 100%;
+}
+
+.background-image-login {
+  position: relative;
+}
