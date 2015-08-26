@@ -12,7 +12,7 @@
     z-index: 102;
     top: 10%;
     left: 25%;
-    position: absolute;
+    // position: absolute;
 
     width: 550px;
     background: #FFF;
@@ -105,4 +105,39 @@
 
 .general-form select {
   width: 328px;
+}
+
+
+//center forms
+.group-form.general-form {
+  top: 50%;
+  left: 50%;
+  margin-top: -245px;
+  margin-left: -275px;
+}
+
+.general-form.huddle-form {
+  top: 50%;
+  left: 50%;
+  margin-top: -260px;
+  margin-left: -275px;
+}
+
+.general-form.user-form {
+  top: 50%;
+  left: 50%;
+  margin-top: -343px;
+  margin-left: -275px;
+}
+
+
+form.login {
+  top: 50%;
+  left: 50%;
+  margin-top: -240px;
+  margin-left: -200px;
+}
+
+form {
+  position: fixed
 }

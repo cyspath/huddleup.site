@@ -58,8 +58,8 @@ App.Routers.Router = Backbone.Router.extend({
     var group = new App.Models.Group();
     var modal = new App.Views.GroupForm({ model: group, collection: this.groups });
     $('body').prepend(modal.$el);
-    //scroll top
-    $("body").animate({ scrollTop: 0 }, "slow");
+    //scroll top (not needed since modal is fixed pos now)
+    // $("body").animate({ scrollTop: 0 }, "slow");
     modal.render();
     // set faded-background height
     $('.faded-background').height($(document).height());

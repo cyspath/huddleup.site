@@ -63,7 +63,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     $('body').prepend(modal.$el);
     //slow scroll to top
-    $("body").animate({ scrollTop: 0 }, "slow");
+    // $("body").animate({ scrollTop: 0 }, "slow");
     modal.render();
     // set faded-background height
     $('.faded-background').height($(document).height());

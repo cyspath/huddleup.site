@@ -168,7 +168,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     $('body').prepend(modal.$el);
     //scroll to top
-    $("body").animate({ scrollTop: 0 }, "slow");
+    // $("body").animate({ scrollTop: 0 }, "slow");
     modal.render();
     // set faded-background height
     $('.faded-background').height($(document).height());
