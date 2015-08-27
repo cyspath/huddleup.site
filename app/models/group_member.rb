@@ -4,5 +4,5 @@ class GroupMember < ActiveRecord::Base
   belongs_to :group
 
 
-  validates :user, :group, presence: true
+  validates :user, :group_id, presence: true
 end

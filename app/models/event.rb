@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 
-  default_scope { order('events.created_at') }
+  # default_scope { order('events.created_at') }
 
   has_many :event_members
   has_many :users, through: :event_members, source: :user
@@ -13,5 +13,5 @@ class Event < ActiveRecord::Base
 
   has_many :images, as: :imageable
 
-  validates :title, :author, :group, :date, :location, presence: true
+  validates :title, :author, :group_id, :date, :location, presence: true
 end
