@@ -17,6 +17,7 @@
 .comment-container-right {
   float: left;
   margin-left: 15px;
+  width: 86%;
 }
 
 .commenter-name {
@@ -84,4 +85,9 @@ abbr.timeago, .sentence {
   border: none;
   color: #C3C6CC;
   font-size: 15px;
+
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
