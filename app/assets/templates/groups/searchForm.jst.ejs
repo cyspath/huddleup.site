@@ -5,9 +5,16 @@
   <h1 class="one">Groups</h1>
 
   <% if (groups != undefined) { %>
+
+    <% if (groups && groups.length === 0) { %>
+      <h7 class="no-item-match-search">
+        No groups match your search
+      </h7>
+    <% } %>
+
     <% groups.forEach(function(group){ %>
 
-        <div class="comment-index-item group">
+        <div class="comment-index-item result-container group">
 
           <div class="tiny-user-avatar">
             <% if (group.escape('group_url_cropped') != "") { %>
@@ -49,9 +56,16 @@
   <h1 class="two-three">Huddles</h1>
 
   <% if (huddles != undefined) { %>
+
+    <% if (huddles && huddles.length === 0) { %>
+      <h7 class="no-item-match-search">
+        No huddles match your search
+      </h7>
+    <% } %>
+
     <% huddles.forEach(function(huddle){ %>
 
-        <div class="comment-index-item group">
+        <div class="comment-index-item result-container group">
 
           <div class="tiny-user-avatar">
             <% if (huddle.escape('event_url_cropped') != "") { %>
@@ -94,9 +108,16 @@
   <h1 class="two-three">Users</h1>
 
   <% if (users != undefined) { %>
+
+    <% if (users && users.length === 0) { %>
+      <h7 class="no-item-match-search">
+        No users match your search
+      </h7>
+    <% } %>
+
     <% users.forEach(function(user){ %>
 
-        <div class="comment-index-item group">
+        <div class="comment-index-item result-container group">
 
           <div class="tiny-user-avatar">
             <% if (user.escape('user_url_cropped') != "") { %>
@@ -137,7 +158,7 @@
   <% } %>
 
 
-  <p>
+  <p class="close-search-results">
     Close [x]
   </p>
 
