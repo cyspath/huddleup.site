@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
 
+
+
   namespace :api, defaults: { format: :json } do
     resources :groups
     resources :events
@@ -12,9 +14,16 @@ Rails.application.routes.draw do
     resources :group_members
     resources :ratings
     resources :images
-
-    # get '/users/current', to: 'users#current', as: 'users_current'
     resources :users, only: [:index, :show, :update]
   end
 
+  # dumping production psql heroku db to seed in development
+  get 'dumps/users', :to => 'dumps#users'
+  get 'dumps/comments', :to => 'dumps#comments'
+  get 'dumps/event_members', :to => 'dumps#event_members'
+  get 'dumps/events', :to => 'dumps#events'
+  get 'dumps/group_members', :to => 'dumps#group_members'
+  get 'dumps/groups', :to => 'dumps#groups'
+  get 'dumps/images', :to => 'dumps#images'
+  get 'dumps/ratings', :to => 'dumps#ratings'
 end

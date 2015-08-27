@@ -20,11 +20,7 @@
 <% } %>
 
 <div class="title-div-1 user-title-div-1">
-  <% if (currentUser) { %>
-    <h1>Your Profile Page</h1>
-  <% } else { %>
     <h1><%= user.escape('username').capitalize() %>'s Profile Page</h1>
-  <% } %>
 </div>
 
 <div class="title-div-2 user-title-div-2"></div>
@@ -43,7 +39,11 @@
     <div class="bar-inner">
 
       <div class="groups">
-        <% if (user.escape('sex') === "♀") { %>
+        <% if (currentUser) { %>
+          <p class="his-her-left-bar">
+            Your
+          </p>
+        <% } else if (user.escape('sex') === "♀") { %>
           <p class="his-her-left-bar">
             Her
           </p>
@@ -257,25 +257,16 @@
 
     </div>
 
-
   </div>
 
 
-
-
-
-
-
-
-
   <div class="right-bar">
-
-    <% if (user.escape('sex') === '♀') { %>
+    <% if (currentUser) { %>
+      <% var userAlias = "Your" %>
+    <% } else if (user.escape('sex') === '♀') { %>
       <% var userAlias = "Her" %>
     <% } else if (user.escape('sex') === '♂') { %>
       <% var userAlias = "His" %>
-    <% } else { %>
-      <% var userAlias = user.escape('alias') + "'s" %>
     <% } %>
 
     <div class="events">
