@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 
-  # default_scope { order('events.created_at') }
+  default_scope { order('events.created_at') }
 
   has_many :event_members
   has_many :users, through: :event_members, source: :user
