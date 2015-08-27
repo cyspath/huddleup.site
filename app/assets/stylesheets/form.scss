@@ -114,6 +114,7 @@
   left: 50%;
   margin-top: -245px;
   margin-left: -275px;
+  position: fixed;
 }
 
 .general-form.huddle-form {
@@ -121,6 +122,7 @@
   left: 50%;
   margin-top: -260px;
   margin-left: -275px;
+  position: fixed;
 }
 
 .general-form.user-form {
@@ -128,6 +130,8 @@
   left: 50%;
   margin-top: -343px;
   margin-left: -275px;
+  position: fixed;
+
 }
 
 
@@ -136,8 +140,5 @@ form.login {
   left: 50%;
   margin-top: -240px;
   margin-left: -200px;
-}
-
-form {
-  position: fixed
+  position: fixed;
 }
