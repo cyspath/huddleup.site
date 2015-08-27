@@ -325,6 +325,11 @@ div.event-item-container p.event-item-title {
   margin-bottom: 7px;
   font-weight: bold;
   color: #1A75AB;
+
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .right-bar-e2 {
@@ -339,11 +344,17 @@ div.event-item-container p.event-item-title {
   font-size: 16px;
   margin-left: 8px;
   margin-top: 3px;
+
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .right-bar-eventname-container {
   float: left;
-  margin-top: -5px;
+  margin-top: 5px;
+  width: 68%;
 }
 
 //group show mid bar
@@ -493,7 +504,6 @@ div.event-item-container p.event-item-title {
 .right-bar-e2.dark-color-left-bar {
   color: #1A75AB;
   font-weight: bold;
-  margin-top: 22px;
   font-size: 15px;
   margin-left: 8px;
 }
