@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  default_scope { order('username') }
+
   has_many :group_members
   has_many :groups, through: :group_members
 

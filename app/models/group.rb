@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  default_scope { order('groups.name') }
+
   has_many :group_members
   has_many :users, through: :group_members, source: :user
 
