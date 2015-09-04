@@ -19,13 +19,6 @@ input, textarea, select, label {
 //   text-align: center;
 // }
 
-form.login div.register a, form.login div.sign-in a {
-  margin-left: 75%;
-  text-decoration: none;
-  color: white;
-  font-family: sans-serif;
-  font-size: 20px;
-}
 
 .login {
   margin: 100px auto;
@@ -110,4 +103,68 @@ form.login div.register a, form.login div.sign-in a {
 
     &:hover { text-decoration: underline; }
   }
+}
+
+h2 {
+  font-family: sans-serif;
+}
+
+.login-header {
+  color: white;
+  text-shadow: 2px 3px 0px #373232;
+}
+
+.sign-up-left {
+  float: left;
+  margin-top: -7px;
+}
+
+.sign-up-right {
+  float: left;
+  font-family: sans-serif;
+  font-size: 26px;
+  margin-left: 10px;
+}
+
+.sign-up-bottom {
+  text-shadow: 2px 3px 0px #373232;
+  margin-left: 19%;
+  color: white;
+  font-family: verdana;
+  font-size: 20px;
+  padding: 10px 0px 20px 20px;
+}
+
+
+form.login div.register a {
+  margin-left: 79%;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  font-size: 15px;
+  position: absolute;
+  top: 90%;
+}
+
+form.login div.sign-in a {
+  margin-left: 82%;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  font-size: 15px;
+  position: absolute;
+  top: 90%;
+}
+
+form.login div.register p, form.login div.sign-in p {
+  margin-left: 66%;
+  text-decoration: none;
+  color: #B4BDD9;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+form div.sign-in, form div.register {
+  position: relative;
+  height: 20px;
 }

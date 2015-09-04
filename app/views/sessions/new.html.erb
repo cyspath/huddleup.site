@@ -7,7 +7,11 @@
 <div class="credentials-container">
   <form action="<%=session_url %>" method="post" class="login">
 
-    <h1>Welcome Back!</h1>
+    <div class="login-header group">
+      <img class="sign-up-left" src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_40/v1441398798/paw_print_vector_3d_kzd5gq.png">
+      <p class="sign-up-right">Welcome to HuddleUp</p>
+    </div>
+    <p class="sign-up-bottom">Meetup for Pets</p>
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 
@@ -20,7 +24,8 @@
     <input type="submit" value="Demo Account" class="login-submit demo-account" onclick="loginDemoGuest()">
 
     <div class="register">
-      <%= link_to "Register", new_user_url %>
+      <p>New to HuddleUp?</p>
+      <%= link_to "Sign Up", new_user_url %>
     </div>
   </form>
 

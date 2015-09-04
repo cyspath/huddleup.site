@@ -8,8 +8,11 @@
 
   <form action="<%=users_url %>" method="post" class="login" background='http://res.cloudinary.com/djdfz4a67/image/upload/o_52/v1440522665/pets_pqxbbd.jpg'>
 
-    <h1>Sign Up for HuddleUp</h1>
-    <h2>Meetup for Pets</h2>
+    <div class="login-header group">
+      <img class="sign-up-left" src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_40/v1441398798/paw_print_vector_3d_kzd5gq.png">
+      <p class="sign-up-right">Sign Up for HuddleUp</p>
+    </div>
+    <p class="sign-up-bottom">Meetup for Pets</p>
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
 
@@ -26,6 +29,7 @@
     <input type="submit" value="Sign Up" class="login-submit">
 
     <div class="sign-in">
+      <p>Already a member?</p>
       <%= link_to "Sign In", new_session_url %>
     </div>
 
