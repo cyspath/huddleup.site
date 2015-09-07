@@ -29,11 +29,18 @@ App.Views.GroupForm = Backbone.View.extend({
     var attributes = $(e.currentTarget).serializeJSON();
     this.model.set(attributes);
     this.model.save(attributes, {
-      success: function () {
+      success: function (a,b) {
         this.collection.add(this.model, { merge: true });
-        //animation
-        $('.general-form').addClass("animated bounceOut")
-        $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.callback.bind(this));
+
+        var groupMember = new App.Models.GroupMember()
+        groupMember.save({ user_id: b.author_id, group_id: b.id }, {
+          success: function () {
+            //animation
+            $('.general-form').addClass("animated bounceOut")
+            $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.callback.bind(this));
+          }.bind(this)
+        })
+
       }.bind(this)
     });
   },

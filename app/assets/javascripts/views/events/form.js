@@ -26,11 +26,17 @@ App.Views.HuddleForm = Backbone.View.extend({
     var attributes = $(e.currentTarget).serializeJSON();
     this.model.set(attributes);
     this.model.save(attributes, {
-      success: function () {
+      success: function (a,b) {
         this.collection.add(this.model, { merge: true });
-        //animation
-        $('.general-form').addClass("animated zoomOutLeft")
-        $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
+
+        var eventMember = new App.Models.EventMember();
+        eventMember.save({ user_id: b.author_id, event_id: b.id }, {
+          success: function () {
+            //animation
+            $('.general-form').addClass("animated zoomOutLeft")
+            $('.general-form').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', this.remove.bind(this));
+          }.bind(this)
+        })
       }.bind(this)
     });
   },
