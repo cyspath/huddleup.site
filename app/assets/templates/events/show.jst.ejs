@@ -58,6 +58,8 @@
 
     <div class="mid-bar">
       <!--  -->
+      <div class="spinner-mid-bar-bottom"></div>
+
       <div class="bar-inner group">
 
         <div class="slide-show-div">
@@ -166,6 +168,9 @@
 
     <div class="right-bar">
 
+      <div class="spinner-right-bar"></div>
+
+
       <% if (!groupEvent.users().get(App.CURRENT_USER.id)) { %>
         <button type="button" class="join-event">
           Join Huddle
@@ -200,9 +205,21 @@
     });
 
   });
+</script>
 
-  // $('img').load(function(){
-  //   // debugger
-  //   $('#cover').fadeOut(500)
-  // })
+
+<script>
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut(500)
+    },700)
+    // setTimeout(function(){
+    //   $('.spinner-left-bar').fadeOut(300)
+    // },700)
+    setTimeout(function(){
+      // $('.spinner-mid-bar-top').fadeOut(300)
+      $('.spinner-mid-bar-bottom').fadeOut(300)
+    },800)
+  })
+
 </script>

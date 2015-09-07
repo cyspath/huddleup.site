@@ -10,6 +10,7 @@
 
 <div class="left-bar">
 
+
   <div class="info">
 
     <% if (image != undefined) { %>
@@ -20,7 +21,7 @@
       </a>
     <% } %>
 
-    <div class="cover-dot"></div>
+    <!-- <div class="spinner-left-bar"></div> -->
 
       <% if (ableToUploadImage) { %>
       <div class="bar-inner bar-inner-upload-image bar-left-image-container">
@@ -41,7 +42,21 @@
       </div>
 
       <div class="bar-divider space-top-bar-divider"></div>
+      <% } %>
 
+      <% if (ableToCreateHuddle) { %>
+
+        <div class="start-event-div">
+          <div class="small">
+            Schedule a New
+          </div>
+          <div class="big">
+            Huddle
+          </div>
+
+        </div>
+
+        <div class="bar-divider-full"></div>
       <% } %>
 
     <div class="group-created-by">
@@ -96,17 +111,20 @@
   <% } %>
 
   <div class="group-events group-event-container">
+    <div class="spinner-mid-bar-bottom"></div>
+
     <p class="heading">Upcoming Events: </p>
 
     <div class="group-show-upcoming-events"></div>
-    <div class="cover-dot"></div>
+
   </div>
 
   <div class="group-events group-event-container">
+
     <p class="heading past-heading">Past Events: </p>
 
     <div class="group-show-past-events"></div>
-    <div class="cover-dot"></div>
+
   </div>
 
   <div class="bar-inner">
@@ -140,20 +158,7 @@
 
   <div class="right-bar">
 
-    <% if (ableToCreateHuddle) { %>
-
-      <div class="start-event-div">
-        <div class="small">
-          Schedule a New
-        </div>
-        <div class="big">
-          Huddle
-        </div>
-
-      </div>
-
-      <div class="bar-divider-full"></div>
-    <% } %>
+    <div class="spinner-right-bar"></div>
 
     <div class="members">
       <p class="heading heading-group-member">Members:</p>
@@ -169,10 +174,26 @@
       <% } %>
 
       <div class="group-show-user-list group"></div>
-      <div class="cover-dot"></div>
 
     </div>
 
   </div>
 
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut(500)
+    },1500)
+    // setTimeout(function(){
+    //   $('.spinner-left-bar').fadeOut(300)
+    // },700)
+    setTimeout(function(){
+      // $('.spinner-mid-bar-top').fadeOut(300)
+      $('.spinner-mid-bar-bottom').fadeOut(500)
+    },1500)
+  })
+
+</script>

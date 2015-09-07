@@ -3,6 +3,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
   className: 'group-show-container outer-container',
 
   initialize: function () {
+
     this.addingThemSubviews()
 
     this.listenTo(this.model.comments(), 'sync', this.renderScrollDown);
@@ -11,7 +12,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.users(), 'add sync remove', this.render);
 
-    this.listenTo(this.model.images(), "sync", this.render);
+    // this.listenTo(this.model.images(), "sync", this.render);
 
   },
 
@@ -321,7 +322,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
         result = true;
       }
     }.bind(this))
-
     return result;
   },
 
@@ -370,10 +370,9 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     this.attachSubviews();
-
-    $('.cover-dot').fadeOut(500)
     //set timeago
     jQuery("abbr.timeago").timeago();
+
 
     return this;
   },

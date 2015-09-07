@@ -41,7 +41,7 @@ div.alert-danger {
 
 // spinners
 #cover {
-  z-index: 1000;
+  z-index: 5000;
   background:  image-url("bluespinner.gif") no-repeat scroll center center #FFF;
   position: absolute;
   height: 100%;
@@ -49,11 +49,48 @@ div.alert-danger {
 }
 
 
-.cover-dot {
-  z-index: 1;
+.spinner-right-bar {
+  z-index: 1000;
   opacity: 1;
   background:  image-url("dotspinner.gif") no-repeat scroll top #FFF;
   position: absolute;
-  height: 85%;
+  height: 95%;
   width: 85%;
+}
+
+.spinner-left-bar {
+  z-index: 1000;
+  opacity: 1;
+  background:  image-url("dotspinner.gif") no-repeat scroll top #FFF;
+  position: absolute;
+  height: 62%;
+  width: 100%;
+}
+
+// .spinner-mid-bar-top {
+//   z-index: 1000;
+//   opacity: 1;
+//   background:  image-url("dotspinner.gif") no-repeat scroll top #FFF;
+//   position: absolute;
+//   height: 70%;
+//   margin-left: -10%;
+//   width: 100%;
+// }
+
+.spinner-mid-bar-bottom {
+  z-index: 1000;
+  opacity: 1;
+  background:  image-url("catspinnerblue.gif") no-repeat scroll top #FFF;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.spinner-left-bar-user {
+  z-index: 1000;
+  opacity: 1;
+  background:  image-url("dotspinner.gif") no-repeat scroll top #FFF;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
