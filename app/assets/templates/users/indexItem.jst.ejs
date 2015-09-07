@@ -1,3 +1,4 @@
+
 <a href="#/users/<%= user.escape('id')%>" class="user-item" data-id=<%= user.escape('id')%>>
 
   <div class="right-bar-avatar-container">
@@ -18,5 +19,20 @@
       </p>
     <% } %>
   </div>
-  
+
 </a>
+
+
+<!-- <script>
+$(function() {
+  $('img').one('load',function() {
+      $('.cover-dot').fadeOut(200)
+  });
+});
+
+// $('img').load(function(){
+//   alert('loaded')
+//   // debugger
+//   // $('.cover-dot').fadeOut(500)
+// })
+</script> -->

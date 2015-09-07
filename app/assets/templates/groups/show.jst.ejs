@@ -20,6 +20,7 @@
       </a>
     <% } %>
 
+    <div class="cover-dot"></div>
 
       <% if (ableToUploadImage) { %>
       <div class="bar-inner bar-inner-upload-image bar-left-image-container">
@@ -96,12 +97,16 @@
 
   <div class="group-events group-event-container">
     <p class="heading">Upcoming Events: </p>
+
     <div class="group-show-upcoming-events"></div>
+    <div class="cover-dot"></div>
   </div>
 
   <div class="group-events group-event-container">
     <p class="heading past-heading">Past Events: </p>
+
     <div class="group-show-past-events"></div>
+    <div class="cover-dot"></div>
   </div>
 
   <div class="bar-inner">
@@ -134,7 +139,6 @@
 
 
   <div class="right-bar">
-    <div id="cover-right-bar"></div>
 
     <% if (ableToCreateHuddle) { %>
 
@@ -165,20 +169,10 @@
       <% } %>
 
       <div class="group-show-user-list group"></div>
+      <div class="cover-dot"></div>
+
     </div>
 
   </div>
 
 </div>
-
-<script>
-  // $('img').load(function(){
-  //   // debugger
-  //   $('#cover').fadeOut(500)
-  // })
-
-  $('img').load(function(){
-    // debugger
-    $('#cover-right-bar').fadeOut(500)
-  })
-</script>

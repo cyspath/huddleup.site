@@ -261,6 +261,7 @@
 
 
   <div class="right-bar">
+
     <% if (currentUser) { %>
       <% var userAlias = "Your" %>
     <% } else if (user.escape('sex') === '♀') { %>
@@ -306,13 +307,8 @@
       autoPlay: false,
       // stopOnHover: true,
     });
-
   });
 
-  // $('img').load(function(){
-  //   // debugger
-  //   $('#cover').fadeOut(500)
-  // })
 </script>
 
 <% if (currentUser || alreadyRated) { %>

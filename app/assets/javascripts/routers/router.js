@@ -51,7 +51,10 @@ App.Routers.Router = Backbone.Router.extend({
   showGroup: function (id) {
     var group = this.groups.getOrFetch(id);
     var view = new App.Views.GroupShowView({ model: group });
+
     this.swapView(view);
+    $('.cover-dot').fadeOut(700)
+
   },
 
   newGroup: function () {

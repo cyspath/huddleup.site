@@ -41,18 +41,19 @@ div.alert-danger {
 
 // spinners
 #cover {
-  z-index: 1;
-  background: url("http://www.acpny.com/App_Themes/ACP/images/Loading.gif") no-repeat scroll center center #FFF;
+  z-index: 1000;
+  background:  image-url("bluespinner.gif") no-repeat scroll center center #FFF;
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
 
-#cover-right-bar {
-  z-index: 1000;
-  background: url("http://www.acpny.com/App_Themes/ACP/images/Loading.gif") no-repeat scroll center center #FFF;
-  // position: absolute;
-  height: 100px;
-  width: 100px;
+.cover-dot {
+  z-index: 1;
+  opacity: 1;
+  background:  image-url("dotspinner.gif") no-repeat scroll top #FFF;
+  position: absolute;
+  height: 85%;
+  width: 85%;
 }
