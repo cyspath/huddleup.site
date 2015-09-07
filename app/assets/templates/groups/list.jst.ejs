@@ -82,8 +82,12 @@
       autoPlay: 3000,
       stopOnHover: true,
 
-
     });
-
   });
+
+  $('img').load(function(){
+    // debugger
+    $('#cover').fadeOut(500)
+  })
+
 </script>

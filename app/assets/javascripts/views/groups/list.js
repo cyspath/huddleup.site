@@ -1,5 +1,6 @@
 App.Views.GroupsList = Backbone.CompositeView.extend({
   template: JST['groups/list'],
+  className: 'group-list-index',
 
   initialize: function (options) {
 

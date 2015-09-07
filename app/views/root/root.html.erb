@@ -1,4 +1,5 @@
 <%= render "layouts/navibar" %>
+<div id="cover"></div>
 
 <div id="root">
   <!-- backbone goes here -->
@@ -31,5 +32,11 @@
     $('.navbar-brand').click(function(){
       $('.tooltip').remove();
     })
+    setTimeout(function (){
+      $('#cover').remove()
+    }, 3000)
   });
+
+
+
 </script>
