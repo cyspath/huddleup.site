@@ -11,8 +11,8 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.images(), "sync", this.renderOrRefresh);
 
-    this.addingThemSubviews();
 
+    this.addingThemSubviews();
 
   },
 
@@ -43,7 +43,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
         this.addPastEventsIndex(this.model.pastEvents());
 
         this.addCommentsIndex(this.model.comments());
-
+    //
       }.bind(this)
     });
   },
@@ -327,6 +327,21 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     jQuery("abbr.timeago").timeago();
 
     return this;
-  }
+  },
+
+
+  removeSpinner: function () {
+
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut(500)
+    },2500)
+    setTimeout(function(){
+      $('.spinner-left-bar-user').fadeOut(500)
+    },2500)
+    setTimeout(function(){
+      // $('.spinner-mid-bar-top').fadeOut(300)
+      $('.spinner-mid-bar-bottom').fadeOut(500)
+    },3000)
+  },
 
 })

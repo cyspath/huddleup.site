@@ -76,7 +76,8 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   showUser: function (id) {
-    var user = this.users.getOrFetch(id);
+    // var user = this.users.getOrFetch(id);
+    var user = new App.Models.User({id: id})
     var view = new App.Views.UserShowView({ model: user });
     this.swapView(view);
   },
