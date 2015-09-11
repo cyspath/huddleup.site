@@ -127,7 +127,7 @@ To participate, all you have to do is sign up, then come out and have fun. Remem
 
 {name: "Coffee Addicts",
 
-  body: "the meetup for people that are passionate about coffee. The goal of the meetup is to be as highly-approachable and relaxed as possible and is completely open to peoplethat are new to, or simply curious about, the wealth of different flavors that can be derived from coffee. This isn't particularly aimed at bearded baristas, tattooed fixie bike riders or to people with San Franciscan, Melbourne or New York accents. That said, if you have one or all of these traits we won't hold that against you! The events will primarily involve coffee tastings (known as "cuppings") with coffees from various cities being highlighted! First up we take a look at what Berlin has to offer, with coffees coming their top micro-roasteries including The Barn and Five Elephant! ", author_id: 2},
+  body: "the meetup for people that are passionate about coffee. The goal of the meetup is to be as highly-approachable and relaxed as possible and is completely open to peoplethat are new to, or simply curious about, the wealth of different flavors that can be derived from coffee. This isn't particularly aimed at bearded baristas, tattooed fixie bike riders or to people with San Franciscan, Melbourne or New York accents. That said, if you have one or all of these traits we won't hold that against you! The events will primarily involve coffee tastings (known as cuppings) with coffees from various cities being highlighted! First up we take a look at what Berlin has to offer, with coffees coming their top micro-roasteries including The Barn and Five Elephant! ", author_id: 2},
 
 {name: "Weekend Bikers",
 
