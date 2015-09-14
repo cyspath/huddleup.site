@@ -1,8 +1,16 @@
-# HuddleUp
+# HuddleUp.site
 
-[Heroku link][heroku]
+[Heroku link][Live Link]
+[heroku]: www.huddleup.site
+#### HuddleUp is asingle-page app for pets to meetup, inspired by Meetup.com. HuddleUp is built on Rails and Backbone.js.
 
-[heroku]: https://mycapstoneprojectapp.herokuapp.com
+### Front-end
+* Prevents lingering listeners on zombie subviews by utilizing a custom composite view class
+
+### Back-end
+* Groups, Huddle Events, and Users share Images and Comments table via polymorphic associations
+* Search queries database and returns Group, Event and User matches with context of matched data type
+* Custom authentication using Bcrypt to store secret hash without setting User#password and stores session token via SecureRandom::urlsafe_base64
 
 ## Minimum Viable Product
 HuddleUp is inspired by Meetup.com built on Rails and Backbone. Users can:
