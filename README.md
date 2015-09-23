@@ -1,7 +1,7 @@
 # HuddleUp.site
 
-[Heroku link][Live Link]
-[heroku]: www.huddleup.site
+## [Live Link](www.huddleup.site)
+
 #### HuddleUp is asingle-page app for pets to meetup, inspired by Meetup.com. HuddleUp is built on Rails and Backbone.js.
 
 ### Front-end
