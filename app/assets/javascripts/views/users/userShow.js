@@ -3,6 +3,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   className: 'user-show-container outer-container',
 
   initialize: function () {
+
     this.tallyRating();
 
     this.listenTo(this.model, "add sync change remove", this.render);
@@ -31,21 +32,35 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
 
 
   addingThemSubviews: function () {
-    this.model.fetch({
-      success: function () {
+    // if already fetched before, and is in collection, got passed in, then just add subviews. Else, fetch model and add subviews
+    if (this.model.attributes.username == undefined) {
+      // fetch and add subviews
+      this.model.fetch({
+        success: function () {
 
-        // this.addImagesIndex(this.model.images());
+          // this.addImagesIndex(this.model.images());
 
-        this.addGroupsIndex(this.model.groups());
+          this.addGroupsIndex(this.model.groups());
 
-        this.addUpcomingEventsIndex(this.model.upcomingEvents());
+          this.addUpcomingEventsIndex(this.model.upcomingEvents());
 
-        this.addPastEventsIndex(this.model.pastEvents());
+          this.addPastEventsIndex(this.model.pastEvents());
 
-        this.addCommentsIndex(this.model.comments());
-    //
-      }.bind(this)
-    });
+          this.addCommentsIndex(this.model.comments());
+        }.bind(this)
+      });
+
+    } else {
+      // just add subviews
+      this.addGroupsIndex(this.model.groups());
+
+      this.addUpcomingEventsIndex(this.model.upcomingEvents());
+
+      this.addPastEventsIndex(this.model.pastEvents());
+
+      this.addCommentsIndex(this.model.comments());
+    }
+
   },
 
 
