@@ -6,7 +6,7 @@
 
 * getOrFetch async method on collections to prevent extra database queries when revisiting the same group/huddle/user page as significantly reducing the loading time. For example, first page load time (Views: 636.1ms | ActiveRecord: 19.5ms)  vs second visit (Views: 6.9ms | ActiveRecord: 0.6ms) of user profile page.
 
-* Customized spinner in photoshop, spinner fades out when models are fetched or have already been fetched.
+* Customized and designed loading spinners in photoshop. Spinner fades out when models are fetched or have already been fetched, backbone view instance variable ```loaded``` is then set to true to prevent spinners rendering by subsequent ```view.render``` calls by other listeners.
 
 
 
