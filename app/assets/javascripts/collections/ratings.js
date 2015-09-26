@@ -10,6 +10,7 @@ App.Collections.Ratings = Backbone.Collection.extend({
     } else {
       rating = new App.Models.Rating({ id: id });
       rating.fetch({
+        success: function(model, response) { collection.add(model) },
         error: function () { collection.remove(rating); }
       });
     }

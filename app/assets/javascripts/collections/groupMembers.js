@@ -12,6 +12,7 @@ App.Collections.GroupMembers = Backbone.Collection.extend({
     } else {
       model = new App.Models.GroupMember({ id: id });
       model.fetch({
+        success: function(model, response) { collection.add(model) },
         error: function () { collection.remove(model); }
       });
     }

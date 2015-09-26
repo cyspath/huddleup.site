@@ -10,6 +10,7 @@ App.Collections.Comments = Backbone.Collection.extend({
     } else {
       comment = new App.Models.Comment({ id: id });
       comment.fetch({
+        success: function(model, response) { collection.add(model) },
         error: function () { collection.remove(comment); }
       });
     }

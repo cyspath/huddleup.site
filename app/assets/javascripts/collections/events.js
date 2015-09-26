@@ -10,6 +10,7 @@ App.Collections.Events = Backbone.Collection.extend({
     } else {
       model = new App.Models.Event({ id: id });
       model.fetch({
+        success: function(model, response) { collection.add(model) },
         error: function () { collection.remove(model); }
       });
     }

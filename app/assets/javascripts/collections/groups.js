@@ -10,6 +10,7 @@ App.Collections.Groups = Backbone.Collection.extend({
     } else {
       group = new App.Models.Group({ id: id });
       group.fetch({
+        success: function(model, response) { collection.add(model) },
         error: function () { collection.remove(group); }
       });
     }

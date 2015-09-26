@@ -4,6 +4,8 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
   initialize: function () {
 
+    this.loaded = false;
+
     this.addingThemSubviews()
 
     this.listenTo(this.model.comments(), 'sync', this.renderScrollDown);
@@ -31,24 +33,55 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     "click .uploadImage": "uploadImage",
   },
 
+  spinnerFadeOut: function () {
+    this.loaded = true;
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut()
+      $('.spinner-left-bar').fadeOut()
+      $('.spinner-mid-bar-bottom').fadeOut()
+    },0)
+  },
+
   addingThemSubviews: function () {
-    this.model.fetch({
-      success: function () {
-        this.ableToUploadImage = this.canUpload();
-        this.ableToCreateHuddle = this.canCreateHuddle();
 
-        this.addCommentsIndex(this.model.comments());
+    if (this.model.attributes.name == undefined) {
+      this.model.fetch({
+        success: function () {
+          this.ableToUploadImage = this.canUpload();
+          this.ableToCreateHuddle = this.canCreateHuddle();
 
-        this.addMembersIndex(this.model.users());
+          this.addCommentsIndex(this.model.comments());
 
-        this.createMembershipCollection();
+          this.addMembersIndex(this.model.users());
 
-        this.addUpcomingEventsIndex(this.model.upcomingEvents());
+          this.createMembershipCollection();
 
-        this.addPastEventsIndex(this.model.pastEvents());
+          this.addUpcomingEventsIndex(this.model.upcomingEvents());
 
-      }.bind(this)
-    });
+          this.addPastEventsIndex(this.model.pastEvents());
+
+          this.spinnerFadeOut()
+
+        }.bind(this)
+      });
+    } else {
+      this.ableToUploadImage = this.canUpload();
+      this.ableToCreateHuddle = this.canCreateHuddle();
+
+      this.addCommentsIndex(this.model.comments());
+
+      this.addMembersIndex(this.model.users());
+
+      this.createMembershipCollection();
+
+      this.addUpcomingEventsIndex(this.model.upcomingEvents());
+
+      this.addPastEventsIndex(this.model.pastEvents());
+
+      this.spinnerFadeOut()
+
+    }
+
   },
 
 
@@ -358,6 +391,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     var images = this.model.images();
     var image = images.models[images.length - 1];
 
+
     var content = this.template({
       group: this.model,
       group_id: this.model.id,
@@ -366,6 +400,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
       image: image,
       ableToUploadImage: this.ableToUploadImage,
       ableToCreateHuddle: this.ableToCreateHuddle,
+      loaded: this.loaded,
     });
     this.$el.html(content);
 
