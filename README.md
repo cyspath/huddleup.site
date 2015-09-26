@@ -4,6 +4,8 @@
 
 #### HuddleUp is asingle-page app for pets to meetup, inspired by Meetup.com. HuddleUp is built on Rails and Backbone.js.
 
+### Site Overview
+
 ### Front-end
 * Prevents lingering listeners on zombie subviews by utilizing a custom composite view class
 
