@@ -3,6 +3,8 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
   className: 'event-show-container outer-container',
 
   initialize: function (options) {
+    this.loaded = false;
+
     this.funnyPhrase = options.funnyPhrase;
 
     this.listenTo(this.model, "sync", this.render);
@@ -30,20 +32,45 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     "click .uploadImage": "uploadImage",
   },
 
+  spinnerFadeOut: function () {
+    this.loaded = true;
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut()
+      $('.spinner-left-bar').fadeOut()
+      $('.spinner-mid-bar-bottom').fadeOut()
+    },0)
+  },
+
   addingThemSubviews: function () {
-    this.model.fetch({
-      success: function () {
 
-        this.addMembersIndex(this.model.users());
+    if (this.model.attributes.title == undefined) {
+      this.model.fetch({
+        success: function () {
 
-        this.ableToUploadImage = this.canUpload();
+          this.addMembersIndex(this.model.users());
 
-        this.createMembershipCollection();
+          this.ableToUploadImage = this.canUpload();
 
-        this.addCommentsIndex(this.model.comments());
+          this.createMembershipCollection();
 
-      }.bind(this)
-    });
+          this.addCommentsIndex(this.model.comments());
+
+          this.spinnerFadeOut()
+
+        }.bind(this)
+      });
+    } else {
+      this.addMembersIndex(this.model.users());
+
+      this.ableToUploadImage = this.canUpload();
+
+      this.createMembershipCollection();
+
+      this.addCommentsIndex(this.model.comments());
+
+      this.spinnerFadeOut()
+    }
+
   },
 
 
@@ -315,6 +342,7 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
       ableToUploadImage: this.ableToUploadImage,
       funnyPhrase: this.funnyPhrase,
       group: group,
+      loaded: this.loaded,
     });
 
     this.$el.html(content);

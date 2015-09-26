@@ -3,6 +3,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   className: 'user-show-container outer-container',
 
   initialize: function () {
+    this.loaded = false;
 
     this.tallyRating();
 
@@ -30,6 +31,14 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     "click .submit-rating": "submitRating",
   },
 
+  spinnerFadeOut: function () {
+    this.loaded = true;
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut()
+      $('.spinner-left-bar').fadeOut()
+      $('.spinner-mid-bar-bottom').fadeOut()
+    },0)
+  },
 
   addingThemSubviews: function () {
     // if already fetched before, and is in collection, got passed in, then just add subviews. Else, fetch model and add subviews
@@ -47,6 +56,9 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
           this.addPastEventsIndex(this.model.pastEvents());
 
           this.addCommentsIndex(this.model.comments());
+
+          this.spinnerFadeOut();
+
         }.bind(this)
       });
 
@@ -59,6 +71,9 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
       this.addPastEventsIndex(this.model.pastEvents());
 
       this.addCommentsIndex(this.model.comments());
+
+      this.spinnerFadeOut();
+
     }
 
   },
@@ -332,6 +347,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
       images: this.model.images(),
       ratingCount: this.ratingCount,
       alreadyRated: this.alreadyRated,
+      loaded: this.loaded,
     });
     this.$el.html(content);
     this.attachSubviews();
@@ -345,18 +361,5 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   },
 
 
-  removeSpinner: function () {
-
-    setTimeout(function(){
-      $('.spinner-right-bar').fadeOut(500)
-    },2500)
-    setTimeout(function(){
-      $('.spinner-left-bar-user').fadeOut(500)
-    },2500)
-    setTimeout(function(){
-      // $('.spinner-mid-bar-top').fadeOut(300)
-      $('.spinner-mid-bar-bottom').fadeOut(500)
-    },3000)
-  },
 
 })
