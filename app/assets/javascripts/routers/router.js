@@ -10,10 +10,8 @@ App.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "AllGroups",
     "groups/new": "newGroup",
-    // "groups/:id/edit": "editGroup",
     "groups/:id": "showGroup",
 
-    // "events": "AllEvents",
     "events/new": "newEvent",
     "events/:id/edit": "editEvent",
     "events/:id": "showEvent",
@@ -32,17 +30,33 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   AllGroups: function () {
-    this.groups.fetch({
-      success: function () {
 
-        var view = new App.Views.GroupsList({
-          collection: this.groups,
-          allEvents: this.allEvents
-        });
-        this.swapView(view);
+    if (this.home_page_visited == undefined) {
+      //fetch the partial groups and partial events for the home page showing
+      this.groups.fetch({
+        success: function () {
+          this.allEvents.fetch({
+            success: function () {
+              this.home_page_visited = true;
+              var view = new App.Views.GroupsList({
+                collection: this.groups,
+                allEvents: this.allEvents
+              });
+              this.swapView(view);
+            }.bind(this)
+          })
 
-      }.bind(this)
-    });
+        }.bind(this)
+      });
+    } else {
+      //use existing collection
+      var view = new App.Views.GroupsList({
+        collection: this.groups,
+        allEvents: this.allEvents
+      });
+      this.swapView(view);
+    }
+
   },
 
   showGroup: function (id) {

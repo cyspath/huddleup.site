@@ -1,8 +1,10 @@
 class Api::GroupsController < ApplicationController
+
   def index
-    @groups = Group.all
+    @groups = Group.find_by_sql("SELECT * FROM Groups LIMIT 40")
     render 'index'
   end
+
 
   def show
     @group = Group.find(params[:id])

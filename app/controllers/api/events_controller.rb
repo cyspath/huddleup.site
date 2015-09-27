@@ -1,7 +1,7 @@
 class Api::EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.find_by_sql("SELECT * FROM Events LIMIT 40")
     render 'index'
   end
 
