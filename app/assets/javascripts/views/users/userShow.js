@@ -5,7 +5,7 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   initialize: function () {
     this.loaded = false;
 
-    this.tallyRating();
+    this.alreadyRated = true;
 
     this.listenTo(this.model, "add sync change remove", this.render);
 
@@ -164,6 +164,22 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
         }.bind(this))
 
         this.rating = Math.round(sum/count); //average rating
+
+        // after rating count, updates user rating, count number, as well as freeze the dropdown box
+        $('select#rating').barrating('set', this.rating);
+        $('.count-num').html(count)
+
+        if (this.alreadyRated) {
+          $('.pre-rate-msg').remove();
+          $('.submit-rating').remove();
+
+          $('#rating').barrating({
+            readonly: true,
+          });
+        }
+
+        $('.rating-container').fadeIn(500).addClass("animated pulse")
+
 
       }.bind(this)
     })
@@ -341,6 +357,8 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
   // good ol render
   render: function () {
 
+    this.tallyRating()
+
     var content = this.template({
       user: this.model,
       user_id: this.model.id,
@@ -348,12 +366,16 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
       ratingCount: this.ratingCount,
       alreadyRated: this.alreadyRated,
       loaded: this.loaded,
+      rating: this.rating,
     });
     this.$el.html(content);
     this.attachSubviews();
 
-    //and set the current rating of the user
-    $('select#rating').barrating('set', this.rating);
+    // //and set the current rating of the user
+    // if (this.rating != undefined) {
+    //   $('select#rating').barrating('set', this.rating);
+    // }
+
     //set timeago
     jQuery("abbr.timeago").timeago();
 

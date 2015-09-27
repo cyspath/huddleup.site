@@ -42,7 +42,9 @@ div.alert-danger {
 // spinners
 #cover {
   z-index: 5000;
-  background:  image-url("bluespinner.gif") no-repeat scroll center center #FFF;
+  // background:  image-url("bluespinner.gif") no-repeat scroll center center #FFF;
+  background:  image-url("catspinnerblue.gif") no-repeat scroll center center #FFF;
+  background-size: 70%;
   position: absolute;
   height: 100%;
   width: 100%;
