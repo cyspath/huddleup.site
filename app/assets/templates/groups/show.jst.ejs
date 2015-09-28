@@ -191,11 +191,15 @@
 <script>
   $('#cover').fadeOut()
 
+  $('.group-title-div-1 h1').hide()
+  setTimeout(function() {
+    $('.group-title-div-1 h1').fadeIn()
+  }, 500)
+
   setTimeout(function () {
     if ($('.comment-index-item').length > 0) {
       $('.start-convo-div').fadeTo('fast', 0)
      }
-    //  $("html, body").animate({ scrollTop: 0 }, "fast");
 
   }, 0)
 

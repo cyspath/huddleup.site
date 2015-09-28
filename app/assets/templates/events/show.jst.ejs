@@ -197,6 +197,8 @@
 
   $('.event-title-div-1 h4').css('opacity', '0')
   $('.event-title-div-1 h5').css('opacity', '0')
+  $('.event-title-div-1 h3').css('opacity', '0')
+
 
   $(document).ready(function() {
     $("#owl-example").owlCarousel({
@@ -207,16 +209,21 @@
   });
 
   $('#cover').fadeOut()
+
+
   setTimeout(function () {
     if ($('.comment-index-item').length > 0) {
       $('.start-convo-div').fadeTo('fast', 0)
      }
-    //  $("html, body").animate({ scrollTop: 0 }, "fast");
   }, 0)
 
   setTimeout(function () {
     $('.event-title-div-1 h4').css('opacity', '1').addClass('animated zoomIn')
     $('.event-title-div-1 h5').css('opacity', '1').addClass('animated zoomIn')
-  }, 1000)
+    setTimeout(function () {
+      $('.event-title-div-1 h3').css('opacity', '1').addClass('animated zoomIn')
+    }, 1000)
+  }, 500)
+
 
 </script>
