@@ -60,6 +60,7 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   showGroup: function (id) {
+    $(window).scrollTop(0)
     var group = this.groups.getOrFetch(id);
     var view = new App.Views.GroupShowView({ model: group });
 
@@ -78,6 +79,8 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   showEvent: function (id) {
+    $(window).scrollTop(0)
+
     var groupEvent = this.allEvents.getOrFetch(id);
     var view = new App.Views.EventShowView({
       model: groupEvent,
@@ -87,6 +90,8 @@ App.Routers.Router = Backbone.Router.extend({
   },
 
   showUser: function (id) {
+    $(window).scrollTop(0)
+
     var user = this.users.getOrFetch(id);
     // var user = new App.Models.User({id: id})
     var view = new App.Views.UserShowView({ model: user });

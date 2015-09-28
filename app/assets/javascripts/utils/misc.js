@@ -9,7 +9,7 @@ App.FunnyPhrases = function () {
   'LESSEN GUILT OF YOUR "SICK" DAYOFF']
 
   var s2 = ["speak none and come to",
-  "or if you dont like that, better to",
+  "or if you dont like that, better come to",
   "and everyone is an opposite of you at",
   "by going to",
   "because you didn't come to",

@@ -126,7 +126,6 @@
 
       </div>
 
-      <!-- <div class="bar-divider"></div> -->
 
       <% if (groupEvent.escape('body').length > 0) { %>
         <div class="bar-inner">
@@ -195,25 +194,29 @@
 
 
 <script>
+
+  $('.event-title-div-1 h4').css('opacity', '0')
+  $('.event-title-div-1 h5').css('opacity', '0')
+
   $(document).ready(function() {
     $("#owl-example").owlCarousel({
-
       slideSpeed : 1200,
       singleItem:true,
-
       autoPlay: 3000,
-      // stopOnHover: true,
-
-
     });
-
   });
 
   $('#cover').fadeOut()
   setTimeout(function () {
     if ($('.comment-index-item').length > 0) {
-      $('.start-convo-div').fadeTo('slow', 0)
+      $('.start-convo-div').fadeTo('fast', 0)
      }
+    //  $("html, body").animate({ scrollTop: 0 }, "fast");
   }, 0)
+
+  setTimeout(function () {
+    $('.event-title-div-1 h4').css('opacity', '1').addClass('animated zoomIn')
+    $('.event-title-div-1 h5').css('opacity', '1').addClass('animated zoomIn')
+  }, 1000)
 
 </script>
