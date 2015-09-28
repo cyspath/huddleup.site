@@ -371,11 +371,6 @@ App.Views.UserShowView = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
 
-    // //and set the current rating of the user
-    // if (this.rating != undefined) {
-    //   $('select#rating').barrating('set', this.rating);
-    // }
-
     //set timeago
     jQuery("abbr.timeago").timeago();
 

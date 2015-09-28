@@ -9,6 +9,9 @@ App.Views.CommentsIndexItem = Backbone.View.extend({
   render: function () {
     var content = this.template({ comment: this.model });
     this.$el.html(content);
+    $('.comment-textarea').val('')
+    jQuery("abbr.timeago").timeago();
+
     return this;
   }
 
