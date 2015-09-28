@@ -12,18 +12,16 @@
     <div class="comment-container-right">
       <div class="comment-container-inner-top group">
 
-        <div class="commenter-name-div">
 
-          <a class="commenter-name" href="#/users/<%= comment.escape('author_id') %>">
-            <p class="comment-author-name">
-              <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
-                You
-              <% } else { %>
-                <%= comment.escape('author_name')%>
-              <% } %>
-            </p>
-          </a>
-        </div>
+        <a class="commenter-name" href="#/users/<%= comment.escape('author_id') %>">
+          <p class="comment-author-name">
+            <% if (comment.escape('author_name') == App.CURRENT_USER.username) { %>
+              You
+            <% } else { %>
+              <%= comment.escape('author_name')%>
+            <% } %>
+          </p>
+        </a>
 
         <div class="comment-body">
           <%= comment.escape('body')%>

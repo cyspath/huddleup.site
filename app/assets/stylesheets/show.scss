@@ -320,17 +320,16 @@ div.event-item-container p.event-item-title {
 
 
 .right-bar-e1 {
-  color: #0C496D;
   font-size: 16px;
   margin-top: 4px;
   margin-bottom: 7px;
   font-weight: bold;
   color: #1A75AB;
-
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 20px;
 }
 
 .right-bar-e2 {
