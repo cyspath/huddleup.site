@@ -196,7 +196,6 @@
 
 <script>
   $(document).ready(function() {
-
     $("#owl-example").owlCarousel({
 
       slideSpeed : 1200,
@@ -211,5 +210,10 @@
   });
 
   $('#cover').fadeOut()
+  setTimeout(function () {
+    if ($('.comment-index-item').length > 0) {
+      $('.start-convo-div').fadeTo('slow', 0)
+     }
+  }, 0)
 
 </script>

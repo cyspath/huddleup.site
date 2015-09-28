@@ -311,6 +311,7 @@
 <script>
   $(document).ready(function() {
 
+
     $("#owl-example").owlCarousel({
       slideSpeed : 800,
       singleItem:true,
@@ -323,6 +324,11 @@
    $('.rating-container').hide()
    $('#cover').fadeOut()
 
+   setTimeout(function () {
+     if ($('.comment-index-item').length > 0) {
+       $('.start-convo-div').fadeTo('slow', 0)
+      }
+   }, 0)
 
 </script>
 
