@@ -72,12 +72,24 @@
 <div class="groups-container group"></div>
 
 <script>
+  $('.groups-container').toggle()
+  $('.search-icon').toggle()
+
+  setTimeout(function() {
+    $('.groups-container').fadeIn()
+    setTimeout(function() {
+      $('.search-icon').fadeIn().addClass("animated zoomIn")
+    }, 300)
+  }, 200)
+
+
+
   $(document).ready(function() {
 
     $("#owl-example-1").owlCarousel({
 
-      slideSpeed : 1600,
       singleItem:true,
+      paginationSpeed: 2000,
 
       autoPlay: 3000,
       stopOnHover: true,

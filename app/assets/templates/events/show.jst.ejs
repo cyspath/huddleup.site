@@ -20,7 +20,7 @@
       <% if (group != undefined) { %>
         <% var group_image = group.escape('group_url_cropped') %>
 
-          <a href="#/images/<%= group.escape('group_url_cropped_id') %>">
+          <a href="#/images/<%= group.escape('group_url_cropped_id') %>" style="cursor: default">
             <div class="image-box-big">
               <img class="group-image"src="<%= group_image %>" width="175" height="175" alt="" />
             </div>
@@ -73,9 +73,12 @@
               <div id="owl-example" class="owl-carousel owl-theme">
 
                 <% slideShowImages.forEach(function(image){ %>
-                  <div class="item hover">
-                    <img src="<%= image.escape("url_cropped") %>">
-                  </div>
+                  <a href="<%= image.escape("url_cropped") %>">
+                    <div class="item hover">
+                      <img src="<%= image.escape("url_cropped") %>">
+                    </div>
+                  </a>
+
                 <% }) %>
 
               </div>

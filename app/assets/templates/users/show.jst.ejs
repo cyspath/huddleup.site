@@ -88,9 +88,12 @@
             <div id="owl-example" class="owl-carousel owl-theme">
 
               <% images.forEach(function(image){ %>
-                <div class="item hover">
-                  <img src="<%= image.escape("url_cropped") %>">
-                </div>
+                <a href="<%= image.escape("url_cropped") %>">
+                  <div class="item hover">
+                    <img src="<%= image.escape("url_cropped") %>">
+                  </div>
+                </a>
+
               <% }) %>
 
             </div>

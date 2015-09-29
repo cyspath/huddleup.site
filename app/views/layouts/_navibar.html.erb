@@ -78,15 +78,19 @@
 
               <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#users/<%= current_user.id %>">Profile Page</a></li>
+            <li><a href="#users/<%= current_user.id %>">Profile</a></li>
             <li><a href="#/groups/new">Start a Group</a></li>
+            <li><%= link_to "Log Out", session_url, method: :delete %></li>
+            
             <li role="separator" class="divider"></li>
-            <li><a href="http://cyspath.github.io/thunderbird-game/">Thunderbird Game</a></li>
-            <li><a href="https://github.com/cyspath/Chess">Github Repo(Chess)</a></li>
-            <li><a href="https://github.com/cyspath/capstone_project">Github Repo(HuddleUp)</a></li>
+            <li><a href="http://github.com/cyspath/huddleup.site" target="_blank">Source Code(HuddleUp)</a></li>
+
             <li role="separator" class="divider"></li>
-            <li><a
-            <li><%= link_to "Sign Out", session_url, method: :delete %></li>
+            <li class="drop-down-header">Additional Goodies:</li>
+            <li><a href="http://cyspath.github.io" target="_blank">Mike's Portfolio</a></li>
+            <li><a href="http://cyspath.github.io/thunderbird/" target="_blank">Thunderbird Shooter</a></li>
+            <li><a href="http://github.com/cyspath/Chess" target="_blank">Ruby Chess</a></li>
+
           </ul>
         </li>
       </ul>
