@@ -21,7 +21,7 @@
       </a>
     <% } %>
 
-    <% if (!loaded) { %>
+    <% if (visited <= 1) { %>
       <div class="spinner-left-bar"></div>
     <% } %>
 
@@ -114,7 +114,7 @@
 
   <div class="group-events group-event-container">
 
-    <% if (!loaded) { %>
+    <% if (visited <= 1) { %>
       <div class="spinner-mid-bar-bottom"></div>
     <% } %>
 
@@ -163,7 +163,7 @@
 
   <div class="right-bar">
 
-    <% if (!loaded) { %>
+    <% if (visited <= 1) { %>
       <div class="spinner-right-bar"></div>
     <% } %>
 
@@ -204,3 +204,13 @@
   }, 0)
 
 </script>
+
+<!-- <script>
+  $(document).ready(function () {
+    setTimeout(function(){
+      $('.spinner-right-bar').fadeOut()
+      $('.spinner-left-bar').fadeOut()
+      $('.spinner-mid-bar-bottom').fadeOut()
+    },0)
+  })
+</script> -->

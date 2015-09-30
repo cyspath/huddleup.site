@@ -4,9 +4,9 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
   initialize: function () {
 
-    this.loaded = false;
+    this.setVisited();
 
-    this.addingThemSubviews()
+    this.addingThemSubviews();
 
     this.listenTo(this.model.comments(), 'sync', this.renderScrollDown);
 
@@ -33,8 +33,17 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     "click .uploadImage": "uploadImage",
   },
 
+  setVisited: function () {
+    if (this.model.attributes.visited == undefined) {
+      this.model.set({ "visited": 1 })
+    } else {
+      this.model.attributes.visited += 1
+    }
+    console.log('number of times visited this group: ' + this.model.attributes.visited);
+  },
+
   spinnerFadeOut: function () {
-    this.loaded = true;
+
     setTimeout(function(){
       $('.spinner-right-bar').fadeOut()
       $('.spinner-left-bar').fadeOut()
@@ -42,9 +51,17 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     },0)
   },
 
+  // check_loading: function () {
+  //   if (Backbone.history.getFragment() == "groups/" + this.model.id) {
+  //     this.loaded = true
+  //   }
+  // },
+
   addingThemSubviews: function () {
 
+
     if (this.model.attributes.name == undefined) {
+
       this.model.fetch({
         success: function () {
           this.ableToUploadImage = this.canUpload();
@@ -60,11 +77,13 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
           this.addPastEventsIndex(this.model.pastEvents());
 
+
           this.spinnerFadeOut()
 
         }.bind(this)
       });
     } else {
+
       this.ableToUploadImage = this.canUpload();
       this.ableToCreateHuddle = this.canCreateHuddle();
 
@@ -78,7 +97,11 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
       this.addPastEventsIndex(this.model.pastEvents());
 
-      this.spinnerFadeOut()
+      setTimeout(function() {
+
+        this.spinnerFadeOut()
+      }.bind(this), 100)
+
 
     }
 
@@ -400,7 +423,7 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
       image: image,
       ableToUploadImage: this.ableToUploadImage,
       ableToCreateHuddle: this.ableToCreateHuddle,
-      loaded: this.loaded,
+      visited: this.model.attributes.visited,
     });
     this.$el.html(content);
 
