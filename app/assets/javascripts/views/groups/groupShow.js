@@ -51,12 +51,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     },0)
   },
 
-  // check_loading: function () {
-  //   if (Backbone.history.getFragment() == "groups/" + this.model.id) {
-  //     this.loaded = true
-  //   }
-  // },
-
   addingThemSubviews: function () {
 
 
@@ -77,9 +71,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
 
           this.addPastEventsIndex(this.model.pastEvents());
 
-
-          this.spinnerFadeOut()
-
         }.bind(this)
       });
     } else {
@@ -96,12 +87,6 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
       this.addUpcomingEventsIndex(this.model.upcomingEvents());
 
       this.addPastEventsIndex(this.model.pastEvents());
-
-      setTimeout(function() {
-
-        this.spinnerFadeOut()
-      }.bind(this), 100)
-
 
     }
 
@@ -431,6 +416,9 @@ App.Views.GroupShowView = Backbone.CompositeView.extend({
     //set timeago
     jQuery("abbr.timeago").timeago();
 
+    $('img').load(function() {
+      this.spinnerFadeOut()
+    }.bind(this))
 
     return this;
   },

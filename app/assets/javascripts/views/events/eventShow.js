@@ -3,7 +3,8 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
   className: 'event-show-container outer-container',
 
   initialize: function (options) {
-    this.loaded = false;
+
+    this.setVisited();
 
     this.funnyPhrase = options.funnyPhrase;
 
@@ -32,8 +33,17 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
     "click .uploadImage": "uploadImage",
   },
 
+  setVisited: function () {
+    if (this.model.attributes.visited == undefined) {
+      this.model.set({ "visited": 1 })
+    } else {
+      this.model.attributes.visited += 1
+    }
+    console.log('number of times visited this group: ' + this.model.attributes.visited);
+  },
+
   spinnerFadeOut: function () {
-    this.loaded = true;
+
     setTimeout(function(){
       $('.spinner-right-bar').fadeOut()
       $('.spinner-left-bar').fadeOut()
@@ -55,8 +65,6 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
           this.addCommentsIndex(this.model.comments());
 
-          this.spinnerFadeOut()
-
         }.bind(this)
       });
     } else {
@@ -68,7 +76,6 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
 
       this.addCommentsIndex(this.model.comments());
 
-      this.spinnerFadeOut()
     }
 
   },
@@ -342,13 +349,18 @@ App.Views.EventShowView = Backbone.CompositeView.extend({
       ableToUploadImage: this.ableToUploadImage,
       funnyPhrase: this.funnyPhrase,
       group: group,
-      loaded: this.loaded,
+      visited: this.model.attributes.visited,
     });
 
     this.$el.html(content);
     this.attachSubviews();
     //set timeago
     jQuery("abbr.timeago").timeago();
+
+    $('img').load(function() {
+      this.spinnerFadeOut()
+    }.bind(this))
+
     return this;
   }
 

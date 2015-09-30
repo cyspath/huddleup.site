@@ -59,7 +59,7 @@
     <div class="mid-bar">
 
 
-      <% if (!loaded) { %>
+      <% if (visited <= 1) { %>
         <div class="spinner-mid-bar-bottom"></div>
       <% } %>
 
@@ -173,7 +173,7 @@
 
     <div class="right-bar">
 
-      <% if (!loaded) { %>
+      <% if (visited <= 1) { %>
         <div class="spinner-right-bar"></div>
       <% } %>
 
