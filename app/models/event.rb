@@ -14,4 +14,15 @@ class Event < ActiveRecord::Base
   has_many :images, as: :imageable
 
   validates :title, :author, :group_id, :date, :location, presence: true
+
+  validate :date_cannot_be_in_the_past
+
+  belongs_to :patient
+
+
+  def date_cannot_be_in_the_past
+    if date <= Date.today
+      errors.add(:date, "must be a future date")
+    end
+  end
 end
